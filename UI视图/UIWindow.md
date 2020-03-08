@@ -1,6 +1,0 @@
-UIWindow是一种特殊的View，通常在一个app中至少有一个UIWindow。
-
-iOS程序启动完毕后创建的第一个视图就是UIWindow，接着创建控制器的view，最后将控制器的view添加到UIWindow上，于是控制器的view就显示在屏幕上了。
-
-一个iOS程序之所以能够显示在屏幕上，是因为它有UIWindow。如果没有UIWindow就看不到任何界面。
-

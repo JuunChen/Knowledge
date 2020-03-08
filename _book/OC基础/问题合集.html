@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>实现线程安全的数组 · GitBook</title>
+        <title>问题合集 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../Block/Block 的本质.html" />
+    <link rel="next" href="../内存管理/对MRC和ARC的理解.html" />
     
     
-    <link rel="prev" href="问题合集.html" />
+    <link rel="prev" href="OC对象.html" />
     
 
     </head>
@@ -104,9 +104,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="问题合集.html">
+        <li class="chapter " data-level="1.2" data-path="../Runtime/问题合集.html">
             
-                <a href="问题合集.html">
+                <a href="../Runtime/问题合集.html">
             
                     
                     Runtime问题集合
@@ -117,9 +117,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3" data-path="实现线程安全的数组.html">
+        <li class="chapter " data-level="1.3" data-path="../Runtime/实现线程安全的数组.html">
             
-                <a href="实现线程安全的数组.html">
+                <a href="../Runtime/实现线程安全的数组.html">
             
                     
                     实现线程安全的数组
@@ -288,9 +288,9 @@
         
         
     
-        <li class="chapter " data-level="5.1" data-path="../OC基础/分类.html">
+        <li class="chapter " data-level="5.1" data-path="分类.html">
             
-                <a href="../OC基础/分类.html">
+                <a href="分类.html">
             
                     
                     分类
@@ -301,9 +301,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.2" data-path="../OC基础/关联对象.html">
+        <li class="chapter " data-level="5.2" data-path="关联对象.html">
             
-                <a href="../OC基础/关联对象.html">
+                <a href="关联对象.html">
             
                     
                     关联对象
@@ -314,9 +314,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.3" data-path="../OC基础/isa与superclass.html">
+        <li class="chapter " data-level="5.3" data-path="isa与superclass.html">
             
-                <a href="../OC基础/isa与superclass.html">
+                <a href="isa与superclass.html">
             
                     
                     isa与superclass
@@ -327,9 +327,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.4" data-path="../OC基础/KVC.html">
+        <li class="chapter " data-level="5.4" data-path="KVC.html">
             
-                <a href="../OC基础/KVC.html">
+                <a href="KVC.html">
             
                     
                     KVC
@@ -340,9 +340,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.5" data-path="../OC基础/KVO.html">
+        <li class="chapter " data-level="5.5" data-path="KVO.html">
             
-                <a href="../OC基础/KVO.html">
+                <a href="KVO.html">
             
                     
                     KVO
@@ -353,9 +353,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.6" data-path="../OC基础/NSNotification.html">
+        <li class="chapter " data-level="5.6" data-path="NSNotification.html">
             
-                <a href="../OC基础/NSNotification.html">
+                <a href="NSNotification.html">
             
                     
                     NSNotification
@@ -366,9 +366,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.7" data-path="../OC基础/OC对象.html">
+        <li class="chapter " data-level="5.7" data-path="OC对象.html">
             
-                <a href="../OC基础/OC对象.html">
+                <a href="OC对象.html">
             
                     
                     OC对象
@@ -379,9 +379,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.8" data-path="../OC基础/问题合集.html">
+        <li class="chapter active" data-level="5.8" data-path="问题合集.html">
             
-                <a href="../OC基础/问题合集.html">
+                <a href="问题合集.html">
             
                     
                     问题合集
@@ -713,7 +713,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >实现线程安全的数组</a>
+        <a href=".." >问题合集</a>
     </h1>
 </div>
 
@@ -728,78 +728,57 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">CJMultiThreadObject</span> : <span class="hljs-title">NSObject</span></span>
+                                <ol>
+<li><p><code>property</code>&#x7684;&#x4F5C;&#x7528;&#xFF1F;</p>
+</li>
+<li><p><code>property</code>&#x6709;&#x54EA;&#x4E9B;&#x5173;&#x952E;&#x5B57;&#xFF1F;&#x9ED8;&#x8BA4;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</p>
+<ul>
+<li><p>&#x539F;&#x5B50;&#x6027;&#xFF1A;&#x9ED8;&#x8BA4;&#x662F;atomic</p>
+</li>
+<li><p>&#x5185;&#x5B58;&#x7BA1;&#x7406;&#xFF1A;&#x5BF9;&#x8C61;&#x9ED8;&#x8BA4;&#x662F;strong&#xFF0C;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x9ED8;&#x8BA4;&#x662F;assign</p>
+</li>
+<li><p>&#x8BFB;&#x5199;&#xFF1A;&#x9ED8;&#x8BA4;&#x662F;readwrite</p>
+</li>
+<li><p>setter/getter&#xFF1A;</p>
+</li>
+<li><p>&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x4E3A;&#x7A7A;&#xFF0C;&#x662F;&#x6307;&#x4E13;&#x95E8;&#x4FEE;&#x9970;&#x6307;&#x9488;&#x7684;&#xFF0C;&#x4E0D;&#x9002;&#x7528;&#x4E8E;&#x57FA;&#x672C;&#x7C7B;&#x578B;</p>
+<ul>
+<li><p>nonnull &#x4E0D;&#x80FD;&#x4E3A;&#x7A7A;&#xFF0C;&#x5728;NS_ASSUME_NONNULL_BEGIN&#x548C;NS_ASSUME_NONNULL_END&#x4E4B;&#x95F4;,&#x5B9A;&#x4E49;&#x7684;&#x6240;&#x6709;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x548C;&#x65B9;&#x6CD5;&#x9ED8;&#x8BA4;&#x90FD;&#x662F;nonnull&#x3002;&#x5982;&#x679C;&#x67D0;&#x4E2A;&#x5C5E;&#x6027;&#x4E0D;&#x5E0C;&#x671B;&#x6709;&#x8FD9;&#x4E2A;&#x7279;&#x5F81;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x5DF1;&#x5B9A;&#x4E49;&#x3002;</p>
+</li>
+<li><p>nullable</p>
+</li>
+<li><p>null_resettable: get&#x4E0D;&#x80FD;&#x8FD4;&#x56DE;&#x7A7A;&#xFF0C;set&#x53EF;&#x4EE5;&#x4E3A;&#x7A7A;&#x3002;&#xFF08;&#x8981;&#x60F3;&#x8FBE;&#x5230;&#x8FD9;&#x4E2A;&#x76EE;&#x7684;&#xFF0C;&#x5219;&#x5FC5;&#x987B;&#x8981;&#x91CD;&#x5199;set&#x6216;&#x8005;&#x91CD;&#x5199;get&#xFF0C;&#x5904;&#x7406;&#x503C;&#x4E3A;&#x7A7A;&#x7684;&#x60C5;&#x51B5;&#xFF09;</p>
+</li>
+<li><pre><code class="lang-objc"><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">copy</span>, null_resettable) <span class="hljs-built_in">NSString</span> *name;
 
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSObject</span> *container;
-
-<span class="hljs-keyword">@end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">CJMultiThreadObject</span> ()</span>
-
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">assign</span>) os_unfair_lock lock;
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">dispatch_queue_t</span> dispatchQueue;
-
-<span class="hljs-keyword">@end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">CJMultiThreadObject</span></span>
-
-- (instancetype)init
+- (<span class="hljs-keyword">void</span>)setName:(<span class="hljs-built_in">NSString</span> *)name
 {
-    <span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> init];
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>) {
-        <span class="hljs-keyword">self</span>.lock = OS_UNFAIR_LOCK_INIT;
-        <span class="hljs-keyword">self</span>.dispatchQueue = dispatch_queue_create(<span class="hljs-string">&quot;com.chenjun.multithreadobject&quot;</span>, DISPATCH_QUEUE_CONCURRENT);
+    <span class="hljs-keyword">if</span> (name == <span class="hljs-literal">nil</span>) {
+      name = <span class="hljs-string">@&quot;&#x6211;&#x53EB;&#x7545;&#x654F;&quot;</span>;
     }
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;
+        _name = name;
 }
-
-- (<span class="hljs-built_in">NSString</span> *)description
+- (<span class="hljs-built_in">NSString</span> *)name
 {
-    <span class="hljs-keyword">return</span> [<span class="hljs-built_in">NSString</span> stringWithFormat:<span class="hljs-string">@&quot;--------\n%@ \n%@&quot;</span>,[<span class="hljs-keyword">super</span> description], [_container description]];
-}
-
-- (<span class="hljs-built_in">NSMethodSignature</span> *)methodSignatureForSelector:(SEL)aSelector
-{
-    <span class="hljs-keyword">return</span> [[_container class] instanceMethodSignatureForSelector:aSelector];
-}
-
-- (<span class="hljs-keyword">void</span>)forwardInvocation:(<span class="hljs-built_in">NSInvocation</span> *)anInvocation
-{
-    os_unfair_lock_lock(&amp;_lock);
-    [anInvocation invokeWithTarget:_container];
-    os_unfair_lock_unlock(&amp;_lock);
+    <span class="hljs-keyword">if</span> (_name == <span class="hljs-literal">nil</span>) {
+         _name = <span class="hljs-string">@&quot;&#x6211;&#x53EB;&#x7545;&#x654F;&quot;</span>;
+    }
+    <span class="hljs-keyword">return</span> _name;
 }
 </code></pre>
-<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@protocol</span> <span class="hljs-title">CJMutableArrayProtocol</span></span>
-- (<span class="hljs-keyword">id</span>)lastObject;
-- (<span class="hljs-keyword">id</span>)objectAtIndex:(<span class="hljs-built_in">NSUInteger</span>)index;
-
-- (<span class="hljs-built_in">NSUInteger</span>)count;
-
-- (<span class="hljs-keyword">void</span>)addObject:(<span class="hljs-keyword">id</span>)anObject;
-- (<span class="hljs-keyword">void</span>)insertObject:(<span class="hljs-keyword">id</span>)anObject atIndex:(<span class="hljs-built_in">NSUInteger</span>)index;
-- (<span class="hljs-keyword">void</span>)removeLastObject;
-- (<span class="hljs-keyword">void</span>)removeObjectAtIndex:(<span class="hljs-built_in">NSUInteger</span>)index;
-- (<span class="hljs-keyword">void</span>)replaceObjectAtIndex:(<span class="hljs-built_in">NSUInteger</span>)index withObject:(<span class="hljs-keyword">id</span>)anObject;
-<span class="hljs-keyword">@end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">CJMultiThreadArray</span> : <span class="hljs-title">CJMultiThreadObject</span>&lt;<span class="hljs-title">CJMutableArrayProtocol</span>&gt;</span>
-
-<span class="hljs-keyword">@end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">CJMultiThreadArray</span></span>
-
-- (instancetype)init
-{
-    <span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> init];
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>) {
-        <span class="hljs-keyword">self</span>.container = [[<span class="hljs-built_in">NSMutableArray</span> alloc] init];
-    }
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;
-}
-
-<span class="hljs-keyword">@end</span>
+</li>
+</ul>
+</li>
+<li><p>_Null_unspecified:&#x4E0D;&#x786E;&#x5B9A;&#x662F;&#x5426;&#x4E3A;&#x7A7A;</p>
+<p>&#x53EA;&#x80FD;&#x8FD9;&#x4E48;&#x9002;&#x7528;&#x5B83;</p>
+<pre><code class="lang-objc"><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSString</span> *_Null_unspecified name;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSString</span> *__null_unspecified name;
 </code></pre>
+</li>
+</ul>
+</li>
+<li></li>
+</ol>
 
                                 
                                 </section>
@@ -827,12 +806,12 @@
 
             
                 
-                <a href="问题合集.html" class="navigation navigation-prev " aria-label="Previous page: Runtime问题集合">
+                <a href="OC对象.html" class="navigation navigation-prev " aria-label="Previous page: OC对象">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../Block/Block 的本质.html" class="navigation navigation-next " aria-label="Next page: Block 的本质">
+                <a href="../内存管理/对MRC和ARC的理解.html" class="navigation navigation-next " aria-label="Next page: 对MRC和ARC的理解">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -843,7 +822,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"实现线程安全的数组","level":"1.3","depth":1,"next":{"title":"Block 的本质","level":"2.1","depth":1,"path":"Block/Block 的本质.md","ref":"Block/Block 的本质.md","articles":[]},"previous":{"title":"Runtime问题集合","level":"1.2","depth":1,"path":"Runtime/问题合集.md","ref":"Runtime/问题合集.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Runtime/实现线程安全的数组.md","mtime":"2020-03-08T05:40:10.365Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-08T13:40:19.671Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"问题合集","level":"5.8","depth":1,"next":{"title":"对MRC和ARC的理解","level":"6.1","depth":1,"path":"内存管理/对MRC和ARC的理解.md","ref":"内存管理/对MRC和ARC的理解.md","articles":[]},"previous":{"title":"OC对象","level":"5.7","depth":1,"path":"OC基础/OC对象.md","ref":"OC基础/OC对象.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"OC基础/问题合集.md","mtime":"2020-03-08T06:07:28.797Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-08T13:40:19.671Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

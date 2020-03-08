@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>实现线程安全的数组 · GitBook</title>
+        <title>weak指针的实现原理 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../Block/Block 的本质.html" />
+    <link rel="next" href="../网络/网络问题集合.html" />
     
     
-    <link rel="prev" href="问题合集.html" />
+    <link rel="prev" href="autoReleasePool.md" />
     
 
     </head>
@@ -104,9 +104,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="问题合集.html">
+        <li class="chapter " data-level="1.2" data-path="../Runtime/问题合集.html">
             
-                <a href="问题合集.html">
+                <a href="../Runtime/问题合集.html">
             
                     
                     Runtime问题集合
@@ -117,9 +117,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3" data-path="实现线程安全的数组.html">
+        <li class="chapter " data-level="1.3" data-path="../Runtime/实现线程安全的数组.html">
             
-                <a href="实现线程安全的数组.html">
+                <a href="../Runtime/实现线程安全的数组.html">
             
                     
                     实现线程安全的数组
@@ -399,9 +399,9 @@
         
         
     
-        <li class="chapter " data-level="6.1" data-path="../内存管理/对MRC和ARC的理解.html">
+        <li class="chapter " data-level="6.1" data-path="对MRC和ARC的理解.html">
             
-                <a href="../内存管理/对MRC和ARC的理解.html">
+                <a href="对MRC和ARC的理解.html">
             
                     
                     对MRC和ARC的理解
@@ -412,9 +412,9 @@
             
         </li>
     
-        <li class="chapter " data-level="6.2" data-path="../内存管理/内存布局.html">
+        <li class="chapter " data-level="6.2" data-path="内存布局.html">
             
-                <a href="../内存管理/内存布局.html">
+                <a href="内存布局.html">
             
                     
                     内存布局
@@ -425,9 +425,9 @@
             
         </li>
     
-        <li class="chapter " data-level="6.3" data-path="../内存管理/引用计数是如何存储的.html">
+        <li class="chapter " data-level="6.3" data-path="引用计数是如何存储的.html">
             
-                <a href="../内存管理/引用计数是如何存储的.html">
+                <a href="引用计数是如何存储的.html">
             
                     
                     引用计数是如何存储的
@@ -438,9 +438,9 @@
             
         </li>
     
-        <li class="chapter " data-level="6.4" data-path="../内存管理/copy关键字.html">
+        <li class="chapter " data-level="6.4" data-path="copy关键字.html">
             
-                <a href="../内存管理/copy关键字.html">
+                <a href="copy关键字.html">
             
                     
                     copy关键字
@@ -451,7 +451,7 @@
             
         </li>
     
-        <li class="chapter " data-level="6.5" data-path="../内存管理/autoReleasePool.md">
+        <li class="chapter " data-level="6.5" data-path="autoReleasePool.md">
             
                 <span>
             
@@ -464,9 +464,9 @@
             
         </li>
     
-        <li class="chapter " data-level="6.6" data-path="../内存管理/weak指针的实现原理.html">
+        <li class="chapter active" data-level="6.6" data-path="weak指针的实现原理.html">
             
-                <a href="../内存管理/weak指针的实现原理.html">
+                <a href="weak指针的实现原理.html">
             
                     
                     weak指针的实现原理
@@ -713,7 +713,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >实现线程安全的数组</a>
+        <a href=".." >weak指针的实现原理</a>
     </h1>
 </div>
 
@@ -728,78 +728,8 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">CJMultiThreadObject</span> : <span class="hljs-title">NSObject</span></span>
-
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSObject</span> *container;
-
-<span class="hljs-keyword">@end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">CJMultiThreadObject</span> ()</span>
-
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">assign</span>) os_unfair_lock lock;
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">dispatch_queue_t</span> dispatchQueue;
-
-<span class="hljs-keyword">@end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">CJMultiThreadObject</span></span>
-
-- (instancetype)init
-{
-    <span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> init];
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>) {
-        <span class="hljs-keyword">self</span>.lock = OS_UNFAIR_LOCK_INIT;
-        <span class="hljs-keyword">self</span>.dispatchQueue = dispatch_queue_create(<span class="hljs-string">&quot;com.chenjun.multithreadobject&quot;</span>, DISPATCH_QUEUE_CONCURRENT);
-    }
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;
-}
-
-- (<span class="hljs-built_in">NSString</span> *)description
-{
-    <span class="hljs-keyword">return</span> [<span class="hljs-built_in">NSString</span> stringWithFormat:<span class="hljs-string">@&quot;--------\n%@ \n%@&quot;</span>,[<span class="hljs-keyword">super</span> description], [_container description]];
-}
-
-- (<span class="hljs-built_in">NSMethodSignature</span> *)methodSignatureForSelector:(SEL)aSelector
-{
-    <span class="hljs-keyword">return</span> [[_container class] instanceMethodSignatureForSelector:aSelector];
-}
-
-- (<span class="hljs-keyword">void</span>)forwardInvocation:(<span class="hljs-built_in">NSInvocation</span> *)anInvocation
-{
-    os_unfair_lock_lock(&amp;_lock);
-    [anInvocation invokeWithTarget:_container];
-    os_unfair_lock_unlock(&amp;_lock);
-}
-</code></pre>
-<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@protocol</span> <span class="hljs-title">CJMutableArrayProtocol</span></span>
-- (<span class="hljs-keyword">id</span>)lastObject;
-- (<span class="hljs-keyword">id</span>)objectAtIndex:(<span class="hljs-built_in">NSUInteger</span>)index;
-
-- (<span class="hljs-built_in">NSUInteger</span>)count;
-
-- (<span class="hljs-keyword">void</span>)addObject:(<span class="hljs-keyword">id</span>)anObject;
-- (<span class="hljs-keyword">void</span>)insertObject:(<span class="hljs-keyword">id</span>)anObject atIndex:(<span class="hljs-built_in">NSUInteger</span>)index;
-- (<span class="hljs-keyword">void</span>)removeLastObject;
-- (<span class="hljs-keyword">void</span>)removeObjectAtIndex:(<span class="hljs-built_in">NSUInteger</span>)index;
-- (<span class="hljs-keyword">void</span>)replaceObjectAtIndex:(<span class="hljs-built_in">NSUInteger</span>)index withObject:(<span class="hljs-keyword">id</span>)anObject;
-<span class="hljs-keyword">@end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">CJMultiThreadArray</span> : <span class="hljs-title">CJMultiThreadObject</span>&lt;<span class="hljs-title">CJMutableArrayProtocol</span>&gt;</span>
-
-<span class="hljs-keyword">@end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">CJMultiThreadArray</span></span>
-
-- (instancetype)init
-{
-    <span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> init];
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>) {
-        <span class="hljs-keyword">self</span>.container = [[<span class="hljs-built_in">NSMutableArray</span> alloc] init];
-    }
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;
-}
-
-<span class="hljs-keyword">@end</span>
-</code></pre>
+                                <p>SideTable &#x4E2D;&#x6709;&#x4E00;&#x4E2A;&#x5F31;&#x5F15;&#x7528;&#x8868;&#xFF0C;key&#x662F;&#x5BF9;&#x8C61;&#x7684;&#x5730;&#x5740;&#xFF0C;value&#x5305;&#x542B;&#x6307;&#x5411;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x6240;&#x6709;&#x5F31;&#x5F15;&#x7528;&#x6307;&#x9488;&#x3002;</p>
+<p>&#x5F53;&#x5BF9;&#x8C61;&#x5373;&#x5C06;&#x91CA;&#x653E;&#x65F6;&#xFF0C;&#x4F1A;&#x6839;&#x636E;&#x5BF9;&#x8C61;&#x7684;&#x5730;&#x5740;&#x5728;&#x5F31;&#x5F15;&#x7528;&#x8868;&#x4E2D;&#x627E;&#x5230;&#x6240;&#x6709;&#x6307;&#x5411;&#x5B83;&#x7684;&#x5F31;&#x6307;&#x9488;&#xFF0C;&#x7F6E;nil&#x3002;</p>
 
                                 
                                 </section>
@@ -827,12 +757,12 @@
 
             
                 
-                <a href="问题合集.html" class="navigation navigation-prev " aria-label="Previous page: Runtime问题集合">
+                <a href="autoReleasePool.md" class="navigation navigation-prev " aria-label="Previous page: autoReleasePool">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../Block/Block 的本质.html" class="navigation navigation-next " aria-label="Next page: Block 的本质">
+                <a href="../网络/网络问题集合.html" class="navigation navigation-next " aria-label="Next page: 网络问题集合">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -843,7 +773,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"实现线程安全的数组","level":"1.3","depth":1,"next":{"title":"Block 的本质","level":"2.1","depth":1,"path":"Block/Block 的本质.md","ref":"Block/Block 的本质.md","articles":[]},"previous":{"title":"Runtime问题集合","level":"1.2","depth":1,"path":"Runtime/问题合集.md","ref":"Runtime/问题合集.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Runtime/实现线程安全的数组.md","mtime":"2020-03-08T05:40:10.365Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-08T13:40:19.671Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"weak指针的实现原理","level":"6.6","depth":1,"next":{"title":"网络问题集合","level":"7.1","depth":1,"path":"网络/网络问题集合.md","ref":"网络/网络问题集合.md","articles":[]},"previous":{"title":"autoReleasePool","level":"6.5","depth":1,"path":"内存管理/autoReleasePool.md","ref":"内存管理/autoReleasePool.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"内存管理/weak指针的实现原理.md","mtime":"2020-03-08T05:38:21.365Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-08T13:40:19.671Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

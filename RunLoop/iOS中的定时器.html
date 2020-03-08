@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>实现线程安全的数组 · GitBook</title>
+        <title>iOS中的定时器 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../Block/Block 的本质.html" />
+    <link rel="next" href="RunLoop问题合集.html" />
     
     
-    <link rel="prev" href="问题合集.html" />
+    <link rel="prev" href="../多线程/多线程问题合集.html" />
     
 
     </head>
@@ -104,9 +104,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="问题合集.html">
+        <li class="chapter " data-level="1.2" data-path="../Runtime/问题合集.html">
             
-                <a href="问题合集.html">
+                <a href="../Runtime/问题合集.html">
             
                     
                     Runtime问题集合
@@ -117,9 +117,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3" data-path="实现线程安全的数组.html">
+        <li class="chapter " data-level="1.3" data-path="../Runtime/实现线程安全的数组.html">
             
-                <a href="实现线程安全的数组.html">
+                <a href="../Runtime/实现线程安全的数组.html">
             
                     
                     实现线程安全的数组
@@ -255,9 +255,9 @@
         
         
     
-        <li class="chapter " data-level="4.1" data-path="../RunLoop/iOS中的定时器.html">
+        <li class="chapter active" data-level="4.1" data-path="iOS中的定时器.html">
             
-                <a href="../RunLoop/iOS中的定时器.html">
+                <a href="iOS中的定时器.html">
             
                     
                     iOS中的定时器
@@ -268,9 +268,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="../RunLoop/RunLoop问题合集.html">
+        <li class="chapter " data-level="4.2" data-path="RunLoop问题合集.html">
             
-                <a href="../RunLoop/RunLoop问题合集.html">
+                <a href="RunLoop问题合集.html">
             
                     
                     RunLoop问题合集
@@ -713,7 +713,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >实现线程安全的数组</a>
+        <a href=".." >iOS中的定时器</a>
     </h1>
 </div>
 
@@ -728,78 +728,54 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">CJMultiThreadObject</span> : <span class="hljs-title">NSObject</span></span>
+                                <h3 id="nstimer">NSTimer</h3>
+<pre><code>//&#x7B2C;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;
+NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        NSLog(@&quot;1&quot;);
+}];
+[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
 
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSObject</span> *container;
+//&#x7B2C;&#x4E8C;&#x79CD;&#x65B9;&#x5F0F;
+NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
 
-<span class="hljs-keyword">@end</span>
+}];
+</code></pre><p>&#x4F7F;&#x7528; <code>timerWith...</code>&#x7684;&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x51FA;&#x6765;&#x7684;timer&#x9700;&#x8981;&#x624B;&#x52A8;&#x6DFB;&#x52A0;&#x5230;RunLoop&#x4E2D;&#x53BB;&#x3002;</p>
+<p>&#x4F7F;&#x7528;<code>scheduledTimer...</code>&#x7684;&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x51FA;&#x6765;&#x7684;timer&#x5DF2;&#x7ECF;&#x88AB;&#x7CFB;&#x7EDF;&#x6DFB;&#x52A0;&#x5230;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7684;runloop&#x4E2D;&#x7684;defaultModel&#x91CC;&#x9762;&#x4E86;&#x3002;</p>
+<h3 id="cadisplaylink">CADisplayLink</h3>
+<pre><code>CADisplayLink displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(linkTest)];
+[displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
+[displayLink invalidate]; //&#x9700;&#x8981;&#x624B;&#x52A8;&#x505C;&#x6B62;&#xFF0C;&#x79FB;&#x51FA; runloop
+</code></pre><p>CADisplayLink&#x6DFB;&#x52A0;&#x5230;runloop&#x4E2D;&#x540E;&#xFF0C;&#x6BCF;&#x5F53;&#x5C4F;&#x5E55;&#x663E;&#x793A;&#x7684;&#x5185;&#x5BB9;&#x5237;&#x65B0;&#x540E;&#x90FD;&#x4F1A;&#x5411;target&#x53D1;&#x9001;selector&#x6D88;&#x606F;&#x3002;&#x4FDD;&#x8BC1;&#x4E86;&#x5C4F;&#x5E55;&#x5237;&#x65B0;&#x7684;&#x9891;&#x7387;&#x4E0E;&#x53D1;&#x9001;&#x6D88;&#x606F;&#x7684;&#x9891;&#x7387;&#x4E00;&#x81F4;&#x3002;</p>
+<h3 id="gcd-timer">GCD Timer</h3>
+<pre><code>//&#x53EA;&#x6267;&#x884C;&#x4E00;&#x6B21;
+double delayInSeconds = 2.0;    
+dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);   
+dispatch_after(popTime, dispatch_get_main_queue(), ^(void){ 
+          //&#x6267;&#x884C;&#x4E8B;&#x4EF6;    
+});
+</code></pre><pre><code>//&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x591A;&#x6B21;
 
-<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">CJMultiThreadObject</span> ()</span>
+@property (nonatomic, strong) dispatch_source_t timer;
 
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">assign</span>) os_unfair_lock lock;
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">dispatch_queue_t</span> dispatchQueue;
-
-<span class="hljs-keyword">@end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">CJMultiThreadObject</span></span>
-
-- (instancetype)init
-{
-    <span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> init];
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>) {
-        <span class="hljs-keyword">self</span>.lock = OS_UNFAIR_LOCK_INIT;
-        <span class="hljs-keyword">self</span>.dispatchQueue = dispatch_queue_create(<span class="hljs-string">&quot;com.chenjun.multithreadobject&quot;</span>, DISPATCH_QUEUE_CONCURRENT);
-    }
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;
-}
-
-- (<span class="hljs-built_in">NSString</span> *)description
-{
-    <span class="hljs-keyword">return</span> [<span class="hljs-built_in">NSString</span> stringWithFormat:<span class="hljs-string">@&quot;--------\n%@ \n%@&quot;</span>,[<span class="hljs-keyword">super</span> description], [_container description]];
-}
-
-- (<span class="hljs-built_in">NSMethodSignature</span> *)methodSignatureForSelector:(SEL)aSelector
-{
-    <span class="hljs-keyword">return</span> [[_container class] instanceMethodSignatureForSelector:aSelector];
-}
-
-- (<span class="hljs-keyword">void</span>)forwardInvocation:(<span class="hljs-built_in">NSInvocation</span> *)anInvocation
-{
-    os_unfair_lock_lock(&amp;_lock);
-    [anInvocation invokeWithTarget:_container];
-    os_unfair_lock_unlock(&amp;_lock);
-}
-</code></pre>
-<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@protocol</span> <span class="hljs-title">CJMutableArrayProtocol</span></span>
-- (<span class="hljs-keyword">id</span>)lastObject;
-- (<span class="hljs-keyword">id</span>)objectAtIndex:(<span class="hljs-built_in">NSUInteger</span>)index;
-
-- (<span class="hljs-built_in">NSUInteger</span>)count;
-
-- (<span class="hljs-keyword">void</span>)addObject:(<span class="hljs-keyword">id</span>)anObject;
-- (<span class="hljs-keyword">void</span>)insertObject:(<span class="hljs-keyword">id</span>)anObject atIndex:(<span class="hljs-built_in">NSUInteger</span>)index;
-- (<span class="hljs-keyword">void</span>)removeLastObject;
-- (<span class="hljs-keyword">void</span>)removeObjectAtIndex:(<span class="hljs-built_in">NSUInteger</span>)index;
-- (<span class="hljs-keyword">void</span>)replaceObjectAtIndex:(<span class="hljs-built_in">NSUInteger</span>)index withObject:(<span class="hljs-keyword">id</span>)anObject;
-<span class="hljs-keyword">@end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">CJMultiThreadArray</span> : <span class="hljs-title">CJMultiThreadObject</span>&lt;<span class="hljs-title">CJMutableArrayProtocol</span>&gt;</span>
-
-<span class="hljs-keyword">@end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">CJMultiThreadArray</span></span>
-
-- (instancetype)init
-{
-    <span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> init];
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>) {
-        <span class="hljs-keyword">self</span>.container = [[<span class="hljs-built_in">NSMutableArray</span> alloc] init];
-    }
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;
-}
-
-<span class="hljs-keyword">@end</span>
-</code></pre>
+self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+dispatch_source_set_event_handler(self.timer, ^{
+    NSLog(@&quot;111&quot;);
+});
+dispatch_resume(self.timer);
+</code></pre><p>GCD Timer &#x662F;&#x57FA;&#x4E8E;&#x7CFB;&#x7EDF;&#x5185;&#x6838;&#x7684;&#xFF0C;&#x4E0E;runloop&#x65E0;&#x5173;&#x3002;&#x5F53;timer&#x88AB;&#x91CA;&#x653E;&#x65F6;&#xFF0C;&#x5B9A;&#x65F6;&#x5668;&#x4F1A;&#x505C;&#x6B62;&#x3002;</p>
+<h3 id="&#x4F7F;&#x7528;nstimer&#x548C;cadisplaylink&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;">&#x4F7F;&#x7528;NSTimer&#x548C;CADisplayLink&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;</h3>
+<p>&#x4E00;&#x3001;&#x65F6;&#x95F4;&#x7CBE;&#x5EA6;&#x53EF;&#x80FD;&#x4E0D;&#x51C6;&#x786E;</p>
+<p>&#x56E0;&#x4E3A;NSTimer&#x548C;CADisplayLink&#x90FD;&#x662F;&#x57FA;&#x4E8E;runloop&#x7684;&#xFF0C;&#x5F53;runloop&#x4EFB;&#x52A1;&#x7E41;&#x91CD;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F1A;&#x5EF6;&#x8BEF;&#x4EFB;&#x52A1;&#x7684;&#x89E6;&#x53D1;&#x3002;</p>
+<p>&#x518D;&#x8005;&#xFF0C;&#x82E5;timer&#x88AB;&#x6DFB;&#x52A0;&#x5230;defaultMode&#x4E2D;&#xFF0C;&#x5F53;runloop&#x5207;&#x6362;&#x5230;uitrackingMode&#x7684;&#x65F6;&#x5019;&#xFF0C;timer&#x4E0D;&#x4F1A;&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x5BFC;&#x81F4;timer&#x5931;&#x6548;&#x3002;</p>
+<p>&#x4E8C;&#x3001;&#x5B58;&#x5728;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x7684;&#x98CE;&#x9669;</p>
+<p>&#x4F7F;&#x7528;target-selector&#x7684;&#x65B9;&#x5F0F;&#x521B;&#x5EFA;NSTimer&#x548C;CADisplayLink&#x5B9E;&#x4F8B;&#xFF0C;&#x5B9E;&#x4F8B;&#x4F1A;&#x5BF9;target&#x5F3A;&#x5F15;&#x7528;&#xFF0C;&#x82E5;target&#x4E5F;&#x5BF9;&#x5B9E;&#x4F8B;&#x5F3A;&#x5F15;&#x7528;&#xFF0C;&#x5219;&#x4F1A;&#x5BFC;&#x81F4;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x3002;</p>
+<p>&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#x6709;&#x4E09;&#x79CD;&#xFF1A;</p>
+<ol>
+<li>&#x4F7F;&#x7528;block</li>
+<li>&#x4F7F;&#x7528;NSProxy&#x505A;&#x8F6C;&#x53D1;&#x3002;target -----&gt; timer&#xFF0C;timer -----&gt; proxy&#xFF0C;proxy - - -&gt; target&#x3002;</li>
+<li>&#x4F7F;&#x7528;gcd timer&#x3002;</li>
+</ol>
 
                                 
                                 </section>
@@ -827,12 +803,12 @@
 
             
                 
-                <a href="问题合集.html" class="navigation navigation-prev " aria-label="Previous page: Runtime问题集合">
+                <a href="../多线程/多线程问题合集.html" class="navigation navigation-prev " aria-label="Previous page: GCD">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../Block/Block 的本质.html" class="navigation navigation-next " aria-label="Next page: Block 的本质">
+                <a href="RunLoop问题合集.html" class="navigation navigation-next " aria-label="Next page: RunLoop问题合集">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -843,7 +819,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"实现线程安全的数组","level":"1.3","depth":1,"next":{"title":"Block 的本质","level":"2.1","depth":1,"path":"Block/Block 的本质.md","ref":"Block/Block 的本质.md","articles":[]},"previous":{"title":"Runtime问题集合","level":"1.2","depth":1,"path":"Runtime/问题合集.md","ref":"Runtime/问题合集.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Runtime/实现线程安全的数组.md","mtime":"2020-03-08T05:40:10.365Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-08T13:40:19.671Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"iOS中的定时器","level":"4.1","depth":1,"next":{"title":"RunLoop问题合集","level":"4.2","depth":1,"path":"RunLoop/RunLoop问题合集.md","ref":"RunLoop/RunLoop问题合集.md","articles":[]},"previous":{"title":"GCD","level":"3.1","depth":1,"path":"多线程/多线程问题合集.md","ref":"多线程/多线程问题合集.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"RunLoop/iOS中的定时器.md","mtime":"2020-03-08T05:38:21.362Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-08T13:40:19.671Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
