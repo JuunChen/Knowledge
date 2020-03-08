@@ -1,0 +1,28 @@
+### isa指向哪里？
+
+<img src="https://user-gold-cdn.xitu.io/2018/7/10/16483b7241ffdae0?w=933&amp;h=977&amp;f=jpeg&amp;s=77647" style="zoom:48%;" />
+
+如图：
+
+instance对象的isa指向class对象。
+
+class对象的isa指向meta-class对象。
+
+meta-class对象的isa指向基类的meta-class对对象。
+
+### superclass的指向？
+
+如图：
+
+instance对象没有superclass指针。
+
+class对象的superclass指针指向父类的class对象。
+
+meta-class对象的superclass指针指向父类的meta-class对象。
+
+基类class对象的superclass指针指向nil。
+
+基类meta-class对象的superclass指针指向基类class对象。
+
+
+

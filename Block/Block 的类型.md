@@ -1,0 +1,126 @@
+### Block的三种类型
+
+block也有类型，它有三种类型。
+
+block本质上是OC对象，它里面也有isa指针。既然它是OC对象，那么它的isa指向什么，它的类型就是什么。
+
+我们就可以用 `class`方法，和`get_objcClass`方法来查看它的类型是什么。
+
+```objc
+void (^block1)(void) = ^{
+	NSLog(@"Hello");
+};
+
+int age = 10;
+void (^block2)(void) = ^{
+  NSLog(@"Hello - %d", age);
+};
+
+NSLog(@"%@ %@ %@", [block1 class], [block2 class], [^{
+  NSLog(@"%d", age);
+} class]);
+//输出 __NSGlobalBlock__ __NSMallocBlock__ __NSStackBlock__
+```
+
+各种类型的block在内存中的分配如下图所示：
+
+<img src="https://user-gold-cdn.xitu.io/2020/2/29/1708cbf89620eb9f?w=1072&amp;h=762&amp;f=png&amp;s=644766" style="zoom:33%;" />
+
+### 如何区分三种类型（MRC）
+
+| block类型              | 环境                            |
+| ---------------------- | ------------------------------- |
+| _NSConcreteStackBlock  | 访问了auto变量                  |
+| _NSConcreteGlobalBlock | 没有访问auto变量                |
+| _NSConcreteMallocBlock | _NSConcreteStackBlock调用了copy |
+
+每种类型的block调用copy后的结果：
+
+| block类型              | 设置对象的存储域          | copy效果     |
+| ---------------------- | ------------------------- | ------------ |
+| _NSConcreteStackBlock  | 栈                        | 从栈复制到堆 |
+| _NSConcreteGlobalBlock | 程序的数据区域（.data区） | 什么也不做   |
+| _NSConcreteMallocBlock | 堆                        | 引用计数增加 |
+
+我们有什么办法可以观察block的类型呢？
+
+- 打印block的地址值，根据内存布局来确定
+- 通过block的isa指向的类来确定
+
+**为什么要有copy操作？**
+
+因为栈上的block出了作用域就会销毁，使用起来有风险。
+
+### 如何区分三种类型（ARC）
+
+编译器会根据情况自动将站上的block复制到堆上，比如以下情况：
+
+**block作为函数的返回值时**
+
+```objc
+typedef void (^MyBlock)(void);
+MyBlock myblock()
+{
+	int a = 10;
+	return ^{a;};
+}
+
+void main(){
+	MyBlock block = myblock();
+	block();
+}
+```
+
+如果是在MRC环境下，myblock函数中的^{a;}出作用域后就会立即被销毁，因为它访问了auto变量，是栈上的block。
+
+如果是ARC环境，编译器会自动对它进行copy操作，`[^{a;} copy]`。
+
+**将block赋值给`__strong`指针的时候**
+
+```objc
+void main(){
+	int a = 10;
+	MyBlock block = ^{
+		a;
+	};
+}
+```
+
+在MRC环境下，上述block是栈上的block，出作用域就会被销毁。
+
+如果实在ARC环境下，编译器会自动帮我们copy，上述代码实际上是:
+
+```objc
+void main(){
+	int a = 10;
+	MyBlock block = [^{
+  	a;
+	} copy];
+}
+```
+
+**在Cocoa API 中作为函数的参数时**
+
+**在GCD API 中作为函数的参数时**
+
+### block 属性的写法
+
+当block作为类的属性，在MRC和ARC中，内存管理的关键字会有所差异。
+
+**在MRC中**
+
+````objc
+@property (nonatomic, copy) MyBlock block;
+````
+
+必须要使用copy，保证在 setter 方法中进行一次copy操作，才能使栈上的 block 拷贝到堆上去。
+
+**在ARC中**
+
+```objc
+@property (nonatomic, copy) MyBlock block;
+@property (nonatomic, strong) MyBlock block;
+```
+
+使用copy或者strong都可以，因为使用strong的话，在setter中我们用强指针指向block，编译器会自动帮我们添加copy操作。
+
