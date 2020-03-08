@@ -16,88 +16,68 @@
 
 #### 多线程
 
-- [GCD](多线程/GCD.md)
-- [NSOperation / NSOperationQueue](多线程/NSOperation & NSOperationQueue.md)
-- [NSThread](多线程/NSThread.md)
-- [线程同步、资源共享](多线程/线程同步、资源共享.md)
-- [互斥锁、自旋锁、递归锁等](多线程/互斥锁、自旋锁、递归锁等.md)
+- [GCD](多线程/多线程问题合集.md)
 
 #### RunLoop
 
-- [什么是 RunLoop](RunLoop/什么是 RunLoop.md)
-- [Mode / Source / Timer / Observer](RunLoop/Mode&Source&Timer&Observer.md)
-- [事件循环机制](RunLoop/事件循环机制.md)
-- [RunLoop 与 NSTimer](RunLoop/RunLoop 与 NSTimer.md)
-- [RunLoop 与线程之间的关系](RunLoop/RunLoop 与线程之间的关系.md)
-- [常驻线程](RunLoop/常驻线程.md)
+- [iOS中的定时器](RunLoop/iOS中的定时器.md)
+- [RunLoop问题合集](RunLoop/RunLoop问题合集.md)
+
+#### OC基础
+
+- [分类](OC基础/分类.md)
+- [关联对象](OC基础/关联对象.md)
+- [isa与superclass](OC基础/isa与superclass.md)
+- [KVC](OC基础/KVC.md)
+- [KVO](OC基础/KVO.md)
+- [NSNotification](OC基础/NSNotification.md)
+- [OC对象](OC基础/OC对象.md)
+- [问题合集](OC基础/问题合集.md)
 
 #### 内存管理
 
-- [ARC](内存管理/ARC.md)
-- [MRC](内存管理/MRC.md)
-- [引用计数机制](内存管理/引用计数机制.md)
-- [弱引用表](内存管理/弱引用表.md)
-- [AutoReleasePool](内存管理/AutoReleasePool.md)
-- [循环引用](内存管理/循环引用.md)
+- [对MRC和ARC的理解](内存管理/对MRC和ARC的理解.md)
+- [内存布局](内存管理/内存布局.md)
+- [引用计数是如何存储的](内存管理/引用计数是如何存储的.md)
+- [copy关键字](内存管理/copy关键字.md)
+- [autoReleasePool](内存管理/autoReleasePool.md)
+- [weak指针的实现原理](内存管理/weak指针的实现原理.md)
 
 #### 网络
 
-- [HTTP 协议](网络/HTTP 协议.md)
-- [HTTPS 与网络安全](网络/HTTPS 与网络安全.md)
-- [TCP / UDP](网络/TCP、UDP.md)
-- [DNS 解析](网络/DNS 解析.md)
-- [Session / Cookie](网络/Session、Cookie.md)
+- [网络问题集合](网络/网络问题集合.md)
 
+#### 设计
 
+- [设计类问题合集](设计/设计类问题合集.md)
+
+#### 算法
+
+- [算法类问题合集](算法/算法类问题合集.md)
+
+#### 性能优化
+
+- [性能优化问题合集](性能优化/性能优化问题合集.md)
 
 #### UI视图
 
-- [UITableView相关](UI视图/UITableView相关.md)
-    - [UITableView 的重用机制](UI视图/UITableView 的重用机制.md)
-- [事件传递&视图响应](UI视图/事件传递&视图响应.md)
-- [图像显示原理](UI视图/图像显示原理.md)
-- [UI卡顿、掉帧](UI视图/UI卡顿、掉帧.md)
-- [UI绘制原理/异步绘制](UI视图/UI绘制原理、异步绘制.md)
-- [离屏渲染](UI视图/离屏渲染.md)
+- [UITableView 的重用机制](UI视图/UITableView 的重用机制.md)
 
-#### OC语言
-- [@property基础](@property基础.md)
-- [分类](OC语言/分类.md)
-- [关联对象](OC语言/关联对象.md)
-- [扩展、代理](OC语言/扩展、代理.md)
-- [KVO](OC语言/KVO.md)
-- [KVC](OC语言/KVC.md)
-- [NSNotification](OC语言/NSNotification.md)
-- [属性关键字](OC语言/属性关键字.md)
-
-
+- [UI问题合集](UI视图/UI问题合集.md)
 
 #### 性能优化
-* [程序构建过程](性能优化/程序构建过程.md)
-* [MachO文件](性能优化/MachO文件.md)
-* [main函数之前](性能优化/main函数之前.md)
+* [性能优化问题合集](性能优化/性能优化问题合集.md)
 
-#### 设计模式
-- [六大设计原则](设计模式/六大设计原则.md)
-- [责任链](设计模式/责任链.md)
-- [桥接](设计模式/桥接.md)
-- [适配器](设计模式/适配器.md)
-- [单例](设计模式/单例.md)
-- [命令](设计模式/命令.md)
-
-#### 架构 / 框架
-- [图片缓存框架](架构&框架/图片缓存框架.md)
-- [时长统计框架](架构&框架/时长统计框架.md)
-- [复杂页面架构](架构&框架/复杂页面架构.md)
-- [客户端整体架构](架构&框架/客户端整体架构.md)
+#### 设计
+- [设计类问题合集](设计/设计类问题合集.md)
 
 #### 算法
-- [字符串翻转](算法/字符串翻转.md)
-- [链表翻转](算法/链表翻转.md)
-- [有序数组合并](算法/有序数组合并.md)
-- [Hash 算法](算法/Hash 算法.md)
-- [查找两个子视图的共同父视图](算法/查找两个子视图的共同父视图.md)
-- [求无需数组当中的中位数](算法/求无需数组当中的中位数.md)
+
+- [算法雷问题合集](算法/算法类问题合集.md)
+
+#### Swift
+
+- [数据类型](Swift/数据类型.md)
 
 
 

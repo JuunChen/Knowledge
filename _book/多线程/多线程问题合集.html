@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>__block · GitBook</title>
+        <title>GCD · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Block的循环引用.html" />
+    <link rel="next" href="../RunLoop/iOS中的定时器.html" />
     
     
-    <link rel="prev" href="对象类型的auto变量.html" />
+    <link rel="prev" href="../Block/问题汇总.html" />
     
 
     </head>
@@ -137,9 +137,9 @@
         
         
     
-        <li class="chapter " data-level="2.1" data-path="Block 的本质.html">
+        <li class="chapter " data-level="2.1" data-path="../Block/Block 的本质.html">
             
-                <a href="Block 的本质.html">
+                <a href="../Block/Block 的本质.html">
             
                     
                     Block 的本质
@@ -150,9 +150,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.2" data-path="变量捕获.html">
+        <li class="chapter " data-level="2.2" data-path="../Block/变量捕获.html">
             
-                <a href="变量捕获.html">
+                <a href="../Block/变量捕获.html">
             
                     
                     变量捕获
@@ -163,9 +163,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="Block 的类型.html">
+        <li class="chapter " data-level="2.3" data-path="../Block/Block 的类型.html">
             
-                <a href="Block 的类型.html">
+                <a href="../Block/Block 的类型.html">
             
                     
                     Block 的类型
@@ -176,9 +176,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="对象类型的auto变量.html">
+        <li class="chapter " data-level="2.4" data-path="../Block/对象类型的auto变量.html">
             
-                <a href="对象类型的auto变量.html">
+                <a href="../Block/对象类型的auto变量.html">
             
                     
                     对象类型的auto变量
@@ -189,9 +189,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.5" data-path="__block.html">
+        <li class="chapter " data-level="2.5" data-path="../Block/__block.html">
             
-                <a href="__block.html">
+                <a href="../Block/__block.html">
             
                     
                     __block
@@ -202,9 +202,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6" data-path="Block的循环引用.html">
+        <li class="chapter " data-level="2.6" data-path="../Block/Block的循环引用.html">
             
-                <a href="Block的循环引用.html">
+                <a href="../Block/Block的循环引用.html">
             
                     
                     Block的循环引用
@@ -215,9 +215,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="问题汇总.html">
+        <li class="chapter " data-level="2.7" data-path="../Block/问题汇总.html">
             
-                <a href="问题汇总.html">
+                <a href="../Block/问题汇总.html">
             
                     
                     问题汇总
@@ -235,9 +235,9 @@
         
         
     
-        <li class="chapter " data-level="3.1" data-path="../多线程/多线程问题合集.html">
+        <li class="chapter active" data-level="3.1" data-path="多线程问题合集.html">
             
-                <a href="../多线程/多线程问题合集.html">
+                <a href="多线程问题合集.html">
             
                     
                     GCD
@@ -700,7 +700,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >__block</a>
+        <a href=".." >GCD</a>
     </h1>
 </div>
 
@@ -715,108 +715,67 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h3 id="block&#x7684;&#x4F5C;&#x7528;"><code>__block</code>&#x7684;&#x4F5C;&#x7528;</h3>
-<p>&#x5148;&#x6765;&#x770B;&#x8FD9;&#x6837;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#xFF1A;</p>
-<pre><code class="lang-objc"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">void</span> (^MyBlock)(<span class="hljs-keyword">void</span>);
-- (<span class="hljs-keyword">void</span>)testMethod
-{
-    <span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>;
-    MyBlock myBlock = ^{
-        a = <span class="hljs-number">20</span>; <span class="hljs-comment">//&#x7F16;&#x8BD1;&#x4E0D;&#x901A;&#x8FC7;</span>
-    };
-}
-</code></pre>
-<p>&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x4F1A;&#x7F16;&#x8BD1;&#x4E0D;&#x901A;&#x8FC7;&#xFF0C;&#x539F;&#x56E0;&#x662F;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;</p>
-<p>&#x6211;&#x4EEC;&#x60F3;&#x505A;&#x7684;&#x4E8B;&#x60C5;&#x662F;&#xFF1A;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;a&#xFF0C;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;block&#xFF0C;&#x60F3;&#x5728;block&#x4E2D;&#x4FEE;&#x6539;a&#x7684;&#x503C;&#x3002;</p>
-<p>&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x4E0A;&#x8FF0;&#x4EE3;&#x7801;&#x4F1A;&#x88AB;&#x8F6C;&#x6210;&#x8FD9;&#x6837;&#xFF1A;</p>
-<pre><code class="lang-objc"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> __main_block_func_0(<span class="hljs-keyword">struct</span> __main_block_imp_0 *__cself) {
-    a = <span class="hljs-number">20</span>;
-}
-
-- (<span class="hljs-keyword">void</span>)testMethod
-{
-    <span class="hljs-keyword">int</span> a = <span class="hljs-number">10</span>;
-    __main_block_func_0(block);<span class="hljs-comment">//&#x4F2A;&#x4EE3;&#x7801;</span>
-}
-</code></pre>
-<p>&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;block&#x5757;&#x4E2D;&#x7684;&#x4EE3;&#x7801;&#x4F1A;&#x88AB;&#x8F6C;&#x6210;&#x4E00;&#x4E2A;&#x51FD;&#x6570;<code>__main_block_func_0</code>&#xFF0C;&#x800C;&#x540E;&#x5728;testMethod&#x4E2D;&#x53BB;&#x8C03;&#x7528;<code>__main_block_func_0</code>&#x3002;&#x7136;&#x800C;&#x5728;<code>__main_block_func_0</code>&#x4E2D;&#x662F;&#x65E0;&#x6CD5;&#x8BBF;&#x95EE;&#x5230;<code>testMethod</code>&#x4E2D;&#x7684;&#x53D8;&#x91CF;a&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x4E0D;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x6808;&#x5E27;&#x4E2D;&#xFF0C;&#x6240;&#x4EE5;&#x4F1A;&#x7F16;&#x8BD1;&#x4E0D;&#x901A;&#x8FC7;&#x3002;</p>
-<p><code>__main_block_func_0</code>&#x65E0;&#x6CD5;&#x4FEE;&#x6539;testMethod&#x4E2D;&#x7684;&#x53D8;&#x91CF;a&#x3002;&#x5373;&#x4F7F;&#x8981;&#x4FEE;&#x6539;&#x53D8;&#x91CF;a&#xFF0C;&#x4E5F;&#x53EA;&#x80FD;&#x662F;&#x4FEE;&#x6539;block&#x6355;&#x83B7;&#x540E;&#x91CD;&#x65B0;&#x521B;&#x5EFA;&#x7684;&#x6210;&#x5458;&#x53D8;&#x91CF;a&#xFF0C;testMethod&#x51FD;&#x6570;&#x4E2D;&#x7684;a&#x662F;&#x65E0;&#x6CD5;&#x4FEE;&#x6539;&#x7684;&#x3002;</p>
-<p>&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x7684;&#x529E;&#x6CD5;&#x6709;&#x5F88;&#x591A;&#x79CD;&#xFF0C;&#x6BD4;&#x5982;&#x4F7F;&#x7528;static&#x53D8;&#x91CF;&#xFF0C;&#x901A;&#x8FC7;&#x5740;&#x4F20;&#x9012;&#x7684;&#x65B9;&#x5F0F;&#x4FEE;&#x6539;&#x3001;&#x901A;&#x8FC7;&#x4F7F;&#x7528;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x6765;&#x4FEE;&#x6539;&#xFF0C;&#x8FD9;&#x90FD;&#x662F;&#x53EF;&#x4EE5;&#x7684;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x8981;&#x60F3;&#x4FEE;&#x6539;auto&#x53D8;&#x91CF;&#x7684;&#x503C;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x53EA;&#x80FD;&#x4F7F;&#x7528;<code>__block</code>&#xFF0C;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
-<pre><code class="lang-objc"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">void</span> (^MyBlock)(<span class="hljs-keyword">void</span>);
-- (<span class="hljs-keyword">void</span>)testMethod
-{
-    __block <span class="hljs-keyword">int</span> age = <span class="hljs-number">10</span>;
-    MyBlock myBlock = ^{
-    age = <span class="hljs-number">20</span>; 
-    };
-    myBlock();
-    <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@&quot;%d&quot;</span>, age);<span class="hljs-comment">//20</span>
-}
-</code></pre>
-<p><code>__blcok</code>&#x7684;&#x4F5C;&#x7528;&#x5C31;&#x662F;&#xFF1A;<strong>&#x89E3;&#x51B3;block&#x5185;&#x90E8;&#x4E0D;&#x80FD;&#x4FEE;&#x6539;auto&#x53D8;&#x91CF;&#x7684;&#x503C;&#x7684;&#x95EE;&#x9898;</strong>&#x3002;</p>
-<p>&#x6CE8;&#x610F;&#xFF1A;<code>__block</code>&#x4E0D;&#x80FD;&#x7528;&#x6765;&#x4FEE;&#x6539;static&#x53D8;&#x91CF;&#x548C;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#xFF0C;&#x5426;&#x5219;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x62A5;&#x9519;&#x3002;</p>
-<h3 id="&#x539F;&#x7406;">&#x539F;&#x7406;</h3>
-<p>&#x6211;&#x4EEC;&#x5199;&#x4E0B;&#x7684; <code>__block int age = 10;</code>&#x8FD9;&#x884C;&#x4EE3;&#x7801;&#x5B9E;&#x9645;&#x4E0A;&#x88AB;&#x8F6C;&#x6210;&#x4E86;&#x8FD9;&#x6837;&#xFF1A;</p>
-<pre><code class="lang-objc">__Block_byref_age_0 age = {
-    <span class="hljs-number">0</span>, 
-    &amp;age,
-    <span class="hljs-number">0</span>,
-    <span class="hljs-keyword">sizeof</span>(__Block_byref_age_0), 
-    <span class="hljs-number">10</span>
-};
-</code></pre>
-<p>&#x5B83;&#x88AB;&#x5904;&#x7406;&#x6210;&#x4E86;<code>__Block_byref_age_0</code>&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x5BF9;&#x8C61;&#xFF0C;&#x7ED3;&#x6784;&#x4F53;&#x4E2D;&#x6709;&#x4E00;&#x4E2A;&#x6210;&#x5458;&#x53D8;&#x91CF;age&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x539F;&#x6765;age&#x7684;&#x503C;&#x3002;</p>
-<p>&#x8FD9;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x7684;&#x7C7B;&#x578B;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
-<pre><code class="lang-objc"><span class="hljs-keyword">struct</span> __Block_byref_age_0 {
-    <span class="hljs-keyword">void</span> *__isa;
-    __Block_byref_age_0 *__forwarding;
-    <span class="hljs-keyword">int</span> __flags;
-    <span class="hljs-keyword">int</span> __size;
-    <span class="hljs-keyword">int</span> age; <span class="hljs-comment">//10</span>
-}
-</code></pre>
-<p>&#x8FD9;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x4E2D; <code>__forwarding</code>&#x7684;&#x503C;&#x662F;<code>&amp;age</code>&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x5BF9;&#x8C61;&#x7684;&#x5730;&#x5740;&#x3002;&#x5373;&#x8FD9;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x5BF9;&#x8C61;&#x4E2D;&#x6709;&#x4E00;&#x4E2A;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x5B58;&#x50A8;&#x7684;&#x662F;&#x81EA;&#x5DF1;&#x7684;&#x5730;&#x5740;&#x3002;</p>
-<p><strong>&#x8FD9;&#x6837;&#x4E3A;&#x4EC0;&#x4E48;&#x5C31;&#x80FD;&#x591F;&#x6210;&#x529F;&#x4FEE;&#x6539;age&#x4E86;&#x5462;&#xFF1F;</strong></p>
-<p>&#x6211;&#x4EEC;&#x6765;&#x5206;&#x6790;&#x4E00;&#x4E0B;&#x6574;&#x4E2A;&#x6D41;&#x7A0B;&#xFF1A;</p>
+                                <h4 id="1-&#x8FDB;&#x7A0B;&#x4E0E;&#x7EBF;&#x7A0B;">1. &#x8FDB;&#x7A0B;&#x4E0E;&#x7EBF;&#x7A0B;</h4>
 <ul>
-<li><p>&#x6211;&#x4EEC;&#x7F16;&#x5199;&#x4E86;&#x4EE3;&#x7801; <code>__block int age = 10</code></p>
-</li>
-<li><p>&#x8FD9;&#x6BB5;&#x4EE3;&#x7801;&#x88AB;&#x5904;&#x7406;&#x6210;&#x4E86;<code>__Block_byref_age_0 age = {  0,  &amp;age,  0,  sizeof(__Block_byref_age_0),  10};</code></p>
-</li>
-<li><p>&#x5904;&#x7406;&#x540E;&#xFF0C;&#x539F;&#x6765;&#x7684;&#x4EE3;&#x7801;&#x5DF2;&#x7ECF;&#x4E0D;&#x5728;&#x4E86;&#xFF01;&#x65B0;&#x7684;age&#x662F;&#x4E00;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x5BF9;&#x8C61;&#xFF0C;&#x5B83;&#x91CC;&#x9762;&#x6709;&#x4E00;&#x4E2A;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x5B58;&#x50A8;&#x7684;&#x662F;&#x539F;&#x6765;age&#x7684;&#x503C;&#x3002;</p>
-</li>
-<li><p>&#x65B0;&#x7684;age&#x4E5F;&#x662F;&#x4E00;&#x4E2A;auto&#x7C7B;&#x578B;&#x7684;&#x5C40;&#x90E8;&#x53D8;&#x91CF;</p>
-</li>
-<li><p>block&#x4F1A;&#x6355;&#x83B7;&#x5B83;</p>
-<pre><code class="lang-objc"><span class="hljs-keyword">struct</span> __main_block_impl_0 {
-    <span class="hljs-comment">//&#x53D8;&#x91CF;&#x6355;&#x83B7;</span>
-    __Block_byref_age_0 *__<span class="hljs-keyword">strong</span> age;
-};
-</code></pre>
-</li>
-<li><p>block&#x6355;&#x83B7;&#x5230;&#x5B83;&#x4E4B;&#x540E;&#xFF0C;<strong>&#x5C31;&#x53EF;&#x4EE5;&#x627E;&#x5230;age&#x6307;&#x5411;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x53BB;&#x4FEE;&#x6539;&#x8FD9;&#x5757;&#x5185;&#x5B58;&#x7684;&#x6570;&#x636E;</strong></p>
-</li>
-<li><p>&#x4E8E;&#x662F;&#xFF0C;age&#x6307;&#x5411;&#x7684;&#x5185;&#x5B58;&#x7684;&#x6570;&#x636E;&#x5C31;&#x53EF;&#x4EE5;&#x88AB;&#x4FEE;&#x6539;</p>
-</li>
+<li>&#x8FDB;&#x7A0B;&#xFF1A;&#x8FDB;&#x7A0B;&#x662F;&#x6307;&#x7CFB;&#x7EDF;&#x4E2D;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x3002;</li>
+<li>&#x7EBF;&#x7A0B;&#xFF1A;&#x6709;&#x4EFB;&#x52A1;&#x90FD;&#x662F;&#x5728;&#x7EBF;&#x7A0B;&#x4E2D;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x8FDB;&#x7A0B;&#x8981;&#x60F3;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#xFF0C;&#x5FC5;&#x987B;&#x5F97;&#x6709;&#x7EBF;&#x7A0B;&#xFF0C;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x81F3;&#x5C11;&#x5F97;&#x6709;&#x4E00;&#x6761;&#x7EBF;&#x7A0B;&#x3002;</li>
 </ul>
-<p><strong><code>__forwarding</code>&#x6307;&#x9488;&#x7684;&#x4F5C;&#x7528;</strong></p>
-<p><img src="https://user-gold-cdn.xitu.io/2020/2/29/1709059d79d9f5d7?w=1472&amp;h=1102&amp;f=png&amp;s=1066589" style="zoom:33%;"></p>
-<p><code>__forwarding</code>&#x672C;&#x6765;&#x662F;&#x6307;&#x5411;&#x81EA;&#x8EAB;&#x7684;&#x3002;</p>
-<p>&#x5F53;<code>block</code>&#x88AB;&#x62F7;&#x8D1D;&#x5230;&#x5806;&#x4E0A;&#x53BB;&#x7684;&#x65F6;&#x5019;&#xFF0C;<code>__block</code>&#x4E5F;&#x4F1A;&#x88AB;&#x62F7;&#x8D1D;&#x5230;&#x5806;&#x4E0A;&#x53BB;&#x3002;</p>
-<p>&#x5982;&#x679C;<code>__block</code>&#x4FEE;&#x9970;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;</p>
+<h4 id="2-&#x7EBF;&#x7A0B;&#x7684;&#x4E32;&#x884C;">2. &#x7EBF;&#x7A0B;&#x7684;&#x4E32;&#x884C;</h4>
+<p>&#x540C;&#x4E00;&#x65F6;&#x95F4;&#x5185;&#xFF0C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x53EA;&#x80FD;&#x6267;&#x884C;&#x4E00;&#x4E2A;&#x4EFB;&#x52A1;&#x3002;&#x5982;&#x679C;&#x8981;&#x5728;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x5185;&#x6267;&#x884C;&#x591A;&#x4E2A;&#x4EFB;&#x52A1;&#xFF0C;&#x90A3;&#x4E48;&#x53EA;&#x80FD;&#x4E00;&#x4E2A;&#x4E00;&#x4E2A;&#x6309;&#x987A;&#x5E8F;&#x6267;&#x884C;&#x3002;</p>
+<h4 id="3-&#x591A;&#x7EBF;&#x7A0B;">3. &#x591A;&#x7EBF;&#x7A0B;</h4>
 <ul>
-<li>MRC&#x4E0B;&#xFF0C;<code>__block</code>&#x88AB;&#x62F7;&#x8D1D;&#x5230;&#x5806;&#x4E0A;&#x53BB;&#x65F6;&#xFF0C;&#x4E0D;&#x4F1A;&#x5BF9;&#x5B83;&#x5185;&#x90E8;&#x7684;&#x5BF9;&#x8C61;&#x4EA7;&#x751F;&#x5F3A;&#x5F15;&#x7528;</li>
-<li>ARC&#x4E0B;&#xFF0C;<code>__block</code>&#x88AB;&#x62F7;&#x8D1D;&#x5230;&#x5806;&#x4E0A;&#x53BB;&#x65F6;&#xFF0C;&#x4F1A;&#x5BF9;&#x5B83;&#x5185;&#x90E8;&#x7684;&#x5BF9;&#x8C61;&#x8FDB;&#x884C;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x3002;</li>
+<li>&#x6982;&#x5FF5;&#xFF1A;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x5185;&#x53EF;&#x4EE5;&#x5F00;&#x542F;&#x591A;&#x6761;&#x7EBF;&#x7A0B;&#xFF0C;&#x591A;&#x6761;&#x7EBF;&#x7A0B;&#x53EF;&#x4EE5;&#x5E76;&#x884C;&#x6267;&#x884C;&#x591A;&#x4E2A;&#x4EFB;&#x52A1;&#x3002;</li>
+<li>&#x539F;&#x7406;&#xFF1A;CPU &#x5FEB;&#x901F;&#x5730;&#x5728;&#x5404;&#x7EBF;&#x7A0B;&#x4E4B;&#x95F4;&#x8C03;&#x5EA6;&#xFF0C;&#x5F62;&#x6210;&#x4E86;&#x5E76;&#x53D1;&#x6267;&#x884C;&#x7684;&#x5047;&#x8C61;&#x3002;</li>
+<li>&#x4F18;&#x70B9;&#xFF1A;&#x53EF;&#x4EE5;&#x9002;&#x5F53;&#x63D0;&#x9AD8;&#x7A0B;&#x5E8F;&#x7684;&#x6267;&#x884C;&#x6548;&#x7387;&#xFF0C;&#x63D0;&#x9AD8;CPU&#x3001;&#x5185;&#x5B58;&#x7684;&#x5229;&#x7528;&#x7387;&#x3002;</li>
+<li>&#x7F3A;&#x70B9;&#xFF1A;&#x521B;&#x5EFA;&#x7EBF;&#x7A0B;&#x4F1A;&#x6709;&#x5F00;&#x9500;&#xFF1A;&#x521B;&#x5EFA;&#x9700;&#x8981;&#x65F6;&#x95F4;&#x3001;&#x5360;&#x7528;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x3001;&#x8FD8;&#x4F1A;&#x52A0;&#x5927;CPU&#x7684;&#x5F00;&#x9500;&#xFF1B;&#x4F1A;&#x4F7F;&#x7A0B;&#x5E8F;&#x7684;&#x8BBE;&#x8BA1;&#x66F4;&#x52A0;&#x590D;&#x6742;&#xFF1A;&#x7EBF;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;&#x3001;&#x7EBF;&#x7A0B;&#x95F4;&#x7684;&#x6570;&#x636E;&#x5171;&#x4EAB;</li>
 </ul>
-<p>&#x8FD9;&#x662F;&#x4F1A;&#x8BA9;&#x6808;&#x4E2D;&#x7684;<code>__forwarding</code>&#x6307;&#x9488;&#x6307;&#x5411;&#x5806;&#x4E0A;<code>__block</code>&#x7684;&#x5730;&#x5740;&#xFF0C;&#x800C;&#x5806;&#x4E0A;&#x7684;<code>__forwarding</code>&#x6307;&#x9488;&#x6307;&#x5411;&#x7684;&#x4E5F;&#x662F;&#x5806;&#x4E0A;&#x7684;<code>__block</code>&#x7684;&#x5730;&#x5740;&#x3002;</p>
-<p>&#x8FD9;&#x6837;&#x80FD;&#x4FDD;&#x8BC1;&#x6BCF;&#x6B21;&#x8BBF;&#x95EE;&#x7684;&#x90FD;&#x662F;&#x5806;&#x4E0A;&#x7684;&#x503C;&#x3002;</p>
-<pre><code class="lang-objc"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> __main_block_func(<span class="hljs-keyword">struct</span> __main_block_impl_0 *__cself) {
-    __Block_byref_age_0 *age = __cself-&gt;age;
-    age-&gt;__forwarding-&gt;age = <span class="hljs-number">20</span>;
-    <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@&quot;%d&quot;</span>,age-&gt;__forwarding-&gt;age);
-}
-</code></pre>
+<h4 id="4-ios&#x4E2D;&#x5B9E;&#x73B0;&#x591A;&#x7EBF;&#x7A0B;&#x7684;&#x65B9;&#x6848;">4. iOS&#x4E2D;&#x5B9E;&#x73B0;&#x591A;&#x7EBF;&#x7A0B;&#x7684;&#x65B9;&#x6848;</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x591A;&#x7EBF;&#x7A0B;&#x65B9;&#x6848;</th>
+<th style="text-align:left">&#x8BED;&#x8A00;</th>
+<th style="text-align:left">ARC&#x4E0B;&#x7684;&#x5185;&#x5B58;&#x7BA1;&#x7406;</th>
+<th style="text-align:left">&#x4F7F;&#x7528;&#x9891;&#x7387;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">pthread</td>
+<td style="text-align:left">C</td>
+<td style="text-align:left">&#x7A0B;&#x5E8F;&#x5458;&#x624B;&#x52A8;&#x7BA1;&#x7406;</td>
+<td style="text-align:left">&#x2605;&#x2606;&#x2606;&#x2606;&#x2606;</td>
+</tr>
+<tr>
+<td style="text-align:left">NSThread</td>
+<td style="text-align:left">OC/Swift(Thread)</td>
+<td style="text-align:left">&#x7A0B;&#x5E8F;&#x5458;&#x624B;&#x52A8;&#x7BA1;&#x7406;</td>
+<td style="text-align:left">&#x2605;&#x2605;&#x2606;&#x2606;&#x2606;</td>
+</tr>
+<tr>
+<td style="text-align:left">GCD</td>
+<td style="text-align:left">C/OC/Swift</td>
+<td style="text-align:left">ARC&#x81EA;&#x52A8;&#x7BA1;&#x7406;(&#x591A;&#x6570;&#x60C5;&#x51B5;)</td>
+<td style="text-align:left">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</td>
+</tr>
+<tr>
+<td style="text-align:left">NSOperation</td>
+<td style="text-align:left">OC/Swift</td>
+<td style="text-align:left">ARC&#x81EA;&#x52A8;&#x7BA1;&#x7406;</td>
+<td style="text-align:left">&#x2605;&#x2605;&#x2605;&#x2605;&#x2606;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="5-&#x5B89;&#x5168;&#x8BFB;&#x5199;">5. &#x5B89;&#x5168;&#x8BFB;&#x5199;</h4>
+<p>&#x666E;&#x901A;&#x7684;&#x7EBF;&#x7A0B;&#x540C;&#x6B65;&#x65B9;&#x6848;&#x4FDD;&#x8BC1;&#x7684;&#x662F;&#xFF1A;&#x540C;&#x4E00;&#x65F6;&#x523B;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x6761;&#x7EBF;&#x7A0B;&#x8BFB;&#x6216;&#x8005;&#x5199;&#x3002;</p>
+<p>&#x4F46;&#x8FD9;&#x4E0D;&#x662F;&#x6700;&#x7406;&#x60F3;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x56E0;&#x4E3A;&#x8BFB;&#x64CD;&#x4F5C;&#x65F6;&#x4E0D;&#x4F1A;&#x5BF9;&#x6211;&#x4EEC;&#x7684;&#x6570;&#x636E;&#x9020;&#x6210;&#x7834;&#x574F;&#x7684;&#x3002;&#x6700;&#x7406;&#x60F3;&#x7684;&#x64CD;&#x4F5C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;</p>
+<ul>
+<li>&#x540C;&#x4E00;&#x65F6;&#x95F4;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x6761;&#x7EBF;&#x7A0B;&#x5199;</li>
+<li>&#x540C;&#x4E00;&#x65F6;&#x95F4;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x6761;&#x7EBF;&#x7A0B;&#x8BFB;</li>
+<li>&#x540C;&#x4E00;&#x65F6;&#x95F4;&#x4E0D;&#x80FD;&#x65E2;&#x6709;&#x5199;&#x3001;&#x53C8;&#x6709;&#x8BFB;</li>
+</ul>
+<p>&#x53EF;&#x4EE5;&#x91C7;&#x7528; <code>dispatch_barrier</code>&#x6765;&#x5B9E;&#x73B0;.</p>
+<h4 id="6">6.</h4>
 
                                 
                                 </section>
@@ -844,12 +803,12 @@
 
             
                 
-                <a href="对象类型的auto变量.html" class="navigation navigation-prev " aria-label="Previous page: 对象类型的auto变量">
+                <a href="../Block/问题汇总.html" class="navigation navigation-prev " aria-label="Previous page: 问题汇总">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="Block的循环引用.html" class="navigation navigation-next " aria-label="Next page: Block的循环引用">
+                <a href="../RunLoop/iOS中的定时器.html" class="navigation navigation-next " aria-label="Next page: iOS中的定时器">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -860,7 +819,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"__block","level":"2.5","depth":1,"next":{"title":"Block的循环引用","level":"2.6","depth":1,"path":"Block/Block的循环引用.md","ref":"Block/Block的循环引用.md","articles":[]},"previous":{"title":"对象类型的auto变量","level":"2.4","depth":1,"path":"Block/对象类型的auto变量.md","ref":"Block/对象类型的auto变量.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Block/__block.md","mtime":"2020-03-08T05:40:10.363Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-08T08:52:22.177Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"GCD","level":"3.1","depth":1,"next":{"title":"iOS中的定时器","level":"4.1","depth":1,"path":"RunLoop/iOS中的定时器.md","ref":"RunLoop/iOS中的定时器.md","articles":[]},"previous":{"title":"问题汇总","level":"2.7","depth":1,"path":"Block/问题汇总.md","ref":"Block/问题汇总.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"多线程/多线程问题合集.md","mtime":"2020-03-08T09:03:44.215Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-08T08:52:22.177Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
