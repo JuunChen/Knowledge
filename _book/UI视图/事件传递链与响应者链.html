@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>iOS中的定时器 · GitBook</title>
+        <title>事件传递链与响应者链 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="RunLoop问题合集.html" />
+    <link rel="next" href="UI问题合集.html" />
     
     
-    <link rel="prev" href="../多线程/多线程问题合集.html" />
+    <link rel="prev" href="UITableView 的重用机制.html" />
     
 
     </head>
@@ -255,9 +255,9 @@
         
         
     
-        <li class="chapter active" data-level="4.1" data-path="iOS中的定时器.html">
+        <li class="chapter " data-level="4.1" data-path="../RunLoop/iOS中的定时器.html">
             
-                <a href="iOS中的定时器.html">
+                <a href="../RunLoop/iOS中的定时器.html">
             
                     
                     iOS中的定时器
@@ -268,9 +268,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="RunLoop问题合集.html">
+        <li class="chapter " data-level="4.2" data-path="../RunLoop/RunLoop问题合集.html">
             
-                <a href="RunLoop问题合集.html">
+                <a href="../RunLoop/RunLoop问题合集.html">
             
                     
                     RunLoop问题合集
@@ -564,9 +564,9 @@
         
         
     
-        <li class="chapter " data-level="11.1" data-path="../UI视图/UITableView 的重用机制.html">
+        <li class="chapter " data-level="11.1" data-path="UITableView 的重用机制.html">
             
-                <a href="../UI视图/UITableView 的重用机制.html">
+                <a href="UITableView 的重用机制.html">
             
                     
                     UITableView 的重用机制
@@ -577,9 +577,9 @@
             
         </li>
     
-        <li class="chapter " data-level="11.2" data-path="../UI视图/事件传递链与响应者链.html">
+        <li class="chapter active" data-level="11.2" data-path="事件传递链与响应者链.html">
             
-                <a href="../UI视图/事件传递链与响应者链.html">
+                <a href="事件传递链与响应者链.html">
             
                     
                     事件传递链与响应者链
@@ -590,9 +590,9 @@
             
         </li>
     
-        <li class="chapter " data-level="11.3" data-path="../UI视图/UI问题合集.html">
+        <li class="chapter " data-level="11.3" data-path="UI问题合集.html">
             
-                <a href="../UI视图/UI问题合集.html">
+                <a href="UI问题合集.html">
             
                     
                     UI问题合集
@@ -713,7 +713,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >iOS中的定时器</a>
+        <a href=".." >事件传递链与响应者链</a>
     </h1>
 </div>
 
@@ -728,54 +728,81 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h3 id="nstimer">NSTimer</h3>
-<pre><code>//&#x7B2C;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;
-NSTimer *timer = [NSTimer timerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        NSLog(@&quot;1&quot;);
-}];
-[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+                                <h4 id="&#x4E8B;&#x4EF6;&#x4F20;&#x9012;&#x94FE;">&#x4E8B;&#x4EF6;&#x4F20;&#x9012;&#x94FE;</h4>
+<p><strong>&#x4E8B;&#x4EF6;&#x4F20;&#x9012;&#x7684;&#x6574;&#x4F53;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;</strong></p>
+<p>Source0&#x63A5;&#x6536;&#x5230;&#x89E6;&#x6478;&#x4E8B;&#x4EF6;&#x540E;&#x4F20;&#x9012;&#x7ED9;Source1&#xFF0C;Source1&#x4F1A;&#x628A;&#x4E8B;&#x4EF6;&#x52A0;&#x5165;&#x5230;UIApplication&#x7BA1;&#x7406;&#x7684;&#x4E8B;&#x4EF6;&#x961F;&#x5217;&#x4E2D;&#x3002;</p>
+<p>UIApplication&#x4F1A;&#x53D6;&#x51FA;&#x6700;&#x524D;&#x9762;&#x7684;&#x4E8B;&#x4EF6;&#xFF0C;&#x53D1;&#x9001;&#x7ED9;keyWindow&#x3002;</p>
+<p>keyWindow&#x4F1A;&#x5728;&#x89C6;&#x56FE;&#x7ED3;&#x6784;&#x5C42;&#x6B21;&#x4E2D;<strong>&#x627E;&#x4E00;&#x4E2A;&#x6700;&#x5408;&#x9002;&#x7684;&#x89C6;&#x56FE;&#x6765;&#x5904;&#x7406;&#x89E6;&#x6478;&#x4E8B;&#x4EF6;</strong>&#x3002;</p>
+<p>&#x627E;&#x5230;&#x5408;&#x9002;&#x7684;&#x89C6;&#x56FE;&#x63A7;&#x4EF6;&#x540E;&#xFF0C;&#x5C31;&#x4F1A;&#x8C03;&#x7528;&#x89C6;&#x56FE;&#x7A7A;&#x95F4;&#x7684;touches&#x65B9;&#x6CD5;&#x6765;&#x505A;&#x5177;&#x4F53;&#x7684;&#x4E8B;&#x4EF6;&#x5904;&#x7406;&#x3002;</p>
+<p><strong>&#x6709;&#x4E24;&#x70B9;&#x9700;&#x8981;&#x6CE8;&#x610F;&#xFF1A;</strong></p>
+<ul>
+<li>&#x89E6;&#x6478;&#x4E8B;&#x4EF6;&#x662F;&#x7531;&#x7236;&#x63A7;&#x4EF6;&#x4F20;&#x9012;&#x7ED9;&#x5B50;&#x63A7;&#x4EF6;&#x7684;</li>
+<li>&#x5982;&#x679C;&#x7236;&#x63A7;&#x4EF6;&#x4E0D;&#x80FD;&#x63A5;&#x6536;&#x89E6;&#x6478;&#x4E8B;&#x4EF6;&#xFF0C;&#x90A3;&#x4E48;&#x5B50;&#x63A7;&#x4EF6;&#x5C31;&#x4E0D;&#x53EF;&#x80FD;&#x63A5;&#x6536;&#x5230;&#x89E6;&#x6478;&#x4E8B;&#x4EF6;&#x3002;<ul>
+<li>userInteractionEnabled = NO</li>
+<li>Hidden = YES</li>
+<li>alpha = 0 ~ 0.01</li>
+<li>UIImageView&#x7684;userInteractionEnabled&#x9ED8;&#x8BA4;&#x5C31;&#x662F;NO&#xFF0C;&#x56E0;&#x6B64;UIImageView&#x4EE5;&#x53CA;&#x5B83;&#x7684;&#x5B50;&#x63A7;&#x4EF6;&#x9ED8;&#x8BA4;&#x662F;&#x4E0D;&#x80FD;&#x63A5;&#x6536;&#x89E6;&#x6478;&#x4E8B;&#x4EF6;&#x7684;</li>
+</ul>
+</li>
+</ul>
+<p><strong>&#x5982;&#x4F55;&#x627E;&#x5230;&#x6700;&#x5408;&#x9002;&#x7684;&#x63A7;&#x4EF6;&#x6765;&#x5904;&#x7406;&#x4E8B;&#x4EF6;&#xFF1F;</strong>&#x603B;&#x4F53;&#x6765;&#x8BB2;&#x6709;&#x4EE5;&#x4E0B;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<ul>
+<li>&#x81EA;&#x5DF1;&#x80FD;&#x5426;&#x63A5;&#x6536;&#x89E6;&#x6478;&#x4E8B;&#x4EF6;&#xFF1F;</li>
+<li>&#x89E6;&#x6478;&#x70B9;&#x662F;&#x5426;&#x5728;&#x81EA;&#x5DF1;&#x8EAB;&#x4E0A;&#xFF1F;</li>
+<li>&#x4ECE;&#x540E;&#x5F80;&#x524D;&#x904D;&#x5386;&#x5B50;&#x63A7;&#x4EF6;&#xFF0C;&#x91CD;&#x590D;&#x524D;&#x9762;&#x7684;&#x4E24;&#x4E2A;&#x6B65;&#x9AA4;</li>
+<li>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x7B26;&#x5408;&#x6761;&#x4EF6;&#x7684;&#x5B50;&#x63A7;&#x4EF6;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x81EA;&#x5DF1;&#x5904;&#x7406;&#x6700;&#x5408;&#x9002;</li>
+</ul>
+<p><strong>&#x627E;&#x6700;&#x5408;&#x9002;&#x7684;&#x63A7;&#x4EF6;&#x662F;&#x4EA4;&#x7531;<code>hitTest</code>&#x65B9;&#x6CD5;&#x6765;&#x5904;&#x7406;&#x7684;</strong>&#xFF0C;&#x5B83;&#x7684;&#x6E90;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-objc">- (<span class="hljs-built_in">UIView</span> *)hitTest:(<span class="hljs-built_in">CGPoint</span>)point withEvent:(<span class="hljs-built_in">UIEvent</span> *)event
+{
+    <span class="hljs-comment">//1.&#x5224;&#x65AD;&#x81EA;&#x5DF1;&#x80FD;&#x5426;&#x63A5;&#x6536;&#x4E8B;&#x4EF6;</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>.userInteractionEnabled == <span class="hljs-literal">NO</span> || <span class="hljs-keyword">self</span>.hidden == <span class="hljs-literal">YES</span> || <span class="hljs-keyword">self</span>.alpha &lt; <span class="hljs-number">0.01</span>) {
+        <span class="hljs-comment">//&#x4E0D;&#x80FD;&#x63A5;&#x6536;&#x4E8B;&#x4EF6;</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>;
+    }
 
-//&#x7B2C;&#x4E8C;&#x79CD;&#x65B9;&#x5F0F;
-NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+    <span class="hljs-comment">//2.&#x70B9;&#x4E0D;&#x5728;&#x81EA;&#x5DF1;&#x8EAB;&#x4E0A;</span>
+    <span class="hljs-keyword">if</span>(![<span class="hljs-keyword">self</span> pointInside:point withEvent:event]) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>;
+    }
 
-}];
-</code></pre><p>&#x4F7F;&#x7528; <code>timerWith...</code>&#x7684;&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x51FA;&#x6765;&#x7684;timer&#x9700;&#x8981;&#x624B;&#x52A8;&#x6DFB;&#x52A0;&#x5230;RunLoop&#x4E2D;&#x53BB;&#x3002;</p>
-<p>&#x4F7F;&#x7528;<code>scheduledTimer...</code>&#x7684;&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x51FA;&#x6765;&#x7684;timer&#x5DF2;&#x7ECF;&#x88AB;&#x7CFB;&#x7EDF;&#x6DFB;&#x52A0;&#x5230;&#x5F53;&#x524D;&#x7EBF;&#x7A0B;&#x7684;runloop&#x4E2D;&#x7684;defaultModel&#x91CC;&#x9762;&#x4E86;&#x3002;</p>
-<h3 id="cadisplaylink">CADisplayLink</h3>
-<pre><code>CADisplayLink displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(linkTest)];
-[displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSRunLoopCommonModes];
-[displayLink invalidate]; //&#x9700;&#x8981;&#x624B;&#x52A8;&#x505C;&#x6B62;&#xFF0C;&#x79FB;&#x51FA; runloop
-</code></pre><p>CADisplayLink&#x6DFB;&#x52A0;&#x5230;runloop&#x4E2D;&#x540E;&#xFF0C;&#x6BCF;&#x5F53;&#x5C4F;&#x5E55;&#x663E;&#x793A;&#x7684;&#x5185;&#x5BB9;&#x5237;&#x65B0;&#x540E;&#x90FD;&#x4F1A;&#x5411;target&#x53D1;&#x9001;selector&#x6D88;&#x606F;&#x3002;&#x4FDD;&#x8BC1;&#x4E86;&#x5C4F;&#x5E55;&#x5237;&#x65B0;&#x7684;&#x9891;&#x7387;&#x4E0E;&#x53D1;&#x9001;&#x6D88;&#x606F;&#x7684;&#x9891;&#x7387;&#x4E00;&#x81F4;&#x3002;</p>
-<h3 id="gcd-timer">GCD Timer</h3>
-<pre><code>//&#x53EA;&#x6267;&#x884C;&#x4E00;&#x6B21;
-double delayInSeconds = 2.0;    
-dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);   
-dispatch_after(popTime, dispatch_get_main_queue(), ^(void){ 
-          //&#x6267;&#x884C;&#x4E8B;&#x4EF6;    
-});
-</code></pre><pre><code>//&#x53EF;&#x4EE5;&#x6267;&#x884C;&#x591A;&#x6B21;
+    <span class="hljs-comment">//3.&#x4ECE;&#x540E;&#x5F80;&#x524D;&#x904D;&#x5386;&#x81EA;&#x5DF1;&#x7684;&#x5B50;&#x63A7;&#x4EF6;&#xFF0C;&#x628A;&#x4E8B;&#x4EF6;&#x4F20;&#x9012;&#x7ED9;&#x81EA;&#x77FF;&#x5EFA;&#xFF0C;&#x8C03;&#x7528;&#x5B50;&#x63A7;&#x4EF6;&#x7684;hitTest</span>
+    <span class="hljs-built_in">NSUInteger</span> count = <span class="hljs-keyword">self</span>.subviews.count;
+    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">NSUInteger</span> i = count - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) {
+        <span class="hljs-comment">//&#x83B7;&#x53D6;&#x5B50;&#x63A7;&#x4EF6;</span>
+        <span class="hljs-built_in">UIView</span> *lastChildView = <span class="hljs-keyword">self</span>.subviews[i];
+        <span class="hljs-comment">//&#x628A;&#x5F53;&#x524D;&#x7684;&#x5750;&#x6807;&#x7CFB;&#x8F6C;&#x6362;&#x6210;&#x5B50;&#x63A7;&#x4EF6;&#x7684;&#x5750;&#x6807;&#x7CFB;</span>
+        <span class="hljs-built_in">CGPoint</span> childP = [<span class="hljs-keyword">self</span> convertPoint:point toView:lastChildView];
 
-@property (nonatomic, strong) dispatch_source_t timer;
+        <span class="hljs-built_in">UIView</span> *fitView = [lastChildView hitTest:childP withEvent:event];
 
-self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
-dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
-dispatch_source_set_event_handler(self.timer, ^{
-    NSLog(@&quot;111&quot;);
-});
-dispatch_resume(self.timer);
-</code></pre><p>GCD Timer &#x662F;&#x57FA;&#x4E8E;&#x7CFB;&#x7EDF;&#x5185;&#x6838;&#x7684;&#xFF0C;&#x4E0E;runloop&#x65E0;&#x5173;&#x3002;&#x5F53;timer&#x88AB;&#x91CA;&#x653E;&#x65F6;&#xFF0C;&#x5B9A;&#x65F6;&#x5668;&#x4F1A;&#x505C;&#x6B62;&#x3002;</p>
-<h3 id="&#x4F7F;&#x7528;nstimer&#x548C;cadisplaylink&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;">&#x4F7F;&#x7528;NSTimer&#x548C;CADisplayLink&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;</h3>
-<p>&#x4E00;&#x3001;&#x65F6;&#x95F4;&#x7CBE;&#x5EA6;&#x53EF;&#x80FD;&#x4E0D;&#x51C6;&#x786E;</p>
-<p>&#x56E0;&#x4E3A;NSTimer&#x548C;CADisplayLink&#x90FD;&#x662F;&#x57FA;&#x4E8E;runloop&#x7684;&#xFF0C;&#x5F53;runloop&#x4EFB;&#x52A1;&#x7E41;&#x91CD;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F1A;&#x5EF6;&#x8BEF;&#x4EFB;&#x52A1;&#x7684;&#x89E6;&#x53D1;&#x3002;</p>
-<p>&#x518D;&#x8005;&#xFF0C;&#x82E5;timer&#x88AB;&#x6DFB;&#x52A0;&#x5230;defaultMode&#x4E2D;&#xFF0C;&#x5F53;runloop&#x5207;&#x6362;&#x5230;uitrackingMode&#x7684;&#x65F6;&#x5019;&#xFF0C;timer&#x4E0D;&#x4F1A;&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x5BFC;&#x81F4;timer&#x5931;&#x6548;&#x3002;</p>
-<p>&#x4E8C;&#x3001;&#x5B58;&#x5728;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x7684;&#x98CE;&#x9669;</p>
-<p>&#x4F7F;&#x7528;target-selector&#x7684;&#x65B9;&#x5F0F;&#x521B;&#x5EFA;NSTimer&#x548C;CADisplayLink&#x5B9E;&#x4F8B;&#xFF0C;&#x5B9E;&#x4F8B;&#x4F1A;&#x5BF9;target&#x5F3A;&#x5F15;&#x7528;&#xFF0C;&#x82E5;target&#x4E5F;&#x5BF9;&#x5B9E;&#x4F8B;&#x5F3A;&#x5F15;&#x7528;&#xFF0C;&#x5219;&#x4F1A;&#x5BFC;&#x81F4;&#x5FAA;&#x73AF;&#x5F15;&#x7528;&#x3002;</p>
-<p>&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#x6709;&#x4E09;&#x79CD;&#xFF1A;</p>
-<ol>
-<li>&#x4F7F;&#x7528;block</li>
-<li>&#x4F7F;&#x7528;NSProxy&#x505A;&#x8F6C;&#x53D1;&#x3002;target -----&gt; timer&#xFF0C;timer -----&gt; proxy&#xFF0C;proxy - - -&gt; target&#x3002;</li>
-<li>&#x4F7F;&#x7528;gcd timer&#x3002;</li>
-</ol>
+        <span class="hljs-keyword">if</span> (fitView) {
+            <span class="hljs-keyword">return</span> fitView;
+        }
+    }
+
+    <span class="hljs-comment">//4.&#x5982;&#x679C;&#x5B50;&#x63A7;&#x4EF6;&#x90FD;&#x6CA1;&#x6709;&#x627E;&#x5230;&#x6700;&#x5408;&#x9002;&#x7684;view&#xFF0C;&#x90A3;&#x4E48;&#x81EA;&#x5DF1;&#x5C31;&#x662F;&#x6700;&#x5408;&#x9002;&#x7684;view</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;
+}
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x4E2D;&#x8FD4;&#x56DE;&#x7684;&#x5BF9;&#x8C61;&#x5C31;&#x662F;&#x6700;&#x9002;&#x5408;&#x7684;&#x63A7;&#x4EF6;&#x3002;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x8981;&#x6539;&#x53D8;&#x4E00;&#x4E2A;&#x63A7;&#x4EF6;&#x54CD;&#x5E94;&#x89E6;&#x6478;&#x4E8B;&#x4EF6;&#x7684;view&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x91CD;&#x5199;&#x5B83;&#x7684;hitTest&#x65B9;&#x6CD5;&#x6765;&#x5B9E;&#x73B0;&#xFF0C;&#x9700;&#x8981;&#x8C01;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x8FD4;&#x56DE;&#x8C01;&#x3002;&#x5982;&#x679C;&#x8981;&#x6539;&#x53D8;&#x4E00;&#x4E2A;View&#x53EF;&#x54CD;&#x5E94;&#x7684;&#x8303;&#x56F4;&#x7684;&#x8BDD;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x91CD;&#x5199;pointInside&#x65B9;&#x6CD5;&#x3002;</p>
+<pre><code class="lang-objc">- (<span class="hljs-built_in">BOOL</span>)pointInside:(<span class="hljs-built_in">CGPoint</span>)point withEvent:(nullable <span class="hljs-built_in">UIEvent</span> *)event;   <span class="hljs-comment">// default returns YES if point is in bounds</span>
+</code></pre>
+<h4 id="&#x4E8B;&#x4EF6;&#x54CD;&#x5E94;&#x94FE;">&#x4E8B;&#x4EF6;&#x54CD;&#x5E94;&#x94FE;</h4>
+<p>&#x89E6;&#x6478;&#x4E8B;&#x4EF6;&#x53D1;&#x751F;&#x540E;&#xFF0C;&#x4F1A;&#x987A;&#x7740;&#x4E8B;&#x4EF6;&#x4F20;&#x9012;&#x94FE;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x6700;&#x5408;&#x9002;&#x7684;view&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528;&#x5B83;&#x7684;touches&#x65B9;&#x6CD5;&#x3002;</p>
+<p>touchesBegan&#x9ED8;&#x8BA4;&#x7684;&#x505A;&#x6CD5;&#x662F;&#x5C06;&#x4E8B;&#x4EF6;&#x987A;&#x7740;&#x54CD;&#x5E94;&#x8005;&#x94FE;&#x6761;&#x5411;&#x4E0A;&#x4F20;&#x9012;&#xFF0C;&#x5C06;&#x4E8B;&#x4EF6;&#x4EA4;&#x7ED9;&#x4E0A;&#x4E00;&#x4E2A;&#x54CD;&#x5E94;&#x8005;&#x5904;&#x7406;&#x3002;</p>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x5982;&#x679C;&#x5728;&#x54CD;&#x5E94;&#x8005;&#x4E2D;&#x6CA1;&#x6709;&#x91CD;&#x5199;touchesBegan&#x65B9;&#x6CD5;&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x4F1A;&#x627E;&#x5230;&#x4E0A;&#x4E00;&#x4E2A;&#x54CD;&#x5E94;&#x8005;&#x7684;touchedBegan&#x65B9;&#x6CD5;&#xFF0C;&#x800C;&#x4E0A;&#x4E00;&#x4E2A;&#x54CD;&#x5E94;&#x8005;&#x7684;touchedBegan&#x65B9;&#x6CD5;&#x9ED8;&#x8BA4;&#x4E5F;&#x662F;&#x53BB;&#x8C03;&#x7528;&#x4E0A;&#x4E0A;&#x4E00;&#x4E2A;&#x54CD;&#x5E94;&#x8005;&#x7684;touchedBegan&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x540D;&#x8BCD;&#x8BF4;&#x660E;&#xFF1A;</p>
+<ul>
+<li>&#x54CD;&#x5E94;&#x8005;&#x94FE;&#x6761;&#xFF1A;&#x662F;&#x7531;&#x591A;&#x4E2A;&#x54CD;&#x5E94;&#x8005;&#x5BF9;&#x8C61;&#x8FDE;&#x63A5;&#x8D77;&#x6765;&#x7684;&#x94FE;&#x6761;</li>
+<li>&#x4F5C;&#x7528;&#xFF1A;&#x80FD;&#x5F88;&#x6E05;&#x695A;&#x7684;&#x770B;&#x89C1;&#x6BCF;&#x4E2A;&#x54CD;&#x5E94;&#x8005;&#x4E4B;&#x95F4;&#x7684;&#x8054;&#x7CFB;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x8BA9;&#x4E00;&#x4E2A;&#x4E8B;&#x4EF6;&#x6709;&#x591A;&#x4E2A;&#x5BF9;&#x8C61;&#x5904;&#x7406;</li>
+<li>&#x54CD;&#x5E94;&#x8005;&#x5BF9;&#x8C61;&#xFF1A;&#x80FD;&#x5904;&#x7406;&#x4E8B;&#x4EF6;&#x7684;&#x5BF9;&#x8C61;</li>
+</ul>
+<p><strong>&#x5982;&#x4F55;&#x5224;&#x65AD;&#x4E0A;&#x4E00;&#x4E2A;&#x54CD;&#x5E94;&#x8005;&#xFF1A;</strong></p>
+<ul>
+<li>&#x5982;&#x679C;&#x5F53;&#x524D;&#x8FD9;&#x4E2A;view&#x662F;UIViewController&#x7684;view&#xFF0C;&#x90A3;&#x4E48;&#x4E0A;&#x4E00;&#x4E2A;&#x54CD;&#x5E94;&#x8005;&#x5C31;&#x662F;UIViewController</li>
+<li>&#x5426;&#x5219;&#xFF0C;&#x4E0A;&#x4E00;&#x4E2A;&#x54CD;&#x5E94;&#x8005;&#x5C31;&#x662F;&#x5F53;&#x524D;view&#x7684;&#x7236;&#x63A7;&#x4EF6;</li>
+</ul>
 
                                 
                                 </section>
@@ -803,12 +830,12 @@ dispatch_resume(self.timer);
 
             
                 
-                <a href="../多线程/多线程问题合集.html" class="navigation navigation-prev " aria-label="Previous page: GCD">
+                <a href="UITableView 的重用机制.html" class="navigation navigation-prev " aria-label="Previous page: UITableView 的重用机制">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="RunLoop问题合集.html" class="navigation navigation-next " aria-label="Next page: RunLoop问题合集">
+                <a href="UI问题合集.html" class="navigation navigation-next " aria-label="Next page: UI问题合集">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -819,7 +846,7 @@ dispatch_resume(self.timer);
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"iOS中的定时器","level":"4.1","depth":1,"next":{"title":"RunLoop问题合集","level":"4.2","depth":1,"path":"RunLoop/RunLoop问题合集.md","ref":"RunLoop/RunLoop问题合集.md","articles":[]},"previous":{"title":"GCD","level":"3.1","depth":1,"path":"多线程/多线程问题合集.md","ref":"多线程/多线程问题合集.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"RunLoop/iOS中的定时器.md","mtime":"2020-03-08T05:38:21.362Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-08T08:52:22.177Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"事件传递链与响应者链","level":"11.2","depth":1,"next":{"title":"UI问题合集","level":"11.3","depth":1,"path":"UI视图/UI问题合集.md","ref":"UI视图/UI问题合集.md","articles":[]},"previous":{"title":"UITableView 的重用机制","level":"11.1","depth":1,"path":"UI视图/UITableView 的重用机制.md","ref":"UI视图/UITableView 的重用机制.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"UI视图/事件传递链与响应者链.md","mtime":"2020-03-08T13:31:31.089Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-08T08:52:22.177Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
