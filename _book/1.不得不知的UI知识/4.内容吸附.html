@@ -1,0 +1,885 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>1.4 内容吸附 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="5.事件传递链与响应链.html" />
+    
+    
+    <link rel="prev" href="3.压缩阻力.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">1.不得不知的UI知识</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="1.关于bounds与frame.html">
+            
+                <a href="1.关于bounds与frame.html">
+            
+                    
+                    1.1 关于bounds与frame
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="2.锚点与位置.html">
+            
+                <a href="2.锚点与位置.html">
+            
+                    
+                    1.2 锚点与位置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="3.压缩阻力.html">
+            
+                <a href="3.压缩阻力.html">
+            
+                    
+                    1.3 压缩阻力
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5" data-path="4.内容吸附.html">
+            
+                <a href="4.内容吸附.html">
+            
+                    
+                    1.4 内容吸附
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="5.事件传递链与响应链.html">
+            
+                <a href="5.事件传递链与响应链.html">
+            
+                    
+                    1.5 事件传递链与响应链
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="6.加载image.html">
+            
+                <a href="6.加载image.html">
+            
+                    
+                    1.6 加载image
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="7.离屏渲染.html">
+            
+                <a href="7.离屏渲染.html">
+            
+                    
+                    1.7 离屏渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="8.如何高效地切圆角.html">
+            
+                <a href="8.如何高效地切圆角.html">
+            
+                    
+                    1.8 如何高效地切圆角
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="9.UI绘制原理.html">
+            
+                <a href="9.UI绘制原理.html">
+            
+                    
+                    1.9 UI绘制原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="10.实现异步绘制.html">
+            
+                <a href="10.实现异步绘制.html">
+            
+                    
+                    1.10 实现异步绘制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="11.提升页面的流畅度.html">
+            
+                <a href="11.提升页面的流畅度.html">
+            
+                    
+                    1.11 提升页面的流畅度
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="12.UITableView 的重用机制.html">
+            
+                <a href="12.UITableView 的重用机制.html">
+            
+                    
+                    1.12 UITableView 的重用机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="13.UIView与CALayer的区别.html">
+            
+                <a href="13.UIView与CALayer的区别.html">
+            
+                    
+                    11.3 UIView与CALayer的区别
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">2.OC基础</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../2.OC基础/分类.html">
+            
+                <a href="../2.OC基础/分类.html">
+            
+                    
+                    分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../2.OC基础/关联对象.html">
+            
+                <a href="../2.OC基础/关联对象.html">
+            
+                    
+                    关联对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../2.OC基础/isa与superclass.html">
+            
+                <a href="../2.OC基础/isa与superclass.html">
+            
+                    
+                    isa与superclass
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../2.OC基础/KVC.html">
+            
+                <a href="../2.OC基础/KVC.html">
+            
+                    
+                    KVC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.5" data-path="../2.OC基础/KVO.html">
+            
+                <a href="../2.OC基础/KVO.html">
+            
+                    
+                    KVO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.6" data-path="../2.OC基础/NSNotification.html">
+            
+                <a href="../2.OC基础/NSNotification.html">
+            
+                    
+                    NSNotification
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.7" data-path="../2.OC基础/OC对象.html">
+            
+                <a href="../2.OC基础/OC对象.html">
+            
+                    
+                    OC对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.8" data-path="../2.OC基础/问题合集.html">
+            
+                <a href="../2.OC基础/问题合集.html">
+            
+                    
+                    问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">3.内存管理</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../3.内存管理/对MRC和ARC的理解.html">
+            
+                <a href="../3.内存管理/对MRC和ARC的理解.html">
+            
+                    
+                    对MRC和ARC的理解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../3.内存管理/内存布局.html">
+            
+                <a href="../3.内存管理/内存布局.html">
+            
+                    
+                    内存布局
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../3.内存管理/引用计数是如何存储的.html">
+            
+                <a href="../3.内存管理/引用计数是如何存储的.html">
+            
+                    
+                    引用计数是如何存储的
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="../3.内存管理/copy关键字.html">
+            
+                <a href="../3.内存管理/copy关键字.html">
+            
+                    
+                    copy关键字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="../3.内存管理/autoReleasePool相关问题.html">
+            
+                <a href="../3.内存管理/autoReleasePool相关问题.html">
+            
+                    
+                    autoReleasePool
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="../3.内存管理/weak指针的实现原理.html">
+            
+                <a href="../3.内存管理/weak指针的实现原理.html">
+            
+                    
+                    weak指针的实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">4.Block</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../4.Block/Block 的本质.html">
+            
+                <a href="../4.Block/Block 的本质.html">
+            
+                    
+                    Block 的本质
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../4.Block/变量捕获.html">
+            
+                <a href="../4.Block/变量捕获.html">
+            
+                    
+                    变量捕获
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../4.Block/Block 的类型.html">
+            
+                <a href="../4.Block/Block 的类型.html">
+            
+                    
+                    Block 的类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../4.Block/对象类型的auto变量.html">
+            
+                <a href="../4.Block/对象类型的auto变量.html">
+            
+                    
+                    对象类型的auto变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../4.Block/__block.html">
+            
+                <a href="../4.Block/__block.html">
+            
+                    
+                    __block
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="../4.Block/Block的循环引用.html">
+            
+                <a href="../4.Block/Block的循环引用.html">
+            
+                    
+                    Block的循环引用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="../4.Block/问题汇总.html">
+            
+                <a href="../4.Block/问题汇总.html">
+            
+                    
+                    问题汇总
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">5.Runtime</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../5.Runtime/问题合集.html">
+            
+                <a href="../5.Runtime/问题合集.html">
+            
+                    
+                    Runtime问题集合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../5.Runtime/实现线程安全的数组.html">
+            
+                <a href="../5.Runtime/实现线程安全的数组.html">
+            
+                    
+                    实现线程安全的数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">6.RunLoop</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../6.RunLoop/iOS中的定时器.html">
+            
+                <a href="../6.RunLoop/iOS中的定时器.html">
+            
+                    
+                    iOS中的定时器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="../6.RunLoop/RunLoop问题合集.html">
+            
+                <a href="../6.RunLoop/RunLoop问题合集.html">
+            
+                    
+                    RunLoop问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">7.多线程</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../7.多线程/多线程问题合集.html">
+            
+                <a href="../7.多线程/多线程问题合集.html">
+            
+                    
+                    多线程问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">8.网络</li>
+        
+        
+    
+        <li class="chapter " data-level="8.1" data-path="../8.网络/网络问题集合.html">
+            
+                <a href="../8.网络/网络问题集合.html">
+            
+                    
+                    网络问题集合
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">9.性能优化</li>
+        
+        
+    
+        <li class="chapter " data-level="9.1" data-path="../9.性能优化/性能优化问题合集.html">
+            
+                <a href="../9.性能优化/性能优化问题合集.html">
+            
+                    
+                    性能优化问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">10.设计</li>
+        
+        
+    
+        <li class="chapter " data-level="10.1" data-path="../10.设计/设计类问题合集.html">
+            
+                <a href="../10.设计/设计类问题合集.html">
+            
+                    
+                    设计类问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">11.算法</li>
+        
+        
+    
+        <li class="chapter " data-level="11.1" data-path="../11.算法/算法类问题合集.html">
+            
+                <a href="../11.算法/算法类问题合集.html">
+            
+                    
+                    算法类问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >1.4 内容吸附</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h4 id="&#x5185;&#x5BB9;&#x5438;&#x9644;">&#x5185;&#x5BB9;&#x5438;&#x9644;</h4>
+<p>&#x5185;&#x5BB9;&#x538B;&#x7F29;&#x6307;&#x7684;&#x662F;&#x89C6;&#x56FE;&#x5176;&#x5185;&#x5BB9;&#x4E0D;&#x88AB;&#x62C9;&#x4F38;&#x7684;&#x80FD;&#x529B;&#x3002;&#x5185;&#x5BB9;&#x5438;&#x9644;&#x80FD;&#x529B;&#x8D8A;&#x5F3A;&#xFF0C;&#x8BE5;&#x89C6;&#x56FE;&#x4E0D;&#x88AB;&#x62C9;&#x4F38;&#x7684;&#x80FD;&#x529B;&#x8D8A;&#x5F3A;&#x3002;</p>
+<p>&#x7CFB;&#x7EDF;&#x7528;&#x7EA6;&#x675F;&#x4F18;&#x5148;&#x7EA7;&#x7684;&#x9AD8;&#x4F4E;&#x6765;&#x8868;&#x793A;&#x5185;&#x5BB9;&#x5438;&#x9644;&#x80FD;&#x529B;&#x7684;&#x5F3A;&#x5F31;&#xFF0C;&#x7EA6;&#x675F;&#x4F18;&#x5148;&#x7EA7;&#x8D8A;&#x9AD8;&#xFF0C;&#x89C6;&#x56FE;&#x7684;&#x5185;&#x5BB9;&#x5438;&#x9644;&#x80FD;&#x529B;&#x8D8A;&#x5F3A;&#x3002;</p>
+<p>&#x5185;&#x5BB9;&#x5438;&#x9644;&#x5728;IB&#x4E2D;&#x7684;&#x4F4D;&#x7F6E;&#x662F;Show the Size inspector -&gt; Content Hugging Priority&#xFF0C;&#x9ED8;&#x8BA4;&#x6C34;&#x5E73;&#x548C;&#x7AD6;&#x76F4;&#x65B9;&#x5411;&#x90FD;&#x662F;250&#xFF0C;&#x4E5F;&#x5C31;&#x662F;UILayoutPriorityDefaultLow&#x5E38;&#x91CF;&#x7684;&#x503C;&#x3002;</p>
+<p><img src="https://user-gold-cdn.xitu.io/2020/3/13/170d22c60ba0d121?w=1122&amp;h=390&amp;f=png&amp;s=116533" style="zoom:30%;"></p>
+<p>&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x538B;&#x7F29;&#x963B;&#x529B;&#x4E2D;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x5C06;&#x5DE6;label&#x4E0E;&#x53F3;label&#x7684;&#x6587;&#x5B57;&#x7528;&#x4EE3;&#x7801;&#x8FDB;&#x884C;&#x4FEE;&#x6539;:</p>
+<pre><code class="lang-objective-c">_leftLabel.text = @&quot;&#x5DE6;&quot;;
+_rightLabel.text = @&quot;&#x53F3;&quot;;
+</code></pre>
+<p>&#x7136;&#x540E;&#x8FD0;&#x884C;&#x4F1A;&#x53D1;&#x73B0;&#xFF0C;&#x5DE6;label&#x7684;&#x5C3A;&#x5BF8;&#x4E0E;&#x5176;&#x5185;&#x5BB9;&#x7684;&#x5C3A;&#x5BF8;&#x76F8;&#x5339;&#x914D;&#x3002;&#x800C;&#x53F3;label&#x7684;&#x5C3A;&#x5BF8;&#x5219;&#x88AB;&#x62C9;&#x4F38;&#x4E86;&#x8BB8;&#x591A;&#x3002;</p>
+<p><img src="https://user-gold-cdn.xitu.io/2020/3/13/170d231fb82c8535?w=752&amp;h=238&amp;f=png&amp;s=9693" style="zoom:45%;"></p>
+<p>&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5185;&#x5BB9;&#x5438;&#x9644;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x662F;250&#xFF0C;&#x800C;&#x6211;&#x4EEC;&#x6DFB;&#x52A0;&#x7684;&#x7EA6;&#x675F;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x662F;1000&#xFF0C;&#x6240;&#x7CFB;&#x7CFB;&#x7EDF;&#x4F1A;&#x5148;&#x6EE1;&#x8DB3;&#x7EA6;&#x675F;&#xFF0C;&#x800C;&#x4E0D;&#x4F1A;&#x5148;&#x6EE1;&#x8DB3;&#x5185;&#x5BB9;&#x5438;&#x9644;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x53EA;&#x5C06;&#x6700;&#x53F3;&#x8FB9;&#x7684;&#x7EA6;&#x675F;&#x4F18;&#x5148;&#x7EA7;&#x6539;&#x6210;249&#xFF0C;&#x8FD0;&#x884C;Demo&#x5219;&#x4F1A;&#x8FD9;&#x6837;&#x663E;&#x793A;&#xFF1A;</p>
+<p><img src="../Users/momo/Documents/Knowledge/ImageFolder/1-4-3.png" style="zoom:45%;"></p>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x53EA;&#x5C06;&#x4E2D;&#x95F4;&#x7684;&#x7EA6;&#x675F;&#x4F18;&#x5148;&#x7EA7;&#x6539;&#x6210;249&#xFF0C;&#x4F1A;&#x8FD9;&#x6837;&#x663E;&#x793A;&#xFF1A;</p>
+<p><img src="../Users/momo/Documents/Knowledge/ImageFolder/1-4-4.png" style="zoom:45%;"></p>
+<p>&#x5982;&#x679C;&#x6211;&#x4EEC;&#x53EA;&#x5C06;&#x6700;&#x5DE6;&#x8FB9;&#x7684;&#x7EA6;&#x675F;&#x4F18;&#x5148;&#x7EA7;&#x6539;&#x6210;249&#xFF0C;&#x4F1A;&#x8FD9;&#x6837;&#x663E;&#x793A;&#xFF1A;</p>
+<p><img src="https://user-gold-cdn.xitu.io/2020/3/13/170d23cd098f1fd2?w=744&amp;h=234&amp;f=png&amp;s=9414" style="zoom:45%;"></p>
+<p>&#x53EA;&#x5C06;&#x5DE6;label&#x7684;&#x5185;&#x5BB9;&#x5438;&#x9644;&#x6539;&#x4E3A;249&#xFF1A;</p>
+<p><img src="https://user-gold-cdn.xitu.io/2020/3/13/170d23edcb9932b7?w=750&amp;h=256&amp;f=png&amp;s=10061" style="zoom:45%;"></p>
+<p>&#x7406;&#x89E3;&#x4E86;&#x538B;&#x7F29;&#x7EC4;&#x91CC;&#x548C;&#x5185;&#x5BB9;&#x5438;&#x9644;&#x4E4B;&#x540E;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x66F4;&#x52A0;&#x7075;&#x6D3B;&#x5730;&#x7528;&#x6765;&#x7EA6;&#x675F;&#x548C;&#x4F18;&#x5148;&#x7EA7;&#x6765;&#x8FDB;&#x884C;&#x5E03;&#x5C40;&#x4E86;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="3.压缩阻力.html" class="navigation navigation-prev " aria-label="Previous page: 1.3 压缩阻力">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="5.事件传递链与响应链.html" class="navigation navigation-next " aria-label="Next page: 1.5 事件传递链与响应链">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"1.4 内容吸附","level":"1.5","depth":1,"next":{"title":"1.5 事件传递链与响应链","level":"1.6","depth":1,"path":"1.不得不知的UI知识/5.事件传递链与响应链.md","ref":"1.不得不知的UI知识/5.事件传递链与响应链.md","articles":[]},"previous":{"title":"1.3 压缩阻力","level":"1.4","depth":1,"path":"1.不得不知的UI知识/3.压缩阻力.md","ref":"1.不得不知的UI知识/3.压缩阻力.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"1.不得不知的UI知识/4.内容吸附.md","mtime":"2020-03-14T15:14:09.298Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-14T14:59:07.609Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
