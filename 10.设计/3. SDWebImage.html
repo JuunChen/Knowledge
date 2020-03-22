@@ -1,0 +1,1551 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>3. SDWebImage · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="4. 组件化.html" />
+    
+    
+    <link rel="prev" href="2. 设计一个图片缓存的框架.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    1.不得不知的UI知识
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../1.不得不知的UI知识/1.关于bounds与frame.html">
+            
+                <a href="../1.不得不知的UI知识/1.关于bounds与frame.html">
+            
+                    
+                    1.关于bounds与frame
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../1.不得不知的UI知识/2.锚点与位置.html">
+            
+                <a href="../1.不得不知的UI知识/2.锚点与位置.html">
+            
+                    
+                    2.锚点与位置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../1.不得不知的UI知识/3.压缩阻力.html">
+            
+                <a href="../1.不得不知的UI知识/3.压缩阻力.html">
+            
+                    
+                    3.压缩阻力
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../1.不得不知的UI知识/4.内容吸附.html">
+            
+                <a href="../1.不得不知的UI知识/4.内容吸附.html">
+            
+                    
+                    4.内容吸附
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="../1.不得不知的UI知识/5.事件传递链与响应链.html">
+            
+                <a href="../1.不得不知的UI知识/5.事件传递链与响应链.html">
+            
+                    
+                    5.事件传递链与响应链
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="../1.不得不知的UI知识/6.加载image.html">
+            
+                <a href="../1.不得不知的UI知识/6.加载image.html">
+            
+                    
+                    6.加载image
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="../1.不得不知的UI知识/7.离屏渲染.html">
+            
+                <a href="../1.不得不知的UI知识/7.离屏渲染.html">
+            
+                    
+                    7.离屏渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="../1.不得不知的UI知识/8.如何高效地切圆角.html">
+            
+                <a href="../1.不得不知的UI知识/8.如何高效地切圆角.html">
+            
+                    
+                    8.如何高效地切圆角
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="../1.不得不知的UI知识/9.UI绘制原理.html">
+            
+                <a href="../1.不得不知的UI知识/9.UI绘制原理.html">
+            
+                    
+                    9.UI绘制原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="../1.不得不知的UI知识/10.实现异步绘制.html">
+            
+                <a href="../1.不得不知的UI知识/10.实现异步绘制.html">
+            
+                    
+                    10.实现异步绘制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.11" data-path="../1.不得不知的UI知识/11.提升页面的流畅度.html">
+            
+                <a href="../1.不得不知的UI知识/11.提升页面的流畅度.html">
+            
+                    
+                    11.提升页面的流畅度
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.12" data-path="../1.不得不知的UI知识/12.UITableView 的重用机制.html">
+            
+                <a href="../1.不得不知的UI知识/12.UITableView 的重用机制.html">
+            
+                    
+                    12.UITableView 的重用机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.13" data-path="../1.不得不知的UI知识/13.UIView与CALayer的区别.html">
+            
+                <a href="../1.不得不知的UI知识/13.UIView与CALayer的区别.html">
+            
+                    
+                    13.UIView与CALayer的区别
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    2.OC基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../2.OC基础/1.OC对象.html">
+            
+                <a href="../2.OC基础/1.OC对象.html">
+            
+                    
+                    1.OC对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../2.OC基础/2.分类.html">
+            
+                <a href="../2.OC基础/2.分类.html">
+            
+                    
+                    2.分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../2.OC基础/3.关联对象.html">
+            
+                <a href="../2.OC基础/3.关联对象.html">
+            
+                    
+                    3.关联对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../2.OC基础/4.isa与superclass.html">
+            
+                <a href="../2.OC基础/4.isa与superclass.html">
+            
+                    
+                    4.isa与superclass
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../2.OC基础/5.KVO.html">
+            
+                <a href="../2.OC基础/5.KVO.html">
+            
+                    
+                    5.KVO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../2.OC基础/6.KVC.html">
+            
+                <a href="../2.OC基础/6.KVC.html">
+            
+                    
+                    6.KVC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../2.OC基础/7.NSNotification.html">
+            
+                <a href="../2.OC基础/7.NSNotification.html">
+            
+                    
+                    7.NSNotification
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../2.OC基础/8.NSDictionary实现的原理.html">
+            
+                <a href="../2.OC基础/8.NSDictionary实现的原理.html">
+            
+                    
+                    8.NSDictionary实现的原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../2.OC基础/9.NSSet实现的原理.html">
+            
+                <a href="../2.OC基础/9.NSSet实现的原理.html">
+            
+                    
+                    9.NSSet实现的原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../2.OC基础/99.问题合集.html">
+            
+                <a href="../2.OC基础/99.问题合集.html">
+            
+                    
+                    99.问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    3.内存管理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../3.内存管理/1.内存布局.html">
+            
+                <a href="../3.内存管理/1.内存布局.html">
+            
+                    
+                    1.内存布局
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../3.内存管理/2.对MRC和ARC的理解.html">
+            
+                <a href="../3.内存管理/2.对MRC和ARC的理解.html">
+            
+                    
+                    2.对MRC和ARC的理解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../3.内存管理/3.引用计数是如何存储的.html">
+            
+                <a href="../3.内存管理/3.引用计数是如何存储的.html">
+            
+                    
+                    3.引用计数是如何存储的
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../3.内存管理/4.copy关键字.html">
+            
+                <a href="../3.内存管理/4.copy关键字.html">
+            
+                    
+                    4.copy关键字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../3.内存管理/5.weak指针的实现原理.html">
+            
+                <a href="../3.内存管理/5.weak指针的实现原理.html">
+            
+                    
+                    5.weak指针的实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../3.内存管理/6.autoreleasePool相关问题.html">
+            
+                <a href="../3.内存管理/6.autoreleasePool相关问题.html">
+            
+                    
+                    6.autoreleasePool相关问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    4.Block
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../4.Block/1.Block 的本质.html">
+            
+                <a href="../4.Block/1.Block 的本质.html">
+            
+                    
+                    1.Block 的本质
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../4.Block/2.变量捕获.html">
+            
+                <a href="../4.Block/2.变量捕获.html">
+            
+                    
+                    2.变量捕获
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../4.Block/3.对象类型的auto变量.html">
+            
+                <a href="../4.Block/3.对象类型的auto变量.html">
+            
+                    
+                    3.对象类型的auto变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../4.Block/4.Block 的类型.html">
+            
+                <a href="../4.Block/4.Block 的类型.html">
+            
+                    
+                    4.Block 的类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../4.Block/5.__block.html">
+            
+                <a href="../4.Block/5.__block.html">
+            
+                    
+                    5.__block
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../4.Block/6.Block的循环引用.html">
+            
+                <a href="../4.Block/6.Block的循环引用.html">
+            
+                    
+                    6.Block的循环引用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../4.Block/99.问题汇总.html">
+            
+                <a href="../4.Block/99.问题汇总.html">
+            
+                    
+                    99.问题汇总
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    5.Runtime
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../5.Runtime/98.实现线程安全的数组.html">
+            
+                <a href="../5.Runtime/98.实现线程安全的数组.html">
+            
+                    
+                    98.实现线程安全的数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../5.Runtime/99.问题合集.html">
+            
+                <a href="../5.Runtime/99.问题合集.html">
+            
+                    
+                    99.问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    6.RunLoop
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../6.RunLoop/98.iOS中的定时器.html">
+            
+                <a href="../6.RunLoop/98.iOS中的定时器.html">
+            
+                    
+                    98.iOS中的定时器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../6.RunLoop/99.RunLoop问题合集.html">
+            
+                <a href="../6.RunLoop/99.RunLoop问题合集.html">
+            
+                    
+                    99.RunLoop问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    7.多线程
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../7.多线程/99.多线程问题合集.html">
+            
+                <a href="../7.多线程/99.多线程问题合集.html">
+            
+                    
+                    99.多线程问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    8.网络
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../8.网络/99.网络问题集合.html">
+            
+                <a href="../8.网络/99.网络问题集合.html">
+            
+                    
+                    99.网络问题集合
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    9.性能优化
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../9.性能优化/1.Crash收集.html">
+            
+                <a href="../9.性能优化/1.Crash收集.html">
+            
+                    
+                    1.Crash收集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../9.性能优化/99.性能优化问题合集.html">
+            
+                <a href="../9.性能优化/99.性能优化问题合集.html">
+            
+                    
+                    99.性能优化问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    10.设计
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="1. 框架&架构.html">
+            
+                <a href="1. 框架&架构.html">
+            
+                    
+                    1. 框架&架构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="2. 设计一个图片缓存的框架.html">
+            
+                <a href="2. 设计一个图片缓存的框架.html">
+            
+                    
+                    2. 设计一个图片缓存的框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.11.3" data-path="3. SDWebImage.html">
+            
+                <a href="3. SDWebImage.html">
+            
+                    
+                    3. SDWebImage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="4. 组件化.html">
+            
+                <a href="4. 组件化.html">
+            
+                    
+                    4. 组件化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="99.设计类问题合集.html">
+            
+                <a href="99.设计类问题合集.html">
+            
+                    
+                    99.设计类问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" >
+            
+                <span>
+            
+                    
+                    11.算法
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../11.算法/1.时间复杂度与空间复杂度.html">
+            
+                <a href="../11.算法/1.时间复杂度与空间复杂度.html">
+            
+                    
+                    1.时间复杂度与空间复杂度
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../11.算法/2.斐波那契数列算法分析.html">
+            
+                <a href="../11.算法/2.斐波那契数列算法分析.html">
+            
+                    
+                    2.斐波那契数列算法分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="../11.算法/3.线性表--数组与链表.html">
+            
+                <a href="../11.算法/3.线性表--数组与链表.html">
+            
+                    
+                    3.线性表--数组与链表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="../11.算法/4.二叉树.html">
+            
+                <a href="../11.算法/4.二叉树.html">
+            
+                    
+                    4.二叉树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5" data-path="../11.算法/5.贪心.html">
+            
+                <a href="../11.算法/5.贪心.html">
+            
+                    
+                    5.贪心
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.6" data-path="../11.算法/6.分治.html">
+            
+                <a href="../11.算法/6.分治.html">
+            
+                    
+                    6.分治
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.7" data-path="../11.算法/7.动态规划.html">
+            
+                <a href="../11.算法/7.动态规划.html">
+            
+                    
+                    7.动态规划
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.8" data-path="../11.算法/8. 动态规划套路详解.html">
+            
+                <a href="../11.算法/8. 动态规划套路详解.html">
+            
+                    
+                    8. 动态规划套路详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.9" data-path="../11.算法/99.算法类问题合集.html">
+            
+                <a href="../11.算法/99.算法类问题合集.html">
+            
+                    
+                    99.算法类问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >3. SDWebImage</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h4 id="&#x67B6;&#x6784;&#x7B80;&#x56FE;">&#x67B6;&#x6784;&#x7B80;&#x56FE;</h4>
+<p><img src="https://raw.githubusercontent.com/JuunChen/Knowledge/master/ImageFolder/10-3-1-&#x6846;&#x67B6;&#x56FE;.png" style="zoom:33%;"></p>
+<p>&#x4E00;&#x822C;&#x6211;&#x4EEC;&#x901A;&#x8FC7;&#x8C03;&#x7528;&#x5206;&#x7C7B;&#x7684;<code>sd_imageWithURL:</code>&#x65B9;&#x6CD5;&#x6765;&#x4F7F;&#x7528;<code>SDWebImage</code>&#x3002;</p>
+<p>&#x800C;&#x652F;&#x6491;&#x8FD9;&#x4E00;&#x65B9;&#x6CD5;&#x7684;&#x662F;<code>SDWebImageManager</code>&#xFF0C;&#x5B83;&#x662F;<code>SDWebImageManager</code>&#x7684;&#x6838;&#x5FC3;&#x5DE5;&#x4F5C;&#x7C7B;&#x3002;</p>
+<p>&#x5728;&#x6B64;&#x4E4B;&#x4E0B;&#x6709;&#x4E24;&#x90E8;&#x5206;&#xFF1A;&#x7B2C;&#x4E00;&#x4E2A;&#x662F;<code>SDImageCache</code>&#xFF1B;&#x7B2C;&#x4E8C;&#x4E2A;&#x662F;<code>SDWebImageDownloader</code>&#x3002;</p>
+<h4 id="&#x52A0;&#x8F7D;&#x56FE;&#x7247;&#x6D41;&#x7A0B;">&#x52A0;&#x8F7D;&#x56FE;&#x7247;&#x6D41;&#x7A0B;</h4>
+<p><img src="https://raw.githubusercontent.com/JuunChen/Knowledge/master/ImageFolder/&#x52A0;&#x8F7D;&#x56FE;&#x7247;&#x6D41;&#x7A0B;.png" style="zoom:33%;"></p>
+<ol>
+<li>&#x67E5;&#x627E;&#x5185;&#x5B58;&#x7F13;&#x5B58;&#xFF0C;&#x5982;&#x679C;&#x67E5;&#x627E;&#x5230;&#x4E86;&#x5C31;&#x8FD4;&#x56DE;&#x7ED9;&#x8C03;&#x7528;&#x65B9;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x627E;&#x5230;&#x5C31;&#x8FDB;&#x884C;&#x4E0B;&#x4E00;&#x6B65;</li>
+<li>&#x67E5;&#x627E;&#x78C1;&#x76D8;&#x7F13;&#x5B58;&#xFF0C;&#x5982;&#x679C;&#x67E5;&#x627E;&#x5230;&#x4E86;&#x5C31;&#x8FD4;&#x56DE;&#x7ED9;&#x8C03;&#x7528;&#x65B9;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x627E;&#x5230;&#x5C31;&#x8FDB;&#x884C;&#x4E0B;&#x4E00;&#x6B65;</li>
+<li>&#x7F51;&#x7EDC;&#x4E0B;&#x8F7D;&#x56FE;&#x7247;</li>
+</ol>
+<h4 id="&#x76F8;&#x5173;&#x95EE;&#x9898;">&#x76F8;&#x5173;&#x95EE;&#x9898;</h4>
+<ol>
+<li><p>&#x6BD4;&#x5982;&#x6709;&#x4E00;&#x4E2A;UIImageView&#x5BF9;&#x8C61;&#xFF0C;&#x5B83;&#x5148;&#x4F7F;&#x7528;&#x4E86;<code>[imageView sd_setImageWithURL:urlA]</code>&#xFF0C;&#x7136;&#x540E;&#x5F88;&#x5FEB;&#x53C8;&#x6709;&#x4E00;&#x4E2A;&#x64CD;&#x4F5C;&#x89E6;&#x53D1;&#x4E86;<code>[imageView sd_setImageWithURL:urlB]</code>&#xFF0C;&#x6B64;&#x65F6;&#x6211;&#x4EEC;&#x5E0C;&#x671B;imageView&#x5C55;&#x793A;&#x7684;&#x662F;urlB&#x7684;&#x56FE;&#x7247;&#x3002;&#x4F46;&#x662F;urlA&#x548C;urlB&#x7684;&#x56FE;&#x7247;&#x90FD;&#x662F;&#x57FA;&#x4E8E;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#xFF0C;&#x6709;&#x53EF;&#x80FD;urlB&#x5148;&#x8BF7;&#x6C42;&#x5B8C;&#x6210;&#x7136;&#x540E;urlA&#x518D;&#x8BF7;&#x6C42;&#x5B8C;&#x6210;&#xFF0C;&#x90A3;&#x4E48;&#x6700;&#x7EC8;&#x4F1A;&#x5C55;&#x793A;&#x6210;urlA&#x7684;&#x56FE;&#x7247;&#x3002;<code>SDWebImage</code>&#x662F;&#x600E;&#x4E48;&#x5904;&#x7406;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x7684;&#x5462;&#xFF1F;</p>
+<p><strong>SDWebImage&#x5728;UIView&#x4E2D;&#x5173;&#x8054;&#x4E86;&#x4E00;&#x4E2A;&#x64CD;&#x4F5C;&#x5B57;&#x5178;&#xFF0C;&#x7528;&#x4E8E;&#x4FDD;&#x5B58;operation</strong></p>
+<pre><code class="lang-objc"><span class="hljs-keyword">static</span> <span class="hljs-keyword">char</span> loadOperationKey;
+<span class="hljs-keyword">typedef</span> <span class="hljs-built_in">NSMapTable</span>&lt;<span class="hljs-built_in">NSString</span> *, <span class="hljs-keyword">id</span>&lt;SDWebImageOperation&gt;&gt; SDOperationsDictionary;
+
+<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">UIView</span> (<span class="hljs-title">WebCacheOperation</span>)</span>
+
+- (SDOperationsDictionary *)sd_operationDictionary {
+    <span class="hljs-keyword">@synchronized</span>(<span class="hljs-keyword">self</span>) {
+        SDOperationsDictionary *operations = objc_getAssociatedObject(<span class="hljs-keyword">self</span>, &amp;loadOperationKey);
+        <span class="hljs-keyword">if</span> (operations) {
+            <span class="hljs-keyword">return</span> operations;
+        }
+        operations = [[<span class="hljs-built_in">NSMapTable</span> alloc] initWithKeyOptions:<span class="hljs-built_in">NSPointerFunctionsStrongMemory</span> valueOptions:<span class="hljs-built_in">NSPointerFunctionsWeakMemory</span> capacity:<span class="hljs-number">0</span>];
+        objc_setAssociatedObject(<span class="hljs-keyword">self</span>, &amp;loadOperationKey, operations, OBJC_ASSO<span class="hljs-built_in">CIATION_RETAIN_NONATOMIC</span>);
+        <span class="hljs-keyword">return</span> operations;
+    }
+}
+...&#x7565;
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p><strong>&#x6BCF;&#x6B21;&#x5F00;&#x59CB;&#x52A0;&#x8F7D;&#x56FE;&#x7247;&#x65F6;&#x90FD;&#x4F1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x64CD;&#x4F5C;&#xFF0C;&#x4FDD;&#x5B58;&#x5230;&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x5B57;&#x5178;&#x4E2D;</strong></p>
+<pre><code class="lang-objc"><span class="hljs-comment">//&#x521B;&#x5EFA;&#x64CD;&#x4F5C;</span>
+<span class="hljs-keyword">id</span> &lt;SDWebImageOperation&gt; operation = [manager loadImageWithURL:url options:options context:context progress:combinedProgressBlock completed:^(<span class="hljs-built_in">UIImage</span> *image, <span class="hljs-built_in">NSData</span> *data, <span class="hljs-built_in">NSError</span> *error, SDImageCacheType cacheType, <span class="hljs-built_in">BOOL</span> finished, <span class="hljs-built_in">NSURL</span> *imageURL) {
+ <span class="hljs-comment">//&#x7565;&#x8FC7;&#x5F88;&#x591A;&#x4EE3;&#x7801;</span>
+}];
+<span class="hljs-comment">//&#x5C06;&#x64CD;&#x4F5C;&#x5B58;&#x5230;Map</span>
+[<span class="hljs-keyword">self</span> sd_setImageLoadOperation:operation forKey:validOperationKey];
+</code></pre>
+<p><strong>&#x5728;&#x6BCF;&#x6B21;&#x8C03;&#x7528;<code>sd_setImageWithURL:</code>&#x65F6;&#x90FD;&#x4F1A;&#x53D6;&#x6D88;&#x5F53;&#x524D;&#x7684;&#x64CD;&#x4F5C;&#xFF08;&#x5982;&#x679C;&#x6709;&#x7684;&#x8BDD;&#xFF09;</strong></p>
+<pre><code class="lang-objc">[<span class="hljs-keyword">self</span> sd_cancelImageLoadOperationWithKey:validOperationKey];
+</code></pre>
+<p>&#x53D6;&#x6D88;&#x5F53;&#x524D;&#x64CD;&#x4F5C;&#x7684;&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#xFF1A;</p>
+<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">UIView</span> (<span class="hljs-title">WebCacheOperation</span>)</span>
+- (<span class="hljs-keyword">void</span>)sd_cancelImageLoadOperationWithKey:(nullable <span class="hljs-built_in">NSString</span> *)key {
+    <span class="hljs-keyword">if</span> (key) {
+                <span class="hljs-comment">//&#x53D6;&#x5230;&#x64CD;&#x4F5C;&#x5B57;&#x5178;</span>
+        SDOperationsDictionary *operationDictionary = [<span class="hljs-keyword">self</span> sd_operationDictionary];
+        <span class="hljs-keyword">id</span>&lt;SDWebImageOperation&gt; operation;
+
+        <span class="hljs-keyword">@synchronized</span> (<span class="hljs-keyword">self</span>) {
+              <span class="hljs-comment">//&#x5C1D;&#x8BD5;&#x4ECE;&#x64CD;&#x4F5C;&#x5B57;&#x5178;&#x4E2D;&#x53D6;&#x51FA;&#x5F53;&#x524D;&#x64CD;&#x4F5C;</span>
+            operation = [operationDictionary objectForKey:key];
+        }
+          <span class="hljs-comment">//&#x5982;&#x679C;&#x6709;&#x5F53;&#x524D;&#x64CD;&#x4F5C;</span>
+        <span class="hljs-keyword">if</span> (operation) { 
+            <span class="hljs-keyword">if</span> ([operation conformsToProtocol:<span class="hljs-class"><span class="hljs-keyword">@protocol</span>(<span class="hljs-title">SDWebImageOperation</span>)]) </span>{
+                  <span class="hljs-comment">//&#x53D6;&#x6D88;&#x5F53;&#x524D;&#x64CD;&#x4F5C;</span>
+                [operation cancel];
+            }
+            <span class="hljs-keyword">@synchronized</span> (<span class="hljs-keyword">self</span>) {
+                  <span class="hljs-comment">//&#x4ECE;&#x64CD;&#x4F5C;&#x5B57;&#x5178;&#x4E2D;&#x79FB;&#x9664;&#x5F53;&#x524D;&#x64CD;&#x4F5C;</span>
+                [operationDictionary removeObjectForKey:key];
+            }
+        }
+    }
+}
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p><strong><code>[operation cancel]</code>&#x7684;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#xFF1A;</strong></p>
+<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">SDWebImageCombinedOperation</span></span>
+
+- (<span class="hljs-keyword">void</span>)cancel {
+    <span class="hljs-keyword">@synchronized</span>(<span class="hljs-keyword">self</span>) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>.isCancelled) {
+            <span class="hljs-keyword">return</span>;
+        }
+        <span class="hljs-keyword">self</span>.cancelled = <span class="hljs-literal">YES</span>;
+          <span class="hljs-comment">//&#x5982;&#x679C;&#x6709;&#x7F13;&#x5B58;&#x64CD;&#x4F5C;</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>.cacheOperation) {
+              <span class="hljs-comment">//&#x53D6;&#x6D88;&#x7F13;&#x5B58;&#x64CD;&#x4F5C;</span>
+            [<span class="hljs-keyword">self</span>.cacheOperation cancel];
+            <span class="hljs-keyword">self</span>.cacheOperation = <span class="hljs-literal">nil</span>;
+        }
+          <span class="hljs-comment">//&#x5982;&#x679C;&#x6709;&#x7F51;&#x7EDC;&#x64CD;&#x4F5C;</span>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>.loaderOperation) {
+              <span class="hljs-comment">//&#x53D6;&#x6D88;&#x7F51;&#x7EDC;&#x64CD;&#x4F5C;</span>
+            [<span class="hljs-keyword">self</span>.loaderOperation cancel];
+            <span class="hljs-keyword">self</span>.loaderOperation = <span class="hljs-literal">nil</span>;
+        }
+          <span class="hljs-comment">//&#x4ECE;&quot;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x64CD;&#x4F5C;&quot;&#x5168;&#x5C40;&#x5B57;&#x5178;&#x4E2D;&#x79FB;&#x9664;&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;</span>
+        [<span class="hljs-keyword">self</span>.manager safelyRemoveOperationFromRunning:<span class="hljs-keyword">self</span>];
+    }
+}
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p><strong><code>[self.cacheOperation cancel]</code>&#x7684;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x5206;&#x6790;&#x5982;&#x4E0B;&#xFF1A;</strong></p>
+<p>SDWebImage&#x67E5;&#x627E;&#x7F13;&#x5B58;&#x662F;&#x5148;&#x67E5;&#x627E;&#x7684;&#x5185;&#x5B58;&#x7F13;&#x5B58;&#xFF0C;&#x518D;&#x67E5;&#x627E;&#x7684;&#x78C1;&#x76D8;&#x7F13;&#x5B58;&#x3002;</p>
+<p>&#x67E5;&#x627E;&#x5185;&#x5B58;&#x7F13;&#x5B58;&#x7684;&#x662F;&#x540C;&#x6B65;&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>&#x67E5;&#x627E;&#x78C1;&#x76D8;&#x7F13;&#x5B58;&#x7684;&#x65F6;&#x5019;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;NSOperation&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x63A7;&#x5236;&#x662F;&#x540C;&#x6B65;&#x6216;&#x8005;&#x5F02;&#x6B65;&#x67E5;&#x627E;&#x3002;&#x8FD9;&#x91CC;&#x7684;self.cacheOperation&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;NSOperaion&#x3002;</p>
+<p>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;<code>[self.cacheOperation cancel]</code>&#x5176;&#x5B9E;&#x4E0D;&#x80FD;&#x505C;&#x6B62;&#x5F53;&#x524D;&#x64CD;&#x4F5C;&#x7684;&#x5185;&#x5B58;&#x7F13;&#x5B58;&#x67E5;&#x627E;&#x8FC7;&#x7A0B;&#xFF0C;&#x53EA;&#x80FD;&#x505C;&#x6B62;&#x78C1;&#x76D8;&#x7F13;&#x5B58;&#x7684;&#x67E5;&#x627E;&#x8FC7;&#x7A0B;&#x3002;</p>
+<p>&#x5177;&#x4F53;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">SDImageCache</span></span>
+- (nullable <span class="hljs-built_in">NSOperation</span> *)&#x4ECE;&#x7F13;&#x5B58;&#x627E;&#x56FE;&#x7247; done:(nullable SDImageCacheQueryCompletionBlock)doneBlock {
+
+    <span class="hljs-comment">// First check the in-memory cache...&#x9996;&#x5148;&#x68C0;&#x67E5;&#x5185;&#x5B58;&#x7F13;&#x5B58;</span>
+
+    <span class="hljs-comment">// Second check the disk cache...&#x7136;&#x540E;&#x68C0;&#x67E5;&#x78C1;&#x76D8;&#x7F13;&#x5B58;</span>
+    <span class="hljs-built_in">NSOperation</span> *operation = [<span class="hljs-built_in">NSOperation</span> new];
+    <span class="hljs-built_in">BOOL</span> shouldQueryDiskSync = ((image &amp;&amp; options &amp; SDImageCacheQueryMemoryDataSync) ||
+                                (!image &amp;&amp; options &amp; SDImageCacheQueryDiskDataSync));
+    <span class="hljs-keyword">void</span>(^queryDiskBlock)(<span class="hljs-keyword">void</span>) =  ^{
+          <span class="hljs-comment">//&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x5982;&#x679C;&#x8C03;&#x7528;&#x4E86;[self.cacheOperation cancel]&#xFF0C;operation.isCancelled&#x4F1A;&#x53D8;&#x6210;YES</span>
+        <span class="hljs-keyword">if</span> (operation.isCancelled) {
+            <span class="hljs-keyword">if</span> (doneBlock) {
+                doneBlock(<span class="hljs-literal">nil</span>, <span class="hljs-literal">nil</span>, SDImageCacheTypeNone);
+            }
+            <span class="hljs-keyword">return</span>;
+        }
+
+        <span class="hljs-keyword">@autoreleasepool</span> {
+
+              &#x627E;&#x554A;&#x627E;&#x554A;&#x627E;...
+
+                <span class="hljs-comment">//&#x627E;&#x5B8C;&#x4E86;&#x540E;&#x9700;&#x8981;&#x6267;&#x884C;&#x56DE;&#x8C03;</span>
+            <span class="hljs-keyword">if</span> (doneBlock) {
+                <span class="hljs-keyword">if</span> (shouldQueryDiskSync) {
+                    doneBlock(diskImage, diskData, cacheType);
+                } <span class="hljs-keyword">else</span> {
+                    <span class="hljs-built_in">dispatch_async</span>(dispatch_get_main_queue(), ^{
+                        doneBlock(diskImage, diskData, cacheType);
+                    });
+                }
+            }
+        }
+    };
+
+      <span class="hljs-comment">/*
+          &#x8FD9;&#x91CC;&#x795E;&#x5947;&#x7684;&#x662F;&#x4F5C;&#x8005;&#x7528;&#x4E86;NSOperation&#xFF0C;&#x5374;&#x662F;&#x4F7F;&#x7528;&#x4E86;GCD&#x6765;&#x5904;&#x7406;&#x7EBF;&#x7A0B;&#x95EE;&#x9898;&#x3002;&#x800C;&#x53EA;&#x662F;&#x5229;&#x7528;&#x4E86;NSOperation&#x4E2D;&#x7684;cancel&#x5C5E;&#x6027;&#x53BB;&#x5224;&#x65AD;&#x662F;&#x5426;&#x53D6;&#x6D88;&#x4EFB;&#x52A1;&#x3002;
+          &#x4ED6;&#x4E3A;&#x5565;&#x8FD9;&#x4E48;&#x641E;&#x5462;&#xFF1F;&#x7B14;&#x8005;&#x6700;&#x540E;&#x60F3;&#x660E;&#x767D;&#x4E86;:
+          &#x4F5C;&#x8005;&#x4ED6;&#x662F;&#x60F3;&#x63A7;&#x5236;&#x78C1;&#x76D8;&#x67E5;&#x627E;&#x7684;&#x4EFB;&#x52A1;&#x53EF;&#x4EE5;&#x88AB;&#x53D6;&#x6D88;&#x3002;
+          &#x4E00;&#x822C;&#x6211;&#x4EEC;&#x7528;NSOperation&#x7684;&#x8BDD;&#x662F;&#x53EF;&#x4EE5;&#x7528;cancel&#x6765;&#x63A7;&#x5236;&#x4EFB;&#x52A1;&#x7684;&#x53D6;&#x6D88;&#x7684;&#x3002;
+          GCD&#x8981;&#x63A7;&#x5236;&#x4EFB;&#x52A1;&#x7684;&#x53D6;&#x6D88;&#x7684;&#x8BDD;&#x9700;&#x8981;&#x641E;&#x4E00;&#x4E2A;&#x53D8;&#x91CF;&#xFF0C;&#x5982;&#x679C;&#x641E;&#x4E2A;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x7684;&#x8BDD;&#x6D6A;&#x8D39;&#x5185;&#x5B58;&#x3002;&#x8FD9;&#x91CC;&#x6070;&#x597D;NSOperation&#x653E;&#x5230;&#x8FD9;&#x91CC;&#x641E;&#x8FD9;&#x4E2A;&#x4E8B;&#x60C5;&#x4E5F;&#x633A;&#x5408;&#x9002;&#x7684;
+      */</span>
+
+    <span class="hljs-comment">//&#x628A;&#x78C1;&#x76D8;&#x67E5;&#x627E;&#x7684;block&#x6DFB;&#x52A0;&#x5230;&#x4E86;&#x961F;&#x5217;&#x4E2D;</span>
+    <span class="hljs-keyword">if</span> (shouldQueryDiskSync) {
+        <span class="hljs-built_in">dispatch_sync</span>(<span class="hljs-keyword">self</span>.ioQueue, queryDiskBlock);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">dispatch_async</span>(<span class="hljs-keyword">self</span>.ioQueue, queryDiskBlock);
+    }
+
+    <span class="hljs-keyword">return</span> operation;<span class="hljs-comment">//&#x8FD9;&#x91CC;&#x8FD4;&#x56DE;&#x7684;&#x5C31;&#x662F;cacheOperation</span>
+}
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p><strong>[self.loaderOperation cancel]&#x7684;&#x5B9E;&#x73B0;&#xFF1A;</strong></p>
+<p>loaderOperation&#x662F;&#x4E00;&#x4E2A;<code>SDWebImageDownloadToken</code>&#x5BF9;&#x8C61;&#x3002;&#x5B83;&#x5185;&#x90E8;&#x6709;&#x4E00;&#x4E2A;<code>SDWebImageDownloaderOperation</code>&#x5BF9;&#x8C61;&#xFF0C;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x662F;&#x7EE7;&#x627F;&#x81EA;<code>NSOperation</code>&#x7684;&#xFF0C;&#x5B83;&#x5185;&#x90E8;&#x7684;start&#x65B9;&#x6CD5;&#x662F;&#x4F7F;&#x7528;<code>NSURLSessionTask</code>&#x6765;&#x4E0B;&#x8F7D;&#x56FE;&#x7247;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x8C03;&#x7528;<code>[self.loaderOperation cancel]</code>&#xFF0C;&#x5185;&#x90E8;&#x5148;&#x8C03;&#x7528;&#x4E86;<code>SDWebImageDownloadToken</code>&#x7684;cancel&#x65B9;&#x6CD5;&#xFF0C;&#x5148;</p>
+<p>&#x7136;&#x540E;&#x518D;&#x8C03;&#x7528;&#x4E86;<code>SDWebImageDownloaderOperation</code>&#x7684;cancel&#x65B9;&#x6CD5;&#xFF0C;&#x6700;&#x540E;&#x8C03;&#x7528;&#x4E86;<code>NSURLSessionTask</code>&#x7684;cancel&#x65B9;&#x6CD5;&#xFF0C;&#x53D6;&#x6D88;&#x4E86;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x3002;</p>
+<p><strong>&#x53D6;&#x6D88;&#x5F53;&#x524D;&#x64CD;&#x4F5C;&#x5C0F;&#x7ED3;&#xFF1A;</strong></p>
+<p>SDWebImage&#x53D6;&#x6D88;&#x5F53;&#x524D;&#x64CD;&#x4F5C;&#x7684;&#x903B;&#x8F91;&#x5DF2;&#x7ECF;&#x5206;&#x6790;&#x5B8C;&#x4E86;&#xFF0C;&#x6267;&#x884C;&#x5230;<code>sd_cancelImageLoadOperationWithKey:</code>&#x7684;&#x7ED3;&#x675F;&#x5927;&#x62EC;&#x53F7;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x67E5;&#x770B;view&#x7684;&#x5173;&#x8054;&#x5BF9;&#x8C61;&#x64CD;&#x4F5C;&#x5B57;&#x5178;&#x7684;<code>retainCount</code>&#xFF0C;&#x4F1A;&#x53D1;&#x73B0;&#x5B83;&#x662F;1&#xFF0C;&#x6211;&#x53BB;&#x627E;&#x5B83;&#x7684;&#x552F;&#x4E00;&#x4E00;&#x4E2A;&#x6301;&#x6709;&#x8005;&#xFF0C;&#x53D1;&#x73B0;&#x662F;autoreleasePool&#xFF0C;&#x8BF4;&#x660E;&#x5F53;&#x524D;&#x64CD;&#x4F5C;&#x7684;&#x5176;&#x4F59;&#x5F15;&#x7528;&#x8005;&#x5DF2;&#x7ECF;&#x88AB;&#x6E05;&#x7406;&#x4E86;&#xFF0C;&#x5B83;&#x5373;&#x5C06;&#x88AB;&#x91CA;&#x653E;&#x3002;</p>
+<p><strong>&#x4F46;&#x662F;&#x8FD8;&#x6709;&#x4E00;&#x70B9;&#x9700;&#x8981;&#x6CE8;&#x610F;&#xFF1A;</strong></p>
+<p>```objc
+//&#x521B;&#x5EFA; cacheOperation
+operation.cacheOperation = [imageCache  xxx_completion:^() {
+  //&#x8FDB;&#x5165;&#x67E5;&#x627E;&#x5B8C;&#x78C1;&#x76D8;&#x7684;&#x56DE;&#x8C03;
+  if (!operation || operation.isCancelled) {</p>
+<pre><code>  // Image combined operation cancelled by user
+  &#x9519;&#x8BEF;&#x5904;&#x7406;...&#x5904;&#x7406;...
+  return;
+</code></pre><p>  }
+  // Continue download process...&#x7EE7;&#x7EED;&#x4E0B;&#x8F7D;
+  &#x7F51;&#x7EDC;&#x4E0B;&#x8F7D;...&#x91CC;&#x9762;&#x4F1A;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x9700;&#x8981;&#x8FDB;&#x884C;&#x7F51;&#x7EDC;&#x4E0B;&#x8F7D;...
+}];</p>
+</li>
+</ol>
+<p>   //&#x521B;&#x5EFA; loaderOperation
+   operation.loaderOperation = [imageLoader xxx_completed:^() {
+     //&#x8FDB;&#x5165;&#x7F51;&#x7EDC;&#x4E0B;&#x8F7D;&#x5B8C;&#x6210;&#x7684;&#x56DE;&#x8C03;
+     if (!operation || operation.isCancelled) {
+       // Image combined operation cancelled by user
+       &#x9519;&#x8BEF;&#x5904;&#x7406;...&#x5904;&#x7406;
+     } else {
+       &#x5176;&#x5B83;&#x5904;&#x7406;...
+       &#x5176;&#x5B83;&#x5904;&#x7406;...
+     }
+   }];</p>
+<pre><code>
+   &#x8FD9;&#x4E24;&#x6BB5;&#x4EE3;&#x7801;&#x5206;&#x522B;&#x662F;&#x521B;&#x5EFA;cacheOperation&#x548C;&#x521B;&#x5EFA;loaderOperation&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4ED6;&#x4EEC;&#x5728;&#x5B8C;&#x6210;&#x56DE;&#x8C03;&#x4E2D;&#x90FD;&#x68C0;&#x67E5;&#x4E86;&#x5F53;&#x524D;&#x7684;operation&#x662F;&#x5426;&#x8FD8;&#x5B58;&#x5728;&#x3002;&#x8FD9;&#x662F;&#x4E3A;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;&#x6211;&#x4EEC;&#x4E0D;&#x662F;&#x5DF2;&#x7ECF;&#x53D6;&#x6D88;&#x4E86;cacheOperation&#x548C;loaderOperation&#x5417;&#xFF0C;&#x5B83;&#x4EEC;&#x8FD8;&#x4F1A;&#x8FDB;&#x5230;&#x5B8C;&#x6210;&#x7684;&#x56DE;&#x8C03;&#x5417;&#xFF1F;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x91CC;&#x8FD8;&#x9700;&#x8981;&#x518D;&#x5224;&#x65AD;&#x4E00;&#x6B21;&#x5462;&#xFF1F;
+
+   &#x5148;&#x8BF4;cacheOperation&#x5B8C;&#x6210;&#x56DE;&#x8C03;&#x4E2D;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5224;&#x65AD;&#xFF1A;&#x8D77;&#x521D;&#xFF0C;&#x6211;&#x4EEC;&#x662F;&#x5728;&#x5F00;&#x59CB;&#x67E5;&#x627E;&#x78C1;&#x76D8;&#x7F13;&#x5B58;&#x524D;&#x5224;&#x65AD;&#x7684;operation.isCanceled&#x7684;&#x3002;
+
+   ```objc
+   //&#x521B;&#x5EFA;&#x78C1;&#x76D8;&#x67E5;&#x627E;&#x4EFB;&#x52A1; 
+   void(^queryDiskBlock)(void) =  ^{
+             //&#x8FD9;&#x91CC;&#x9700;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x5982;&#x679C;&#x8C03;&#x7528;&#x4E86;[self.cacheOperation cancel]&#xFF0C;operation.isCancelled&#x4F1A;&#x53D8;&#x6210;YES
+           if (operation.isCancelled) {
+               if (doneBlock) {
+                   doneBlock(nil, nil, SDImageCacheTypeNone);
+               }
+               return;
+           }
+      ...
+    }
+</code></pre><p>   &#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;&#x5982;&#x679C;&#x8FD9;&#x4E2A;&#x64CD;&#x4F5C;&#x5DF2;&#x7ECF;&#x8D70;&#x8FC7;&#x4E86;&#x8FD9;&#x4E2A;&#x5224;&#x65AD;&#xFF0C;&#x5DF2;&#x7ECF;&#x5F00;&#x59CB;&#x67E5;&#x627E;&#x78C1;&#x76D8;&#x4E86;&#xFF0C;&#x6211;&#x4EEC;&#x5C31;&#x4E0D;&#x80FD;&#x62E6;&#x622A;&#x5B83;&#x4E86;&#xFF0C;&#x4E0D;&#x80FD;&#x53D6;&#x6D88;&#x5B83;&#x4E86;&#x3002;</p>
+<p>   &#x5F53;&#x5B83;&#x67E5;&#x627E;&#x5B8C;&#x78C1;&#x76D8;&#x7684;&#x65F6;&#x5019;&#x8FD8;&#x662F;&#x80FD;&#x591F;&#x8FDB;&#x5165;&#x5230;&#x8FD9;&#x4E2A;&#x5B8C;&#x6210;&#x7684;&#x56DE;&#x8C03;&#xFF0C;&#x6267;&#x884C;&#x6211;&#x4EEC;&#x4E0D;&#x60F3;&#x8BA9;&#x5B83;&#x6267;&#x884C;&#x7684;&#x4E8B;&#x60C5;&#xFF0C;&#x8FD9;&#x6837;&#x4F1A;&#x51FA;&#x95EE;&#x9898;&#x3002;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x5728;&#x8FD9;&#x91CC;&#x5728;&#x518D;&#x62E6;&#x622A;&#x5B83;&#x4E00;&#x6B21;&#x3002;</p>
+<p>   &#x518D;&#x6765;&#x8BF4;&#x8BF4;loaderOperation&#x5B8C;&#x6210;&#x56DE;&#x8C03;&#x4E2D;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x5224;&#x65AD;&#xFF1A;&#x5982;&#x679C;&#x5F53;&#x524D;&#x64CD;&#x4F5C;&#x5DF2;&#x7ECF;&#x5230;&#x8FBE;&#x4E86;&#x53D1;&#x9001;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x8FD9;&#x4E00;&#x6B65;&#xFF0C;&#x5728;&#x5B83;&#x88AB;&#x53D6;&#x6D88;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x662F;&#x5DF2;&#x7ECF;&#x53D6;&#x6D88;&#x4E86;&#x8FD9;&#x4E2A;&#x53D1;&#x9001;&#x4E86;&#x7684;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x5417;&#xFF1F;&#x8FD8;&#x6709;&#x53EF;&#x80FD;&#x8FDB;&#x5165;&#x5230;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x5B8C;&#x6210;&#x7684;&#x56DE;&#x8C03;&#x5417;&#xFF1F;</p>
+<p>   &#x5176;&#x5B9E;&#x8FD8;&#x662F;&#x6709;&#x53EF;&#x80FD;&#x7684;&#xFF0C;&#x6BD4;&#x5982;&#x8FD9;&#x65F6;&#x64CD;&#x4F5C;&#x5DF2;&#x7ECF;&#x5904;&#x7406;&#x5230;&#x4E86;&#x6B63;&#x5728;&#x67E5;&#x627E;&#x78C1;&#x76D8;&#x7F13;&#x5B58;&#x3002;&#x7136;&#x540E;&#x5916;&#x754C;&#x53C8;&#x53D6;&#x6D88;&#x4E86;&#x8FD9;&#x6B21;&#x64CD;&#x4F5C;&#xFF0C;em...&#x5B9E;&#x9645;&#x8FD9;&#x65F6;&#x7684;&#x60C5;&#x51B5;&#x662F;&#x78C1;&#x76D8;&#x67E5;&#x627E;&#x64CD;&#x4F5C;&#x6CA1;&#x6709;&#x88AB;&#x53D6;&#x6D88;&#x6389;&#xFF0C;&#x800C;loaderOperation&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x8FD8;&#x6CA1;&#x6709;&#x88AB;&#x521B;&#x5EFA;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x5B58;&#x5728;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x53D6;&#x6D88;&#x3002;&#x5F53;&#x78C1;&#x76D8;&#x67E5;&#x627E;&#x5B8C;&#x6BD5;&#x65F6;&#xFF0C;&#x8FD8;&#x662F;&#x4F1A;&#x53D1;&#x9001;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#xFF0C;&#x6700;&#x7EC8;&#x8FDB;&#x5165;&#x5230;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x5B8C;&#x6210;&#x7684;&#x56DE;&#x8C03;&#x5F53;&#x4E2D;&#xFF01;</p>
+<ol>
+<li><p>&#x6BD4;&#x5982;&#x5728;TableView&#x6EDA;&#x52A8;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E0D;&#x540C;&#x7684;cell&#x4ED6;&#x4EEC;&#x8981;&#x663E;&#x793A;&#x7684;&#x56FE;&#x7247;&#x7684;url&#x662F;&#x76F8;&#x540C;&#x7684;&#x3002;SDWebImage&#x662F;&#x600E;&#x4E48;&#x5904;&#x7406;&#x7684;&#xFF1F;</p>
+<p>&#x8FD9;&#x4E9B;cell&#x90FD;&#x4F1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;combinedOperation&#xFF0C;&#x5148;&#x8FDB;&#x884C;&#x7F13;&#x5B58;&#x67E5;&#x627E;&#x64CD;&#x4F5C;&#xFF0C;&#x5982;&#x679C;&#x627E;&#x5230;&#x4E86;&#x5C31;&#x8FD4;&#x56DE;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x627E;&#x5230;&#xFF0C;&#x624D;&#x8FDB;&#x884C;&#x7F51;&#x7EDC;&#x4E0B;&#x8F7D;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>&#x5728;downloader&#x4E2D;&#x4FDD;&#x5B58;&#x7740;&#x4E00;&#x4E2A;URLOperations&#x7684;&#x5B57;&#x5178;&#x3002;key&#x662F;&#x56FE;&#x7247;&#x7684;url&#xFF0C;value&#x662F;combinedOperation&#x4E2D;&#x7684;<code>loaderOperation</code>&#x3002;&#x4E0B;&#x8F7D;&#x5B8C;&#x6210;&#x65F6;&#x8FD9;&#x5BF9;&#x952E;&#x503C;&#x5BF9;&#x4F1A;&#x88AB;&#x79FB;&#x9664;&#x3002;</p>
+<p>&#x901A;&#x8FC7;<code>loaderOperation</code>&#x53EF;&#x4EE5;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x6570;&#x7EC4;&#xFF0C;&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x56FE;&#x7247;&#x4E0B;&#x8F7D;&#x5B8C;&#x6210;&#x65F6;&#x7684;&#x56DE;&#x8C03;&#x3002;</p>
+<p>&#x5F53;&#x7A0B;&#x5E8F;&#x8FD0;&#x884C;&#x5230;&#x4E0B;&#x8F7D;&#x64CD;&#x4F5C;&#x65F6;&#xFF0C;&#x4F1A;&#x5148;&#x5224;&#x65AD;URLOperations&#x4E2D;url&#x662F;&#x5426;&#x6709;value&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;value&#x7684;&#x8BDD;&#x5C31;&#x8BC1;&#x660E;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5730;&#x5740;&#xFF0C;&#x4F1A;&#x521B;&#x5EFA;&#x4E0B;&#x8F7D;&#x64CD;&#x4F5C;&#xFF0C;&#x5E76;&#x4E14;&#x5C06;&#x56DE;&#x8C03;&#x4FDD;&#x5B58;&#x5230;&#x4E0A;&#x9762;&#x8BF4;&#x7684;&#x6570;&#x7EC4;&#x4E2D;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x6709;value&#xFF0C;&#x5219;&#x8BF4;&#x660E;&#x8FD9;&#x4E2A;url&#x6B63;&#x5728;&#x88AB;&#x4E0B;&#x8F7D;&#xFF0C;&#x5C31;&#x4E0D;&#x4F1A;&#x521B;&#x5EFA;&#x65B0;&#x7684;loaderOperation&#x3002;&#x5E76;&#x4E14;&#x4F1A;&#x5C06;&#x5B8C;&#x6210;&#x56DE;&#x8C03;&#x4FDD;&#x5B58;&#x5230;&#x6570;&#x7EC4;&#x4E2D;&#xFF0C;&#x8FD8;&#x4F1A;&#x8C03;&#x6574;&#x4E0B;&#x8F7D;&#x64CD;&#x4F5C;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x3002;</p>
+<pre><code class="lang-objc">- (nullable SDWebImageDownloadToken *)&#x4E0B;&#x8F7D;&#x56FE;&#x7247;xxx_completed:(&#x7C7B;&#x578B;)completedBlock {
+      &#x7565;...
+
+    <span class="hljs-keyword">id</span> downloadOperationCancelToken; <span class="hljs-comment">//&#x8FD9;&#x4E2A;&#x5C31;&#x662F; loaderOperation</span>
+      <span class="hljs-comment">//&#x4ECE;URLOperations&#x91CC;&#x9762;&#x627E;operation&#xFF08;&#x8FD9;&#x4E2A;&#x662F;&#x4E0B;&#x8F7D;operation&#xFF0C;&#x8DDF;&#x4E0A;&#x9762;&#x7684;&#x4E0D;&#x4E00;&#x6837;&#xFF09;</span>
+    <span class="hljs-built_in">NSOperation</span>&lt;SDWebImageDownloaderOperation&gt; *operation = [<span class="hljs-keyword">self</span>.URLOperations objectForKey:url];
+    <span class="hljs-keyword">if</span> (!operation || operation.isFinished || operation.isCancelled) {
+          <span class="hljs-comment">//&#x5982;&#x679C;&#x6CA1;&#x6709;&#x627E;&#x5230;&#xFF0C;&#x5C31;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;</span>
+        operation = [<span class="hljs-keyword">self</span> createDownloaderOperation];
+        operation.completionBlock = ^{
+              <span class="hljs-comment">//&#x5B8C;&#x6210;&#x540E;&#x79FB;&#x9664;&#x8FD9;&#x5BF9;&#x64CD;&#x4F5C;</span>
+            [<span class="hljs-keyword">self</span>.URLOperations removeObjectForKey:url];
+        };
+          <span class="hljs-comment">//&#x521B;&#x5EFA;&#x5B8C;&#x540E;&#x4FDD;&#x5B58;</span>
+        <span class="hljs-keyword">self</span>.URLOperations[url] = operation;
+          <span class="hljs-comment">//&#x5C06;&#x5F53;&#x524D;loaderOperation&#x7684;&#x56DE;&#x8C03;&#x4FDD;&#x5B58;&#x5230;&#x6570;&#x7EC4;&#x4E2D;&#xFF0C;&#x5E76;&#x4E14;&#x8FD4;&#x56DE;&#x4E86;token</span>
+        downloadOperationCancelToken = [operation addHandlersForProgress:progressBlock completed:completedBlock];
+        [<span class="hljs-keyword">self</span>.downloadQueue addOperation:operation];
+    } <span class="hljs-keyword">else</span> {<span class="hljs-comment">//&#x5982;&#x679C;&#x627E;&#x5230;&#x4E86;&#x4E0B;&#x8F7D;operation</span>
+          <span class="hljs-comment">//&#x628A;&#x5F53;&#x524D;loaderOperation&#x7684;&#x5B8C;&#x6210;&#x56DE;&#x8C03;&#x8FFD;&#x52A0;&#x5230;&#x6570;&#x7EC4;&#x4E2D;</span>
+        downloadOperationCancelToken = [operation addHandlersForProgress:progressBlock completed:completedBlock];
+          <span class="hljs-comment">//&#x5BF9;operation&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x8FDB;&#x884C;&#x8C03;&#x6574;</span>
+        <span class="hljs-keyword">if</span> (!operation.isExecuting) {
+            <span class="hljs-keyword">if</span> (options &amp; SDWebImageDownloaderHighPriority) {
+                operation.queuePriority = <span class="hljs-built_in">NSOperationQueuePriorityHigh</span>;
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (options &amp; SDWebImageDownloaderLowPriority) {
+                operation.queuePriority = <span class="hljs-built_in">NSOperationQueuePriorityLow</span>;
+            } <span class="hljs-keyword">else</span> {
+                operation.queuePriority = <span class="hljs-built_in">NSOperationQueuePriorityNormal</span>;
+            }
+        }
+    }
+
+      <span class="hljs-comment">//&#x521D;&#x59CB;&#x5316;loaderOperation&#x3002;&#x5C06;&#x4E0B;&#x8F7D;&#x64CD;&#x4F5C;operation&#x4F20;&#x7ED9;&#x5B83;</span>
+    SDWebImageDownloadToken *token = [[SDWebImageDownloadToken alloc] initWithDownloadOperation:operation];
+    token.url = url;
+    token.request = operation.request;
+    token.downloadOperationCancelToken = downloadOperationCancelToken;
+
+    <span class="hljs-keyword">return</span> token;
+}
+</code></pre>
+</li>
+</ol>
+<p>   <strong>&#x5F53;&#x64CD;&#x4F5C;&#x88AB;&#x53D6;&#x6D88;&#x65F6;&#xFF0C;&#x8C03;&#x7528;<code>[self.loaderOperation cancel]</code>&#xFF1A;</strong>&#xFF1A;</p>
+<p>   loaderOperation&#x662F;SDWebImageDownloadToken&#x5BF9;&#x8C61;&#xFF0C;&#x5B83;&#x5185;&#x90E8;&#x6709;&#x4E00;&#x4E2A;<code>_downloadOperation</code>&#xFF0C;&#x7C7B;&#x578B;&#x662F;<code>SDWebImageDownloaderOperation</code>&#xFF0C;&#x662F;&#x7EE7;&#x627F;&#x81EA;NSOperation&#x7684;&#x3002;</p>
+<p>   &#x4F1A;&#x5148;&#x8C03;&#x7528; <code>-[SDWebImageDownloadToken cancel]</code>&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528;<code>-[SDWebImageDownloaderOperation cancel:token]</code>&#xFF0C;token&#x662F;&#x5F53;&#x524D;&#x64CD;&#x4F5C;&#x5B8C;&#x6210;&#x65F6;&#x56DE;&#x8C03;&#x7684;&#x5730;&#x5740;&#x3002;&#x8FD9;&#x91CC;&#x4F1A;&#x5148;&#x4ECE;&#x6570;&#x7EC4;&#x4E2D;&#x79FB;&#x9664;&#x8FD9;&#x4E2A;&#x56DE;&#x8C03;&#x3002;&#x7136;&#x540E;&#x5224;&#x65AD;&#x6570;&#x7EC4;&#x4E2D;&#x56DE;&#x8C03;&#x7684;&#x6570;&#x91CF;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x4E3A;0&#x5C31;&#x8FD4;&#x56DE;&#xFF1B;&#x5982;&#x679C;&#x4E3A;0&#x5C31;&#x628A;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;&#x53D6;&#x6D88;&#xFF0C;&#x8C03;&#x7528;<code>-[SDWebImageDownloaderOperation cancel]</code>&#xFF0C;&#x53D6;&#x6D88;NSURLSessionTask&#x3002;</p>
+<pre><code class="lang-objc">   - (<span class="hljs-built_in">BOOL</span>)cancel:(nullable <span class="hljs-keyword">id</span>)token {
+       <span class="hljs-keyword">if</span> (!token) <span class="hljs-keyword">return</span> <span class="hljs-literal">NO</span>;
+
+       <span class="hljs-built_in">BOOL</span> shouldCancel = <span class="hljs-literal">NO</span>;
+       <span class="hljs-keyword">@synchronized</span> (<span class="hljs-keyword">self</span>) {
+           <span class="hljs-built_in">NSMutableArray</span> *tempCallbackBlocks = [<span class="hljs-keyword">self</span>.callbackBlocks mutableCopy];
+             <span class="hljs-comment">//&#x6839;&#x636E;&#x56DE;&#x8C03;&#x7684;&#x5730;&#x5740;&#x4ECE;&#x6570;&#x7EC4;&#x4E2D;&#x5220;&#x9664;&#x56DE;&#x8C03;</span>
+           [tempCallbackBlocks removeObjectIdenticalTo:token];
+           <span class="hljs-keyword">if</span> (tempCallbackBlocks.count == <span class="hljs-number">0</span>) {
+                 <span class="hljs-comment">//&#x6570;&#x7EC4;&#x4E2D;&#x56DE;&#x8C03;&#x7684;&#x4E2A;&#x6570;&#x4E3A;0&#xFF0C;&#x8BF4;&#x660E;&#x8FD9;&#x4E2A;&#x4E0B;&#x8F7D;&#x64CD;&#x4F5C;&#x5DF2;&#x7ECF;&#x4E0D;&#x9700;&#x8981;&#x4E86;&#x3002;</span>
+               shouldCancel = <span class="hljs-literal">YES</span>;
+           }
+       }
+       <span class="hljs-keyword">if</span> (shouldCancel) {
+           <span class="hljs-comment">// &#x76F4;&#x63A5;&#x53D6;&#x6D88;&#x7F51;&#x7EDC;&#x8BF7;&#x6C42;</span>
+           [<span class="hljs-keyword">self</span> cancel];
+       } <span class="hljs-keyword">else</span> {
+           [<span class="hljs-keyword">self</span>.callbackBlocks removeObjectIdenticalTo:token];
+           SDWebImageDownloaderCompletedBlock completedBlock = [token valueForKey:kCompletedCallbackKey];
+           dispatch_main_async_safe(^{
+               <span class="hljs-keyword">if</span> (completedBlock) {
+                   completedBlock(<span class="hljs-literal">nil</span>, <span class="hljs-literal">nil</span>, [<span class="hljs-built_in">NSError</span> errorWithDomain:SDWebImageErrorDomain code:SDWebImageErrorCancelled userInfo:@{<span class="hljs-built_in">NSLocalizedDescriptionKey</span> : <span class="hljs-string">@&quot;Operation cancelled by user during sending the request&quot;</span>}], <span class="hljs-literal">YES</span>);
+               }
+           });
+       }
+       <span class="hljs-keyword">return</span> shouldCancel;
+   }
+</code></pre>
+<ol>
+<li><p><a href="https://www.cnblogs.com/renshengruozhiruchujian/p/5886382.html" target="_blank">SDWebImage&#x652F;&#x6301;URL&#x4E0D;&#x53D8;&#x65F6;&#x66F4;&#x65B0;&#x56FE;&#x7247;&#x5185;&#x5BB9;</a></p>
+<p>SDWebImage&#x5728;iOS&#x9879;&#x76EE;&#x4E2D;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x5E38;&#x7528;&#x7684;&#x5F00;&#x6E90;&#x5E93;&#xFF0C;&#x800C;&#x4E14;&#x4F17;&#x6240;&#x5468;&#x77E5;&#x7684;&#x662F;&#xFF0C;&#x5B83;&#x662F;&#x57FA;&#x4E8E;URL&#x4F5C;&#x4E3A;Key&#x6765;&#x5B9E;&#x73B0;&#x56FE;&#x7247;&#x7F13;&#x5B58;&#x673A;&#x5236;&#x7684;&#x3002;&#x5728;90%&#x5DE6;&#x53F3;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;
+&#x56FE;&#x7247;&#x4E0E;URL&#x662F;&#x4E00;&#x4E00;&#x5BF9;&#x5E94;&#x7684;&#xFF0C;&#x5373;&#x4F7F;&#x670D;&#x52A1;&#x5668;&#x4FEE;&#x6539;&#x4E86;&#x56FE;&#x7247;&#x4E5F;&#x4F1A;&#x76F8;&#x5E94;&#x7684;&#x53D8;&#x66F4;URL&#x3002;&#x4F46;&#x662F;&#x5728;&#x5C11;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x4FEE;&#x6539;&#x4E86;&#x56FE;&#x7247;&#x540E;&#x4E0D;&#x4F1A;&#x53D8;&#x66F4;&#x76F8;&#x5E94;&#x7684;URL&#xFF0C;&#x4E5F;&#x5C31;&#x662F;
+&#x8BF4;&#x56FE;&#x7247;&#x672C;&#x8EAB;&#x7684;&#x5185;&#x5BB9;&#x53D8;&#x4E86;&#x7136;&#x800C;&#x5B83;&#x7684;URL&#x6CA1;&#x6709;&#x53D8;&#x5316;&#xFF0C;&#x90A3;&#x4E48;&#x6309;&#x7167;&#x5BF9;SDWebImage&#x7684;&#x5E38;&#x89C4;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x7684;&#x8BDD;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x80AF;&#x5B9A;&#x66F4;&#x65B0;&#x4E0D;&#x5230;&#x540C;&#x4E00;URL&#x5BF9;&#x5E94;&#x5230;&#x670D;&#x52A1;&#x5668;&#x5DF2;&#x53D8;
+&#x66F4;&#x7684;&#x56FE;&#x7247;&#x5185;&#x5BB9;&#x3002;</p>
+<p>&#x57FA;&#x4E8E;&#x8FD9;&#x4E00;&#x73B0;&#x8C61;&#xFF0C;&#x6211;&#x4EEC;&#x6765;&#x8FDB;&#x884C;&#x5206;&#x6790;&#x3002;</p>
+<p>&#x5BA2;&#x6237;&#x7AEF;&#x7B2C;&#x4E00;&#x6B21;&#x8BF7;&#x6C42;&#x56FE;&#x7247;&#x65F6;&#xFF0C;Charles&#x6293;&#x5305;&#x5F97;&#x77E5;response header&#x91CC;&#x6709;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;Last-Modified&#x3001;&#x6570;&#x636E;&#x662F;&#x65F6;&#x95F4;&#x6233;&#x7684;&#x952E;&#x503C;&#x5BF9;&#x3002;</p>
+<p>&#x5BA2;&#x6237;&#x7AEF;&#x7B2C;&#x4E8C;&#x6B21;&#x53CA;&#x4EE5;&#x540E;&#x8BF7;&#x6C42;&#x56FE;&#x7247;&#x65F6;&#xFF0C;&#x901A;&#x8FC7;Charles&#x6293;&#x5305;&#x53D1;&#x73B0;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;304 not modified&#x72B6;&#x6001;&#xFF0C;&#x8BF4;&#x660E;&#x670D;&#x52A1;&#x5668;&#x5728;&#x63A5;&#x6536;&#x5BA2;&#x6237;&#x7AEF;&#x8BF7;&#x6C42;&#x540E;&#x901A;&#x8FC7;&#x67D0;&#x79CD;&#x5224;&#x65AD;&#x903B;&#x8F91;&#x5F97;&#x51FA;&#x7ED3;&#x8BBA;&#xFF1A;&#x201C;&#x5BA2;&#x6237;&#x7AEF;&#x5DF2;&#x7F13;&#x5B58;&#x7684;&#x56FE;&#x7247;&#x4E0E;&#x670D;&#x52A1;&#x5668;&#x56FE;&#x7247;&#x90FD;&#x662F;&#x6700;&#x65B0;&#x7684;&#x201D;&#xFF0C;&#x90A3;&#x4E48;&#x670D;&#x52A1;&#x5668;&#x5982;&#x4F55;&#x5224;&#x65AD;&#x7684;&#x5462;&#xFF1F;</p>
+<p>&#x901A;&#x8FC7;&#x67E5;&#x9605;HTTP&#x534F;&#x8BAE;&#x76F8;&#x5173;&#x7684;&#x8D44;&#x6599;&#x5F97;&#x77E5;&#xFF0C;&#x4E0E;&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;&#x7684;Last-Modified&#x76F8;&#x5BF9;&#x5E94;&#x7684;request header&#x91CC;&#x53EF;&#x4EE5;&#x52A0;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;If-Modified-Since&#x7684;key&#xFF0C;value&#x5373;&#x662F;&#x670D;&#x52A1;&#x5668;&#x56DE;&#x4F20;&#x7684;&#x670D;&#x52A1;&#x7AEF;&#x56FE;&#x7247;&#x6700;&#x540E;&#x88AB;&#x4FEE;&#x6539;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x7B2C;&#x4E00;&#x6B21;&#x56FE;&#x7247;&#x8BF7;&#x6C42;&#x65F6;If-Modified-Since&#x7684;&#x503C;&#x4E3A;&#x7A7A;&#xFF0C;&#x7B2C;&#x4E8C;&#x6B21;&#x53CA;&#x4EE5;&#x540E;&#x7684;&#x5BA2;&#x6237;&#x7AEF;&#x8BF7;&#x6C42;&#x4F1A;&#x628A;&#x670D;&#x52A1;&#x5668;&#x56DE;&#x4F20;&#x7684;Last-Modified&#x503C;&#x4F5C;&#x4E3A;If-Modified-Since&#x7684;&#x503C;&#x4F20;&#x7ED9;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x8FD9;&#x6837;&#x670D;&#x52A1;&#x5668;&#x6BCF;&#x6B21;&#x63A5;&#x6536;&#x5230;&#x56FE;&#x7247;&#x8BF7;&#x6C42;&#x65F6;&#x5C31;&#x5C06;If-Modified-Since&#x4E0E;Last-Modified&#x8FDB;&#x884C;&#x6BD4;&#x8F83;&#xFF0C;&#x5982;&#x679C;&#x5BA2;&#x6237;&#x7AEF;&#x56FE;&#x7247;&#x5DF2;&#x9648;&#x65E7;&#x90A3;&#x4E48;&#x8FD4;&#x56DE;&#x72B6;&#x6001;&#x7801;200&#x3001;Last-Modified&#x3001;&#x56FE;&#x7247;&#x5185;&#x5BB9;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x5B58;&#x50A8;Last-Modified&#x548C;&#x56FE;&#x7247;&#xFF1B;&#x5982;&#x679C;&#x5BA2;&#x6237;&#x7AEF;&#x56FE;&#x7247;&#x662F;&#x6700;&#x65B0;&#x7684;&#x90A3;&#x4E48;&#x8FD4;&#x56DE;304 Not Modified&#x3001;&#x4E0D;&#x4F1A;&#x8FD4;&#x56DE;Last-Modified&#x3001;&#x56FE;&#x7247;&#x5185;&#x5BB9;&#x3002;</p>
+<p>&#x5173;&#x4E8E;&#x670D;&#x52A1;&#x5668;&#x7684;&#x6BD4;&#x8F83;&#x903B;&#x8F91;&#xFF0C;&#x9700;&#x8981;&#x5F3A;&#x8C03;&#x4E00;&#x4E0B;&#x3002;</p>
+<p>&#x7ECF;&#x67E5;&#x8D44;&#x6599;&#x5F97;&#x77E5;&#xFF0C;Apache&#x6BD4;&#x8F83;&#x65F6;&#x662F;&#x770B;If-Modified-Since&#x4E4B;&#x540E;&#x6709;&#x6CA1;&#x6709;&#x66F4;&#x65B0;&#x56FE;&#x7247;&#xFF0C;Nginx&#x6BD4;&#x8F83;&#x65F6;&#x662F;&#x770B;If-Modified-Since&#x4E0E;Last-Modified&#x662F;&#x5426;&#x76F8;&#x7B49;&#xFF0C;&#x6240;&#x4EE5;&#x5BF9;&#x4E8E;Apache&#x670D;&#x52A1;&#x5668;&#x73AF;&#x5883;&#x5BA2;&#x6237;&#x7AEF;&#x6BCF;&#x6B21;&#x90FD;&#x8981;&#x4E25;&#x683C;&#x7684;&#x5B58;&#x50A8;&#x670D;&#x52A1;&#x5668;&#x56DE;&#x4F20;&#x7684;Last-Modified&#x4EE5;&#x4FBF;&#x4E0B;&#x6B21;&#x8BF7;&#x6C42;&#x65F6;&#x4F5C;&#x4E3A;If-Modified-Since&#x7684;&#x503C;&#x4F20;&#x7ED9;&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x5BF9;&#x4E8E;Nginx&#x670D;&#x52A1;&#x5668;&#x73AF;&#x5883;&#x5BA2;&#x6237;&#x7AEF;&#x4E0D;&#x5FC5;&#x5B58;&#x50A8;&#x670D;&#x52A1;&#x5668;&#x56DE;&#x4F20;&#x7684;Last-Modified&#xFF0C;&#x6BCF;&#x6B21;&#x8BF7;&#x6C42;&#x65F6;&#x53EA;&#x9700;&#x5C06;&#x56FE;&#x7247;&#x81EA;&#x8EAB;&#x7684;fileModificationDate&#x4F5C;&#x4E3A;If-Modified-Since&#x7684;&#x503C;&#x4F20;&#x670D;&#x52A1;&#x5668;&#x5373;&#x53EF;&#x3002;&#x5728;&#x5B9E;&#x9645;&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x9047;&#x5230;&#x660E;&#x660E;&#x4F20;&#x4E86;If-Modified-Since&#x3001;&#x670D;&#x52A1;&#x5668;&#x56FE;&#x7247;&#x4E5F;&#x53D8;&#x66F4;&#x4E86;&#x3001;&#x4F46;&#x662F;&#x5BA2;&#x6237;&#x7AEF;&#x5374;&#x8BF7;&#x6C42;&#x4E0D;&#x5230;&#x6700;&#x65B0;&#x7684;&#x56FE;&#x7247;&#x7684;&#x60C5;&#x51B5;&#x65F6;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x9700;&#x8981;&#x67E5;&#x770B;&#x4E00;&#x4E0B;&#x670D;&#x52A1;&#x5668;&#x5BF9;&#x8FD9;&#x4E24;&#x4E2A;&#x65F6;&#x95F4;&#x6233;&#x7684;&#x6BD4;&#x8F83;&#x903B;&#x8F91;&#x3002;</p>
+<p>&#x90A3;&#x4E48;&#xFF0C;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x56DE;&#x5230;SDWebImage&#x4E0A;&#x6765;&#x4E86;&#x3002;&#x901A;&#x8FC7;&#x67E5;&#x770B;SDWebImageDownloader&#x7684;&#x6E90;&#x7801;&#x5F97;&#x77E5;&#xFF0C;&#x5B83;&#x5F00;&#x653E;&#x4E86;&#x4E00;&#x4E2A;headersFilter&#x7684;block&#xFF0C;&#x610F;&#x5728;&#x8BA9;&#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x5BF9;&#x6240;&#x6709;&#x56FE;&#x7247;&#x8BF7;&#x6C42;&#x8FFD;&#x52A0;&#x4E00;&#x4E9B;&#x989D;&#x5916;&#x7684;header&#xFF0C;&#x8FD9;&#x6B63;&#x5408;&#x6211;&#x610F;&#x3002;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x8BF8;&#x5982;AppDelegate didFinishLaunching&#x7684;&#x5730;&#x65B9;&#x8FFD;&#x52A0;&#x5982;&#x4E0B;&#x4EE3;&#x7801;&#xFF1A;</p>
+<pre><code class="lang-objc">SDWebImageDownloader *imgDownloader = SDWebImageManager.sharedManager.imageDownloader;
+imgDownloader.headersFilter  = ^<span class="hljs-built_in">NSDictionary</span> *(<span class="hljs-built_in">NSURL</span> *url, <span class="hljs-built_in">NSDictionary</span> *headers) {
+
+    <span class="hljs-built_in">NSFileManager</span> *fm = [[<span class="hljs-built_in">NSFileManager</span> alloc] init];
+    <span class="hljs-built_in">NSString</span> *imgKey = [SDWebImageManager.sharedManager cacheKeyForURL:url];
+    <span class="hljs-built_in">NSString</span> *imgPath = [SDWebImageManager.sharedManager.imageCache defaultCachePathForKey:imgKey];
+    <span class="hljs-built_in">NSDictionary</span> *fileAttr = [fm attributesOfItemAtPath:imgPath error:<span class="hljs-literal">nil</span>];
+
+    <span class="hljs-built_in">NSMutableDictionary</span> *mutableHeaders = [headers mutableCopy];
+
+    <span class="hljs-built_in">NSDate</span> *lastModifiedDate = <span class="hljs-literal">nil</span>;
+
+    <span class="hljs-keyword">if</span> (fileAttr.count &gt; <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">if</span> (fileAttr.count &gt; <span class="hljs-number">0</span>) {
+            lastModifiedDate = (<span class="hljs-built_in">NSDate</span> *)fileAttr[<span class="hljs-built_in">NSFileModificationDate</span>];
+        }
+
+    }
+    <span class="hljs-built_in">NSDateFormatter</span> *formatter = [[<span class="hljs-built_in">NSDateFormatter</span> alloc] init];
+    formatter.timeZone = [<span class="hljs-built_in">NSTimeZone</span> timeZoneWithAbbreviation:<span class="hljs-string">@&quot;GMT&quot;</span>];
+    formatter.locale = [[<span class="hljs-built_in">NSLocale</span> alloc] initWithLocaleIdentifier:<span class="hljs-string">@&quot;en_US&quot;</span>];
+    formatter.dateFormat = <span class="hljs-string">@&quot;EEE, dd MMM yyyy HH:mm:ss z&quot;</span>;
+
+    <span class="hljs-built_in">NSString</span> *lastModifiedStr = [formatter stringFromDate:lastModifiedDate];
+    lastModifiedStr = lastModifiedStr.length &gt; <span class="hljs-number">0</span> ? lastModifiedStr : <span class="hljs-string">@&quot;&quot;</span>;
+    [mutableHeaders setValue:lastModifiedStr forKey:<span class="hljs-string">@&quot;If-Modified-Since&quot;</span>];
+
+    <span class="hljs-keyword">return</span> mutableHeaders;
+};
+</code></pre>
+<p>&#x7136;&#x540E;&#xFF0C;&#x52A0;&#x8F7D;&#x56FE;&#x7247;&#x7684;&#x5730;&#x65B9;&#x4EE5;&#x524D;&#x600E;&#x4E48;&#x5199;&#x8FD8;&#x662F;&#x600E;&#x4E48;&#x5199;&#xFF0C;&#x4F46;&#x522B;&#x5FD8;&#x4E86;Option&#x662F;SDWebImageRefreshCached</p>
+<pre><code class="lang-objc"><span class="hljs-built_in">NSURL</span> *imgURL = [<span class="hljs-built_in">NSURL</span> URLWithString:<span class="hljs-string">@&quot;http://handy-img-storage.b0.upaiyun.com/3.jpg&quot;</span>];
+[[<span class="hljs-keyword">self</span> imageView] sd_setImageWithURL:imgURL
+                    placeholderImage:<span class="hljs-literal">nil</span>
+                             options:SDWebImageRefreshCached];
+</code></pre>
+<p>&#x7ECF;&#x6D4B;&#x8BD5;&#xFF0C;&#x670D;&#x52A1;&#x5668;&#x53EA;&#x4FEE;&#x6539;&#x56FE;&#x7247;&#x4E0D;&#x53D8;&#x66F4;URL&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x4E5F;&#x53EF;&#x4EE5;&#x66F4;&#x65B0;&#x5230;&#x6700;&#x65B0;&#x7684;&#x56FE;&#x7247;&#x3002;</p>
+<p>&#x4ECE;&#x4EE5;&#x4E0A;&#x7B2C;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#x5185;&#x5BB9;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x6211;&#x91C7;&#x7528;&#x7684;&#x662F;&#x4E0E;ngix&#x670D;&#x52A1;&#x5668;&#x6BD4;&#x8F83;&#x903B;&#x8F91;&#x5BF9;&#x5E94;&#x7684;&#x4EE3;&#x7801;&#xFF0C;BTW:&#x6211;&#x6D4B;&#x8BD5;&#x7684;&#x670D;&#x52A1;&#x5668;&#x662F;&#x53C8;&#x62CD;&#x4E91;&#xFF0C;&#x8BF4;&#x660E;&#x53C8;&#x62CD;&#x4E91;&#x7684;&#x6BD4;&#x8F83;&#x903B;&#x8F91;&#x662F;&#x7B49;&#x4E0E;&#x4E0D;&#x7B49;&#x7684;&#x5173;&#x7CFB;&#x5224;&#x65AD;&#xFF0C;&#x4E0D;&#x662F;&#x5927;&#x5C0F;&#x5173;&#x7CFB;&#x7684;&#x5224;&#x65AD;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x987A;&#x4FBF;&#x8BF4;&#x4E00;&#x4E0B;&#xFF0C;&#x5982;&#x679C;&#x670D;&#x52A1;&#x5668;&#x7684;&#x73AF;&#x5883;&#x662F;&#x7C7B;&#x4F3C;&#x4E8E;Apache&#x7684;&#x6BD4;&#x8F83;&#x903B;&#x8F91;&#x65F6;&#xFF0C;&#x5BA2;&#x6237;&#x7AEF;&#x53EF;&#x4EE5;&#x628A;Last-Modified&#x5B58;&#x653E;&#x5728;&#x56FE;&#x7247;&#x7684;&#x540D;&#x79F0;&#x4E0A;(&#x8FD9;&#x9700;&#x8981;&#x4FEE;&#x6539;SDWebImage&#x6E90;&#x7801;&#xFF0C;&#x4E0D;&#x5EFA;&#x8BAE;)&#xFF0C;&#x6216;&#x8005;&#x7528;&#x4E00;&#x4E2A;plist&#x6587;&#x4EF6;&#x5B58;&#x653E;&#x56FE;&#x7247;key&#x540D;&#x79F0;&#x4E0E;&#x65F6;&#x95F4;&#x7684;&#x5BF9;&#x5E94;&#x5173;&#x7CFB;(&#x8FD9;&#x4E2A;&#x4E0D;&#x7528;&#x4FEE;&#x6539;&#x6E90;&#x7801;)&#x3002;</p>
+<p>OK&#xFF0C;&#x5230;&#x6B64;&#x8FD9;&#x6B21;&#x7684;&#x4E3B;&#x9898;&#x5DF2;&#x5F97;&#x5230;&#x5B8C;&#x7F8E;&#x89E3;&#x51B3;&#x3002;</p>
+<p><strong>&#x77E5;&#x8BC6;&#x6269;&#x5C55;</strong></p>
+<p>&#x5176;&#x5B9E;&#xFF0C;&#x5728;&#x6293;&#x53D6;&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE;&#x7684;&#x6570;&#x636E;&#x5305;&#x65F6;&#xFF0C;&#x8FD8;&#x53D1;&#x73B0;response header&#x4E2D;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;ETag&#xFF0C;&#x4E0E;&#x4E4B;&#x76F8;&#x5BF9;&#x5E94;&#x7684;request header&#x4E2D;&#x53EF;&#x4EE5;&#x8FFD;&#x52A0;&#x4E00;&#x4E2A;
+If-None-Match&#x7684;key&#xFF0C;&#x8FD9;&#x5BF9;header&#x4E0E;Last-Modified&#x3001;If-Modified-Since&#x7684;&#x4F5C;&#x7528;&#x662F;&#x76F8;&#x540C;&#x7684;&#xFF0C;&#x5373;&#x670D;&#x52A1;&#x5668;&#x662F;&#x5426;&#x9700;&#x8981;&#x8FD4;&#x56DE;&#x6700;&#x65B0;&#x7684;&#x56FE;&#x7247;&#xFF0C;
+&#x5F53;&#x7136;&#x5B83;&#x4EEC;&#x5728;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x7684;&#x5224;&#x65AD;&#x903B;&#x8F91;&#x5E94;&#x8BE5;&#x662F;&#x7B49;&#x4E0E;&#x4E0D;&#x7B49;&#x7684;&#x5224;&#x65AD;&#xFF0C;Etag&#x5728;&#x5BA2;&#x6237;&#x7AEF;&#x7684;&#x5B58;&#x50A8;&#x540C;&#x6837;&#x53EF;&#x4EE5;&#x91C7;&#x7528;&#x5728;plist&#x6587;&#x4EF6;&#x4E2D;&#x5B58;&#x653E;&#x56FE;&#x7247;key&#x540D;&#x79F0;&#x4E0E;Etag&#x7684;&#x5BF9;&#x5E94;
+&#x5173;&#x7CFB;&#x3002;</p>
+</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="2. 设计一个图片缓存的框架.html" class="navigation navigation-prev " aria-label="Previous page: 2. 设计一个图片缓存的框架">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="4. 组件化.html" class="navigation navigation-next " aria-label="Next page: 4. 组件化">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"3. SDWebImage","level":"1.11.3","depth":2,"next":{"title":"4. 组件化","level":"1.11.4","depth":2,"path":"10.设计/4. 组件化.md","ref":"10.设计/4. 组件化.md","articles":[]},"previous":{"title":"2. 设计一个图片缓存的框架","level":"1.11.2","depth":2,"path":"10.设计/2. 设计一个图片缓存的框架.md","ref":"10.设计/2. 设计一个图片缓存的框架.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"10.设计/3. SDWebImage.md","mtime":"2020-03-21T11:11:09.068Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-22T11:55:34.469Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
