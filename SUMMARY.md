@@ -22,6 +22,8 @@
   * [5.KVO](2.OC基础/5.KVO.md)
   * [6.KVC](2.OC基础/6.KVC.md)
   * [7.NSNotification](2.OC基础/7.NSNotification.md)
+  * [8.NSDictionary实现的原理](2.OC基础/8.NSDictionary实现的原理.md)
+  * [9.NSSet实现的原理](2.OC基础/9.NSSet实现的原理.md)
   * [99.问题合集](2.OC基础/99.问题合集.md)
 - 3.内存管理
   * [1.内存布局](3.内存管理/1.内存布局.md)
@@ -31,12 +33,12 @@
   * [5.weak指针的实现原理](3.内存管理/5.weak指针的实现原理.md)
   * [6.autoreleasePool相关问题](3.内存管理/6.autoreleasePool相关问题.md)
 - 4.Block
-  * [Block](4.Block/__block.md)
   * [1.Block 的本质](4.Block/1.Block 的本质.md)
   * [2.变量捕获](4.Block/2.变量捕获.md)
   * [3.对象类型的auto变量](4.Block/3.对象类型的auto变量.md)
   * [4.Block 的类型](4.Block/4.Block 的类型.md)
-  * [5.Block的循环引用](4.Block/5.Block的循环引用.md)
+  * [5.__block](4.Block/5.__block.md)
+  * [6.Block的循环引用](4.Block/6.Block的循环引用.md)
   * [99.问题汇总](4.Block/99.问题汇总.md)
 - 5.Runtime
   * [98.实现线程安全的数组](5.Runtime/98.实现线程安全的数组.md)
@@ -49,11 +51,13 @@
 - 8.网络
   * [99.网络问题集合](8.网络/99.网络问题集合.md)
 - 9.性能优化
+  * [1.Crash收集](9.性能优化/1.Crash收集.md)
   * [99.性能优化问题合集](9.性能优化/99.性能优化问题合集.md)
 - 10.设计
   * [1. 框架&架构](10.设计/1. 框架&架构.md)
   * [2. 设计一个图片缓存的框架](10.设计/2. 设计一个图片缓存的框架.md)
   * [3. SDWebImage](10.设计/3. SDWebImage.md)
+  * [4. 组件化](10.设计/4. 组件化.md)
   * [99.设计类问题合集](10.设计/99.设计类问题合集.md)
 - 11.算法
   * [1.时间复杂度与空间复杂度](11.算法/1.时间复杂度与空间复杂度.md)
