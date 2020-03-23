@@ -1111,6 +1111,33 @@
                                 <section class="normal markdown-section">
                                 
                                 <h4 id="&#x63D0;&#x5347;&#x9875;&#x9762;&#x7684;&#x6D41;&#x7545;&#x5EA6;">&#x63D0;&#x5347;&#x9875;&#x9762;&#x7684;&#x6D41;&#x7545;&#x5EA6;</h4>
+<h5 id="&#x76D1;&#x63A7;&#x9875;&#x9762;&#x7684;&#x6D41;&#x7545;&#x5EA6;-fps">&#x76D1;&#x63A7;&#x9875;&#x9762;&#x7684;&#x6D41;&#x7545;&#x5EA6; FPS</h5>
+<pre><code class="lang-objc"><span class="hljs-comment">//&#x4F7F;&#x7528;CADisplayLink&#xFF0C;&#x6BCF;&#x6B21;&#x754C;&#x9762;&#x5237;&#x65B0;&#x7684;&#x65F6;&#x5019;&#x90FD;&#x4F1A;&#x8C03;&#x7528;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;</span>
+- (<span class="hljs-keyword">void</span>)tick:(<span class="hljs-built_in">CADisplayLink</span> *)link {
+    <span class="hljs-keyword">if</span> (_lastTime == <span class="hljs-number">0</span>) {
+        _lastTime = link.timestamp;
+        <span class="hljs-keyword">return</span>;
+    }
+
+    _count++; <span class="hljs-comment">//count&#x53EF;&#x4EE5;&#x8BB0;&#x5F55;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x5185;&#x8C03;&#x7528;&#x4E86;&#x591A;&#x5C11;&#x6B21;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;</span>
+    <span class="hljs-built_in">NSTimeInterval</span> delta = link.timestamp - _lastTime;
+    <span class="hljs-keyword">if</span> (delta &lt; <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span>; <span class="hljs-comment">//&#x8FD9;&#x4E00;&#x6B65;&#x4FDD;&#x8BC1;delta&#x662F;&#x5927;&#x4E8E;&#x7B49;&#x4E8E;1s&#x7684;&#xFF0C;&#x4E0D;&#x8BBA;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x6709;&#x6CA1;&#x6709;&#x8FDB;&#x6765;&#x3001;count&#x6709;&#x6CA1;&#x6709;&#x589E;&#x52A0;&#xFF0C;&#x65F6;&#x95F4;&#x603B;&#x662F;&#x5728;&#x589E;&#x52A0;&#x7684;&#x3002;&#x5982;&#x679C;CADisplayLink&#x6CA1;&#x6709;&#x9519;&#x8FC7;1s&#x65F6;&#x7684;&#x90A3;&#x6B21;&#x8C03;&#x7528;&#x65F6;&#x673A;&#xFF0C;&#x90A3;&#x4E48;&#x5F53;delta&#x4E3A;1&#x7684;&#x65F6;&#x5019;&#x5C31;&#x4F1A;&#x6267;&#x884C;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5982;&#x679C;&#x9519;&#x8FC7;&#x4E86;&#x8FD9;&#x6B21;&#x65F6;&#x673A;delta&#x4F1A;&#x5927;&#x4E8E;1s&#x3002;&#x4F46;&#x57FA;&#x672C;&#x4E0A;&#x53EF;&#x4EE5;&#x8BA4;&#x4E3A;delta&#x5C31;&#x662F;1s&#x3002;</span>
+    _lastTime = link.timestamp;
+    <span class="hljs-keyword">float</span> fps = _count / delta;<span class="hljs-comment">//1s&#x4E2D;&#x8FDB;&#x6765;&#x7684;&#x6B21;&#x6570;&#x9664;&#x4EE5;1s&#xFF0C;&#x5C31;&#x662F;fps</span>
+    _count = <span class="hljs-number">0</span>;
+
+    <span class="hljs-built_in">CGFloat</span> progress = fps / <span class="hljs-number">60.0</span>;
+    <span class="hljs-built_in">UIColor</span> *color = [<span class="hljs-built_in">UIColor</span> colorWithHue:<span class="hljs-number">0.27</span> * (progress - <span class="hljs-number">0.2</span>) saturation:<span class="hljs-number">1</span> brightness:<span class="hljs-number">0.9</span> alpha:<span class="hljs-number">1</span>];
+
+    <span class="hljs-built_in">NSMutableAttributedString</span> *text = [[<span class="hljs-built_in">NSMutableAttributedString</span> alloc] initWithString:[<span class="hljs-built_in">NSString</span> stringWithFormat:<span class="hljs-string">@&quot;%d FPS&quot;</span>,(<span class="hljs-keyword">int</span>)round(fps)]];
+    [text setColor:color range:<span class="hljs-built_in">NSMakeRange</span>(<span class="hljs-number">0</span>, text.length - <span class="hljs-number">3</span>)];
+    [text setColor:[<span class="hljs-built_in">UIColor</span> whiteColor] range:<span class="hljs-built_in">NSMakeRange</span>(text.length - <span class="hljs-number">3</span>, <span class="hljs-number">3</span>)];
+    text.font = _font;
+    [text setFont:_subFont range:<span class="hljs-built_in">NSMakeRange</span>(text.length - <span class="hljs-number">4</span>, <span class="hljs-number">1</span>)];
+
+    <span class="hljs-keyword">self</span>.attributedText = text;
+}
+</code></pre>
 <h5 id="&#x9488;&#x5BF9;cpu&#x8FDB;&#x884C;&#x4F18;&#x5316;">&#x9488;&#x5BF9;CPU&#x8FDB;&#x884C;&#x4F18;&#x5316;</h5>
 <p>&#x5BF9;&#x8C61;&#x7684;&#x521B;&#x5EFA;&#x3001;&#x8C03;&#x6574;&#x3001;&#x9500;&#x6BC1;</p>
 <p>&#x9884;&#x6392;&#x7248;&#xFF08;&#x5E03;&#x5C40;&#x8BA1;&#x7B97;&#x3001;&#x6587;&#x672C;&#x8BA1;&#x7B97;&#xFF09;</p>
@@ -1164,7 +1191,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"11.提升页面的流畅度","level":"1.2.11","depth":2,"next":{"title":"12.UITableView 的重用机制","level":"1.2.12","depth":2,"path":"1.不得不知的UI知识/12.UITableView 的重用机制.md","ref":"1.不得不知的UI知识/12.UITableView 的重用机制.md","articles":[]},"previous":{"title":"10.实现异步绘制","level":"1.2.10","depth":2,"path":"1.不得不知的UI知识/10.实现异步绘制.md","ref":"1.不得不知的UI知识/10.实现异步绘制.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"1.不得不知的UI知识/11.提升页面的流畅度.md","mtime":"2020-03-14T12:16:33.635Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-22T11:55:34.469Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"11.提升页面的流畅度","level":"1.2.11","depth":2,"next":{"title":"12.UITableView 的重用机制","level":"1.2.12","depth":2,"path":"1.不得不知的UI知识/12.UITableView 的重用机制.md","ref":"1.不得不知的UI知识/12.UITableView 的重用机制.md","articles":[]},"previous":{"title":"10.实现异步绘制","level":"1.2.10","depth":2,"path":"1.不得不知的UI知识/10.实现异步绘制.md","ref":"1.不得不知的UI知识/10.实现异步绘制.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"1.不得不知的UI知识/11.提升页面的流畅度.md","mtime":"2020-03-22T13:33:48.291Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-22T13:03:41.134Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
