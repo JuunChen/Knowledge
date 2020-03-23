@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>13.UIView与CALayer的区别 · GitBook</title>
+        <title>9.1UI绘制的流程 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="9.2理解contents.html" />
     
-    <link rel="prev" href="12.UITableView 的重用机制.html" />
+    
+    <link rel="prev" href="9.卡顿的原因.html" />
     
 
     </head>
@@ -218,12 +220,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.9" data-path="9.UI绘制原理.html">
+        <li class="chapter " data-level="1.2.9" data-path="9.卡顿的原因.html">
             
-                <a href="9.UI绘制原理.html">
+                <a href="9.卡顿的原因.html">
             
                     
-                    9.UI绘制原理
+                    9.卡顿的原因
             
                 </a>
             
@@ -231,12 +233,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.10" data-path="10.实现异步绘制.html">
+        <li class="chapter active" data-level="1.2.10" data-path="9.1UI绘制的流程.html">
             
-                <a href="10.实现异步绘制.html">
+                <a href="9.1UI绘制的流程.html">
             
                     
-                    10.实现异步绘制
+                    9.1UI绘制的流程
             
                 </a>
             
@@ -244,12 +246,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.11" data-path="11.提升页面的流畅度.html">
+        <li class="chapter " data-level="1.2.11" data-path="9.2理解contents.html">
             
-                <a href="11.提升页面的流畅度.html">
+                <a href="9.2理解contents.html">
             
                     
-                    11.提升页面的流畅度
+                    9.2理解contents
             
                 </a>
             
@@ -257,12 +259,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.12" data-path="12.UITableView 的重用机制.html">
+        <li class="chapter " data-level="1.2.12" data-path="9.3理解drawRect 1.html">
             
-                <a href="12.UITableView 的重用机制.html">
+                <a href="9.3理解drawRect 1.html">
             
                     
-                    12.UITableView 的重用机制
+                    9.3理解drawRect 1
             
                 </a>
             
@@ -270,12 +272,64 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.13" data-path="13.UIView与CALayer的区别.html">
+        <li class="chapter " data-level="1.2.13" data-path="9.4 理解drawRect 2.html">
             
-                <a href="13.UIView与CALayer的区别.html">
+                <a href="9.4 理解drawRect 2.html">
             
                     
-                    13.UIView与CALayer的区别
+                    9.4 理解drawRect 2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.14" data-path="9.5实现异步绘制.html">
+            
+                <a href="9.5实现异步绘制.html">
+            
+                    
+                    9.5实现异步绘制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.15" data-path="10.提升页面的流畅度.html">
+            
+                <a href="10.提升页面的流畅度.html">
+            
+                    
+                    10.提升页面的流畅度
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.16" data-path="11.UITableView 的重用机制.html">
+            
+                <a href="11.UITableView 的重用机制.html">
+            
+                    
+                    11.UITableView 的重用机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.17" data-path="12.UIView与CALayer的区别.html">
+            
+                <a href="12.UIView与CALayer的区别.html">
+            
+                    
+                    12.UIView与CALayer的区别
             
                 </a>
             
@@ -1093,7 +1147,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >13.UIView与CALayer的区别</a>
+        <a href=".." >9.1UI绘制的流程</a>
     </h1>
 </div>
 
@@ -1108,12 +1162,33 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h4 id="uiview-&#x4E0E;-calayer-&#x7684;&#x533A;&#x522B;">UIView &#x4E0E; CALayer &#x7684;&#x533A;&#x522B;</h4>
+                                <h4 id="ui&#x7ED8;&#x5236;&#x7684;&#x539F;&#x7406;">UI&#x7ED8;&#x5236;&#x7684;&#x539F;&#x7406;</h4>
+<p>&#x5F53;&#x6211;&#x4EEC;&#x8C03;&#x7528;<code>[UIView setNeedsDisplay]</code>&#x540E;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x5E76;&#x6CA1;&#x6709;&#x7ACB;&#x523B;&#x53D1;&#x751F;&#x89C6;&#x56FE;&#x7684;&#x7ED8;&#x5236;&#x5DE5;&#x4F5C;&#xFF0C;&#x800C;&#x662F;&#x5728;&#x4E4B;&#x540E;&#x7684;&#x67D0;&#x4E00;&#x65F6;&#x673A;&#x624D;&#x4F1A;&#x8FDB;&#x884C;&#x5F53;&#x524D;UI&#x89C6;&#x56FE;&#x7684;&#x771F;&#x6B63;&#x7ED8;&#x5236;&#x5DE5;&#x4F5C;&#x3002;&#x8FD9;&#x662F;&#x4E3A;&#x4EC0;&#x4E48;&#x5462;&#xFF1F;</p>
+<p>&#x5177;&#x4F53;&#x7684;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
 <ul>
-<li>CALayer &#x8D1F;&#x8D23;&#x663E;&#x793A;&#x5185;&#x5BB9;</li>
-<li>UIView&#x662F;CALayer&#x7684;&#x4EE3;&#x7406;&#xFF0C;&#x8D1F;&#x8D23;&#x4E8B;&#x4EF6;&#x4F20;&#x9012;&#x548C;&#x4E8B;&#x4EF6;&#x54CD;&#x5E94;</li>
+<li>&#x5F53;&#x6211;&#x4EEC;&#x8C03;&#x7528;<code>[UIView setNeedsDisplay]</code>&#x65F6;</li>
+<li>&#x7CFB;&#x7EDF;&#x4F1A;&#x7ACB;&#x5373;&#x8C03;&#x7528;<code>[view.layer setNeedsDisplay]</code>&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x662F;&#x5728;&#x5F53;&#x524D;layer&#x4E0A;&#x6253;&#x4E86;&#x4E00;&#x4E2A;&#x810F;&#x6807;&#x8BB0;</li>
+<li>&#x5728;&#x5F53;&#x524D;Runloop&#x5C06;&#x8981;&#x7ED3;&#x675F;&#x65F6;&#xFF0C;&#x7CFB;&#x7EDF;&#x4F1A;&#x8C03;&#x7528;<code>[CALayer display]</code>&#x65B9;&#x6CD5;&#xFF0C;&#x624D;&#x8FDB;&#x5165;&#x5230;&#x5F53;&#x524D;&#x89C6;&#x56FE;&#x771F;&#x6B63;&#x7684;&#x7ED8;&#x5236;&#x6D41;&#x7A0B;&#x5F53;&#x4E2D;</li>
+<li><code>[CALayer display]</code>&#x4F1A;&#x5224;&#x65AD;<code>[layer.delegate respondsToSelector:@selector(displayLayer:)]</code><ul>
+<li>&#x5982;&#x679C;&#x5B83;&#x7684;delegate&#x4E0D;&#x54CD;&#x5E94;&#xFF0C;&#x5219;&#x8FDB;&#x5165;&#x7CFB;&#x7EDF;&#x9ED8;&#x8BA4;&#x7684;&#x7ED8;&#x5236;&#x6D41;&#x7A0B;&#xFF0C;&#x7136;&#x540E;&#x7ED3;&#x675F;</li>
+<li>&#x5982;&#x679C;&#x5B83;&#x7684;delegate&#x54CD;&#x5E94;&#xFF0C;&#x90A3;&#x4E48;&#x5B9E;&#x9645;&#x4E0A;&#x5C31;&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x4E86;&#x5F02;&#x6B65;&#x7ED8;&#x5236;&#x7684;&#x5165;&#x53E3;&#xFF0C;&#x7136;&#x540E;&#x7ED3;&#x675F;</li>
 </ul>
-<p><strong>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x533A;&#x5206;&#x5F00;&#x5462;&#xFF1A;</strong>&#x5355;&#x4E00;&#x804C;&#x8D23;&#x539F;&#x5219;&#x3002;</p>
+</li>
+</ul>
+<h4 id="&#x7CFB;&#x7EDF;&#x9ED8;&#x8BA4;&#x7684;&#x7ED8;&#x5236;&#x6D41;&#x7A0B;">&#x7CFB;&#x7EDF;&#x9ED8;&#x8BA4;&#x7684;&#x7ED8;&#x5236;&#x6D41;&#x7A0B;</h4>
+<ul>
+<li>CALayer&#x5185;&#x90E8;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; <code>backing store</code>&#x5373;<code>CGContextRef</code>&#xFF0C;&#x5728;<code>drawRect:</code>&#x65B9;&#x6CD5;&#x4E2D;&#x53EF;&#x4EE5;&#x62FF;&#x5230;&#x5B83;</li>
+<li>layer&#x4F1A;&#x5224;&#x65AD;&#x5B83;&#x662F;&#x5426;&#x6709;&#x4EE3;&#x7406;<ul>
+<li>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x4EE3;&#x7406;&#xFF0C;&#x4F1A;&#x8C03;&#x7528;<code>[CALayer drawInContext:]</code>&#x65B9;&#x6CD5;</li>
+<li>&#x5982;&#x679C;&#x6709;&#x4EE3;&#x7406;&#xFF0C;&#x4F1A;&#x8C03;&#x7528;<code>[layer.delegate drawLayer:inContext:]</code>&#x65B9;&#x6CD5;&#xFF0C;&#x7136;&#x540E;&#x505A;&#x5F53;&#x524D;&#x89C6;&#x56FE;&#x7684;&#x7ED8;&#x5236;&#x5DE5;&#x4F5C;&#xFF0C;&#x8FD9;&#x4E00;&#x90E8;&#x5206;&#x662F;&#x53D1;&#x751F;&#x5728;&#x7CFB;&#x7EDF;&#x7684;&#x5185;&#x90E8;&#x5F53;&#x4E2D;&#x7684;<ul>
+<li>&#x7136;&#x540E;&#x5728;&#x4E00;&#x4E2A;&#x5408;&#x9002;&#x7684;&#x65F6;&#x673A;&#x7ED9;&#x4E88;&#x6211;&#x4EEC;&#x4E00;&#x4E2A;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;<code>[UIView drawRect:]</code>&#x3002;<code>drawRect:</code>&#x7684;&#x9ED8;&#x8BA4;&#x5B9E;&#x73B0;&#x662F;&#x4EC0;&#x4E48;&#x90FD;&#x4E0D;&#x505A;&#xFF0C;&#x7ED9;&#x6211;&#x4EEC;&#x5F00;&#x8FD9;&#x4E2A;&#x53E3;&#x5B50;&#xFF0C;&#x5C31;&#x5141;&#x8BB8;&#x6211;&#x4EEC;&#x5728;&#x7CFB;&#x7EDF;&#x7ED8;&#x5236;&#x7684;&#x57FA;&#x7840;&#x4E4B;&#x4E0A;&#x518D;&#x505A;&#x4E00;&#x4E9B;&#x5176;&#x5B83;&#x7684;&#x7ED8;&#x5236;&#x5DE5;&#x4F5C;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>&#x4E0D;&#x8BBA;&#x662F;&#x54EA;&#x4E24;&#x4E2A;&#x5206;&#x652F;&#xFF0C;&#x6700;&#x7EC8;&#x90FD;&#x4F1A;&#x7531;CALayer&#x5C06;backing store&#x4E0A;&#x4F20;&#x7ED9;GPU&#x3002;&#x8FD9;&#x91CC;&#x7684;backing store&#x5C31;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x6700;&#x7EC8;&#x7684;&#x4F4D;&#x56FE;</li>
+<li>&#x7CFB;&#x7EDF;&#x9ED8;&#x8BA4;&#x7684;&#x7ED8;&#x5236;&#x6D41;&#x7A0B;&#x7ED3;&#x675F;</li>
+</ul>
 
                                 
                                 </section>
@@ -1141,10 +1216,14 @@
 
             
                 
-                <a href="12.UITableView 的重用机制.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 12.UITableView 的重用机制">
+                <a href="9.卡顿的原因.html" class="navigation navigation-prev " aria-label="Previous page: 9.卡顿的原因">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="9.2理解contents.html" class="navigation navigation-next " aria-label="Next page: 9.2理解contents">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -1153,7 +1232,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"13.UIView与CALayer的区别","level":"1.2.13","depth":2,"next":{"title":"2.OC基础","level":"1.3","depth":1,"ref":"","articles":[{"title":"1.OC对象","level":"1.3.1","depth":2,"path":"2.OC基础/1.OC对象.md","ref":"2.OC基础/1.OC对象.md","articles":[]},{"title":"2.分类","level":"1.3.2","depth":2,"path":"2.OC基础/2.分类.md","ref":"2.OC基础/2.分类.md","articles":[]},{"title":"3.关联对象","level":"1.3.3","depth":2,"path":"2.OC基础/3.关联对象.md","ref":"2.OC基础/3.关联对象.md","articles":[]},{"title":"4.isa与superclass","level":"1.3.4","depth":2,"path":"2.OC基础/4.isa与superclass.md","ref":"2.OC基础/4.isa与superclass.md","articles":[]},{"title":"5.KVO","level":"1.3.5","depth":2,"path":"2.OC基础/5.KVO.md","ref":"2.OC基础/5.KVO.md","articles":[]},{"title":"6.KVC","level":"1.3.6","depth":2,"path":"2.OC基础/6.KVC.md","ref":"2.OC基础/6.KVC.md","articles":[]},{"title":"7.NSNotification","level":"1.3.7","depth":2,"path":"2.OC基础/7.NSNotification.md","ref":"2.OC基础/7.NSNotification.md","articles":[]},{"title":"8.NSDictionary实现的原理","level":"1.3.8","depth":2,"path":"2.OC基础/8.NSDictionary实现的原理.md","ref":"2.OC基础/8.NSDictionary实现的原理.md","articles":[]},{"title":"9.NSSet实现的原理","level":"1.3.9","depth":2,"path":"2.OC基础/9.NSSet实现的原理.md","ref":"2.OC基础/9.NSSet实现的原理.md","articles":[]},{"title":"99.问题合集","level":"1.3.10","depth":2,"path":"2.OC基础/99.问题合集.md","ref":"2.OC基础/99.问题合集.md","articles":[]}]},"previous":{"title":"12.UITableView 的重用机制","level":"1.2.12","depth":2,"path":"1.不得不知的UI知识/12.UITableView 的重用机制.md","ref":"1.不得不知的UI知识/12.UITableView 的重用机制.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"1.不得不知的UI知识/13.UIView与CALayer的区别.md","mtime":"2020-03-14T12:16:48.919Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-22T11:55:34.469Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"9.1UI绘制的流程","level":"1.2.10","depth":2,"next":{"title":"9.2理解contents","level":"1.2.11","depth":2,"path":"1.不得不知的UI知识/9.2理解contents.md","ref":"1.不得不知的UI知识/9.2理解contents.md","articles":[]},"previous":{"title":"9.卡顿的原因","level":"1.2.9","depth":2,"path":"1.不得不知的UI知识/9.卡顿的原因.md","ref":"1.不得不知的UI知识/9.卡顿的原因.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"1.不得不知的UI知识/9.1UI绘制的流程.md","mtime":"2020-03-23T09:13:33.631Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-23T16:37:41.394Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

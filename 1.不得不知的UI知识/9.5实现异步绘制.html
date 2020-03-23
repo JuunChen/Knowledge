@@ -1,0 +1,1391 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>9.5实现异步绘制 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="10.提升页面的流畅度.html" />
+    
+    
+    <link rel="prev" href="9.4 理解drawRect 2.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    1.不得不知的UI知识
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1.关于bounds与frame.html">
+            
+                <a href="1.关于bounds与frame.html">
+            
+                    
+                    1.关于bounds与frame
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="2.锚点与位置.html">
+            
+                <a href="2.锚点与位置.html">
+            
+                    
+                    2.锚点与位置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="3.压缩阻力.html">
+            
+                <a href="3.压缩阻力.html">
+            
+                    
+                    3.压缩阻力
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="4.内容吸附.html">
+            
+                <a href="4.内容吸附.html">
+            
+                    
+                    4.内容吸附
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.5" data-path="5.事件传递链与响应链.html">
+            
+                <a href="5.事件传递链与响应链.html">
+            
+                    
+                    5.事件传递链与响应链
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.6" data-path="6.加载image.html">
+            
+                <a href="6.加载image.html">
+            
+                    
+                    6.加载image
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.7" data-path="7.离屏渲染.html">
+            
+                <a href="7.离屏渲染.html">
+            
+                    
+                    7.离屏渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.8" data-path="8.如何高效地切圆角.html">
+            
+                <a href="8.如何高效地切圆角.html">
+            
+                    
+                    8.如何高效地切圆角
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.9" data-path="9.卡顿的原因.html">
+            
+                <a href="9.卡顿的原因.html">
+            
+                    
+                    9.卡顿的原因
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="9.1UI绘制的流程.html">
+            
+                <a href="9.1UI绘制的流程.html">
+            
+                    
+                    9.1UI绘制的流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.11" data-path="9.2理解contents.html">
+            
+                <a href="9.2理解contents.html">
+            
+                    
+                    9.2理解contents
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.12" data-path="9.3理解drawRect 1.html">
+            
+                <a href="9.3理解drawRect 1.html">
+            
+                    
+                    9.3理解drawRect 1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.13" data-path="9.4 理解drawRect 2.html">
+            
+                <a href="9.4 理解drawRect 2.html">
+            
+                    
+                    9.4 理解drawRect 2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2.14" data-path="9.5实现异步绘制.html">
+            
+                <a href="9.5实现异步绘制.html">
+            
+                    
+                    9.5实现异步绘制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.15" data-path="10.提升页面的流畅度.html">
+            
+                <a href="10.提升页面的流畅度.html">
+            
+                    
+                    10.提升页面的流畅度
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.16" data-path="11.UITableView 的重用机制.html">
+            
+                <a href="11.UITableView 的重用机制.html">
+            
+                    
+                    11.UITableView 的重用机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.17" data-path="12.UIView与CALayer的区别.html">
+            
+                <a href="12.UIView与CALayer的区别.html">
+            
+                    
+                    12.UIView与CALayer的区别
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    2.OC基础
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../2.OC基础/1.OC对象.html">
+            
+                <a href="../2.OC基础/1.OC对象.html">
+            
+                    
+                    1.OC对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../2.OC基础/2.分类.html">
+            
+                <a href="../2.OC基础/2.分类.html">
+            
+                    
+                    2.分类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../2.OC基础/3.关联对象.html">
+            
+                <a href="../2.OC基础/3.关联对象.html">
+            
+                    
+                    3.关联对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../2.OC基础/4.isa与superclass.html">
+            
+                <a href="../2.OC基础/4.isa与superclass.html">
+            
+                    
+                    4.isa与superclass
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../2.OC基础/5.KVO.html">
+            
+                <a href="../2.OC基础/5.KVO.html">
+            
+                    
+                    5.KVO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="../2.OC基础/6.KVC.html">
+            
+                <a href="../2.OC基础/6.KVC.html">
+            
+                    
+                    6.KVC
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../2.OC基础/7.NSNotification.html">
+            
+                <a href="../2.OC基础/7.NSNotification.html">
+            
+                    
+                    7.NSNotification
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../2.OC基础/8.NSDictionary实现的原理.html">
+            
+                <a href="../2.OC基础/8.NSDictionary实现的原理.html">
+            
+                    
+                    8.NSDictionary实现的原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../2.OC基础/9.NSSet实现的原理.html">
+            
+                <a href="../2.OC基础/9.NSSet实现的原理.html">
+            
+                    
+                    9.NSSet实现的原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.10" data-path="../2.OC基础/99.问题合集.html">
+            
+                <a href="../2.OC基础/99.问题合集.html">
+            
+                    
+                    99.问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    3.内存管理
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../3.内存管理/1.内存布局.html">
+            
+                <a href="../3.内存管理/1.内存布局.html">
+            
+                    
+                    1.内存布局
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../3.内存管理/2.对MRC和ARC的理解.html">
+            
+                <a href="../3.内存管理/2.对MRC和ARC的理解.html">
+            
+                    
+                    2.对MRC和ARC的理解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../3.内存管理/3.引用计数是如何存储的.html">
+            
+                <a href="../3.内存管理/3.引用计数是如何存储的.html">
+            
+                    
+                    3.引用计数是如何存储的
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../3.内存管理/4.copy关键字.html">
+            
+                <a href="../3.内存管理/4.copy关键字.html">
+            
+                    
+                    4.copy关键字
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../3.内存管理/5.weak指针的实现原理.html">
+            
+                <a href="../3.内存管理/5.weak指针的实现原理.html">
+            
+                    
+                    5.weak指针的实现原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../3.内存管理/6.autoreleasePool相关问题.html">
+            
+                <a href="../3.内存管理/6.autoreleasePool相关问题.html">
+            
+                    
+                    6.autoreleasePool相关问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    4.Block
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../4.Block/1.Block 的本质.html">
+            
+                <a href="../4.Block/1.Block 的本质.html">
+            
+                    
+                    1.Block 的本质
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../4.Block/2.变量捕获.html">
+            
+                <a href="../4.Block/2.变量捕获.html">
+            
+                    
+                    2.变量捕获
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../4.Block/3.对象类型的auto变量.html">
+            
+                <a href="../4.Block/3.对象类型的auto变量.html">
+            
+                    
+                    3.对象类型的auto变量
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../4.Block/4.Block 的类型.html">
+            
+                <a href="../4.Block/4.Block 的类型.html">
+            
+                    
+                    4.Block 的类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../4.Block/5.__block.html">
+            
+                <a href="../4.Block/5.__block.html">
+            
+                    
+                    5.__block
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../4.Block/6.Block的循环引用.html">
+            
+                <a href="../4.Block/6.Block的循环引用.html">
+            
+                    
+                    6.Block的循环引用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../4.Block/99.问题汇总.html">
+            
+                <a href="../4.Block/99.问题汇总.html">
+            
+                    
+                    99.问题汇总
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    5.Runtime
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../5.Runtime/98.实现线程安全的数组.html">
+            
+                <a href="../5.Runtime/98.实现线程安全的数组.html">
+            
+                    
+                    98.实现线程安全的数组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../5.Runtime/99.问题合集.html">
+            
+                <a href="../5.Runtime/99.问题合集.html">
+            
+                    
+                    99.问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    6.RunLoop
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../6.RunLoop/98.iOS中的定时器.html">
+            
+                <a href="../6.RunLoop/98.iOS中的定时器.html">
+            
+                    
+                    98.iOS中的定时器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../6.RunLoop/99.RunLoop问题合集.html">
+            
+                <a href="../6.RunLoop/99.RunLoop问题合集.html">
+            
+                    
+                    99.RunLoop问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    7.多线程
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../7.多线程/99.多线程问题合集.html">
+            
+                <a href="../7.多线程/99.多线程问题合集.html">
+            
+                    
+                    99.多线程问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    8.网络
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../8.网络/99.网络问题集合.html">
+            
+                <a href="../8.网络/99.网络问题集合.html">
+            
+                    
+                    99.网络问题集合
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" >
+            
+                <span>
+            
+                    
+                    9.性能优化
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../9.性能优化/1.Crash收集.html">
+            
+                <a href="../9.性能优化/1.Crash收集.html">
+            
+                    
+                    1.Crash收集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../9.性能优化/99.性能优化问题合集.html">
+            
+                <a href="../9.性能优化/99.性能优化问题合集.html">
+            
+                    
+                    99.性能优化问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" >
+            
+                <span>
+            
+                    
+                    10.设计
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../10.设计/1. 框架&架构.html">
+            
+                <a href="../10.设计/1. 框架&架构.html">
+            
+                    
+                    1. 框架&架构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../10.设计/2. 设计一个图片缓存的框架.html">
+            
+                <a href="../10.设计/2. 设计一个图片缓存的框架.html">
+            
+                    
+                    2. 设计一个图片缓存的框架
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../10.设计/3. SDWebImage.html">
+            
+                <a href="../10.设计/3. SDWebImage.html">
+            
+                    
+                    3. SDWebImage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../10.设计/4. 组件化.html">
+            
+                <a href="../10.设计/4. 组件化.html">
+            
+                    
+                    4. 组件化
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../10.设计/99.设计类问题合集.html">
+            
+                <a href="../10.设计/99.设计类问题合集.html">
+            
+                    
+                    99.设计类问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" >
+            
+                <span>
+            
+                    
+                    11.算法
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../11.算法/1.时间复杂度与空间复杂度.html">
+            
+                <a href="../11.算法/1.时间复杂度与空间复杂度.html">
+            
+                    
+                    1.时间复杂度与空间复杂度
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../11.算法/2.斐波那契数列算法分析.html">
+            
+                <a href="../11.算法/2.斐波那契数列算法分析.html">
+            
+                    
+                    2.斐波那契数列算法分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="../11.算法/3.线性表--数组与链表.html">
+            
+                <a href="../11.算法/3.线性表--数组与链表.html">
+            
+                    
+                    3.线性表--数组与链表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="../11.算法/4.二叉树.html">
+            
+                <a href="../11.算法/4.二叉树.html">
+            
+                    
+                    4.二叉树
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5" data-path="../11.算法/5.贪心.html">
+            
+                <a href="../11.算法/5.贪心.html">
+            
+                    
+                    5.贪心
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.6" data-path="../11.算法/6.分治.html">
+            
+                <a href="../11.算法/6.分治.html">
+            
+                    
+                    6.分治
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.7" data-path="../11.算法/7.动态规划.html">
+            
+                <a href="../11.算法/7.动态规划.html">
+            
+                    
+                    7.动态规划
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.8" data-path="../11.算法/8. 动态规划套路详解.html">
+            
+                <a href="../11.算法/8. 动态规划套路详解.html">
+            
+                    
+                    8. 动态规划套路详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.9" data-path="../11.算法/99.算法类问题合集.html">
+            
+                <a href="../11.算法/99.算法类问题合集.html">
+            
+                    
+                    99.算法类问题合集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >9.5实现异步绘制</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h4 id="&#x5F02;&#x6B65;&#x7ED8;&#x5236;">&#x5F02;&#x6B65;&#x7ED8;&#x5236;</h4>
+<p>&#x6211;&#x7406;&#x89E3;&#x5C31;&#x662F;&#x628A;&#x7ED8;&#x5236;&#x4F4D;&#x56FE;&#x7684;&#x5DE5;&#x4F5C;&#x653E;&#x5230;&#x5B50;&#x7EBF;&#x7A0B;&#x4E2D;&#x53BB;&#x505A;&#xFF0C;&#x7ED8;&#x5236;&#x5B8C;&#x6210;&#x540E;&#x8D4B;&#x503C;&#x7ED9;layer.contents&#x3002;</p>
+<pre><code class="lang-objc"><span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@&quot;&#x662F;&#x4E0D;&#x662F;&#x4E3B;&#x7EBF;&#x7A0B; %d&quot;</span>, [[<span class="hljs-built_in">NSThread</span> currentThread] isMainThread]);
+<span class="hljs-built_in">dispatch_async</span>(dispatch_get_global_queue(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), ^{
+    __block <span class="hljs-built_in">CGSize</span> size = <span class="hljs-built_in">CGSizeZero</span>;
+    __block <span class="hljs-built_in">CGFloat</span> scale = <span class="hljs-number">1.0</span>;
+    <span class="hljs-built_in">dispatch_sync</span>(dispatch_get_main_queue(), ^{
+        size = <span class="hljs-keyword">self</span>.bounds.size;
+        scale = [<span class="hljs-built_in">UIScreen</span> mainScreen].scale;
+    });
+    <span class="hljs-built_in">UIGraphicsBeginImageContextWithOptions</span>(size, <span class="hljs-literal">NO</span>, scale);
+    <span class="hljs-built_in">CGContextRef</span> context = <span class="hljs-built_in">UIGraphicsGetCurrentContext</span>();
+
+    [<span class="hljs-keyword">self</span> draw:context size:size];
+
+    <span class="hljs-built_in">UIImage</span> *image = <span class="hljs-built_in">UIGraphicsGetImageFromCurrentImageContext</span>();
+    <span class="hljs-built_in">UIGraphicsEndImageContext</span>();
+    <span class="hljs-built_in">dispatch_async</span>(dispatch_get_main_queue(), ^{
+        <span class="hljs-keyword">self</span>.layer.contents = (__bridge <span class="hljs-keyword">id</span>)(image.CGImage);
+    });
+});
+</code></pre>
+<p>&#x63A5;&#x7740;&#x8C03;&#x7528;<code>[layer setNeesDisplay]</code>&#xFF0C;&#x7136;&#x540E;&#x4F1A;&#x5728;&#x4E0B;&#x4E00;&#x6B21;UI&#x5237;&#x65B0;&#x65F6;&#xFF0C;&#x62FF;&#x5230;&#x8FD9;&#x4E2A;contents&#x3002;</p>
+<h4 id="&#x600E;&#x6837;&#x5B9E;&#x73B0;&#x5F02;&#x6B65;&#x7ED8;&#x5236;">&#x600E;&#x6837;&#x5B9E;&#x73B0;&#x5F02;&#x6B65;&#x7ED8;&#x5236;</h4>
+<p>&#x5982;&#x679C;&#x60F3;&#x5728; layer &#x4E2D;&#x505A;&#x5F02;&#x6B65;&#x7ED8;&#x5236;&#x7684;&#x8BDD;&#xFF0C;&#x5728; <code>-[CALyaer display]</code>&#x4E2D;&#x5B9E;&#x73B0;&#x5C31;&#x884C;&#x4E86;&#x3002;YYKit &#x5C31;&#x662F;&#x8FD9;&#x6837;&#x5B9E;&#x73B0;&#x7684;&#x3002;</p>
+<pre><code class="lang-objc">- (<span class="hljs-keyword">void</span>)display {
+    <span class="hljs-keyword">super</span>.contents = <span class="hljs-keyword">super</span>.contents;
+    [<span class="hljs-keyword">self</span> _displayAsync:_displaysAsynchronously];
+}
+</code></pre>
+<p>&#x5982;&#x679C;&#x60F3;&#x5728; layer.delegate&#x4E2D;&#x505A;&#x5F02;&#x6B65;&#x7ED8;&#x5236;&#xFF0C;&#x5728;<code>displayLayer:</code>&#x65B9;&#x6CD5;&#x4E2D;&#x5B9E;&#x73B0;&#x6BD4;&#x8F83;&#x5408;&#x9002;&#xFF0C;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x76EE;&#x7684;&#x5C31;&#x662F;layer&#x5411;&#x4EE3;&#x7406;&#x8981;&#x4E00;&#x4E2A;&#x5BC4;&#x5BBF;&#x56FE;&#x3002;</p>
+<pre><code class="lang-objc">- (<span class="hljs-keyword">void</span>)displayLayer:(<span class="hljs-built_in">CALayer</span> *)layer
+{
+    <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@&quot;&#x662F;&#x4E0D;&#x662F;&#x4E3B;&#x7EBF;&#x7A0B; %d&quot;</span>, [[<span class="hljs-built_in">NSThread</span> currentThread] isMainThread]);
+    <span class="hljs-built_in">dispatch_async</span>(dispatch_get_global_queue(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), ^{
+        __block <span class="hljs-built_in">CGSize</span> size = <span class="hljs-built_in">CGSizeZero</span>;
+        __block <span class="hljs-built_in">CGFloat</span> scale = <span class="hljs-number">1.0</span>;
+        <span class="hljs-built_in">dispatch_sync</span>(dispatch_get_main_queue(), ^{
+            size = <span class="hljs-keyword">self</span>.bounds.size;
+            scale = [<span class="hljs-built_in">UIScreen</span> mainScreen].scale;
+        });
+    <span class="hljs-built_in">UIGraphicsBeginImageContextWithOptions</span>(size, <span class="hljs-literal">NO</span>, scale);
+    <span class="hljs-built_in">CGContextRef</span> context = <span class="hljs-built_in">UIGraphicsGetCurrentContext</span>();
+
+    [<span class="hljs-keyword">self</span> draw:context size:size];
+
+    <span class="hljs-built_in">UIImage</span> *image = <span class="hljs-built_in">UIGraphicsGetImageFromCurrentImageContext</span>();
+    <span class="hljs-built_in">UIGraphicsEndImageContext</span>();
+    <span class="hljs-built_in">dispatch_async</span>(dispatch_get_main_queue(), ^{
+        <span class="hljs-keyword">self</span>.layer.contents = (__bridge <span class="hljs-keyword">id</span>)(image.CGImage);
+       });
+    });
+}
+
+- (<span class="hljs-keyword">void</span>)draw:(<span class="hljs-built_in">CGContextRef</span>)context size:(<span class="hljs-built_in">CGSize</span>)size
+{
+    <span class="hljs-comment">//&#x5C06;&#x5750;&#x6807;&#x7CFB;&#x4E0A;&#x4E0B;&#x7FFB;&#x8F6C;&#x3002;&#x56E0;&#x4E3A;&#x5E95;&#x5C42;&#x5750;&#x6807;&#x7CFB;&#x548C;UIKit&#x7684;&#x5750;&#x6807;&#x7CFB;&#x539F;&#x70B9;&#x4F4D;&#x7F6E;&#x4E0D;&#x540C;&#x3002;</span>
+    <span class="hljs-built_in">CGContextSetTextMatrix</span>(context, <span class="hljs-built_in">CGAffineTransformIdentity</span>);
+    <span class="hljs-built_in">CGContextTranslateCTM</span>(context, <span class="hljs-number">0</span>, size.height);
+    <span class="hljs-built_in">CGContextScaleCTM</span>(context, <span class="hljs-number">1.0</span>,<span class="hljs-number">-1.0</span>);
+
+    <span class="hljs-built_in">CGMutablePathRef</span> path = <span class="hljs-built_in">CGPathCreateMutable</span>();
+    <span class="hljs-built_in">CGPathAddRect</span>(path, <span class="hljs-literal">NULL</span>, <span class="hljs-built_in">CGRectMake</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, size.width, size.height));
+
+    <span class="hljs-comment">//&#x8BBE;&#x7F6E;&#x5185;&#x5BB9;</span>
+    <span class="hljs-built_in">NSMutableAttributedString</span> * attString = [[<span class="hljs-built_in">NSMutableAttributedString</span> alloc] initWithString:<span class="hljs-string">@&quot;&#x54C8;&#x54C8;&#x54C8;&quot;</span>];
+    <span class="hljs-comment">//&#x8BBE;&#x7F6E;&#x5B57;&#x4F53;</span>
+    <span class="hljs-comment">//[attString addAttribute:NSFontAttributeName value:self.font range:NSMakeRange(0, self.text.length)];</span>
+
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((<span class="hljs-built_in">CFAttributedStringRef</span>)attString);
+    CTFrameRef frame = CTFramesetterCreateFrame(framesetter, <span class="hljs-built_in">CFRangeMake</span>(<span class="hljs-number">0</span>, attString.length), path, <span class="hljs-literal">NULL</span>);
+
+    <span class="hljs-comment">//&#x628A;frame&#x7ED8;&#x5236;&#x5230;context&#x91CC;</span>
+    CTFrameDraw(frame, context);
+}
+</code></pre>
+<p>&#x6211;&#x8BD5;&#x8FC7;&#xFF0C;&#x5728;layer.delegate&#x7684;<code>drawLayer:inContext:</code>&#x4E5F;&#x80FD;&#x591F;&#x5B9E;&#x73B0;&#xFF0C;&#x4F46;&#x4F3C;&#x4E4E;&#x7F51;&#x4E0A;&#x6CA1;&#x6709;&#x4EBA;&#x63D0;&#x5230;&#x8FC7;&#x8FD9;&#x4E2A;&#xFF0C;&#x6682;&#x65F6;&#x4E0D;&#x77E5;&#x9053;&#x4E3A;&#x4EC0;&#x4E48;&#x3002;</p>
+<pre><code class="lang-objc">- (<span class="hljs-keyword">void</span>)drawLayer:(<span class="hljs-built_in">CALayer</span> *)layer inContext:(<span class="hljs-built_in">CGContextRef</span>)ctx
+{
+   <span class="hljs-comment">// [super drawLayer:layer inContext:ctx];</span>
+    <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@&quot;&#x662F;&#x4E0D;&#x662F;&#x4E3B;&#x7EBF;&#x7A0B; %d&quot;</span>, [[<span class="hljs-built_in">NSThread</span> currentThread] isMainThread]);
+    <span class="hljs-comment">//&#x8F93;&#x51FA; 1 &#x4EE3;&#x8868;&#x662F;&#x4E3B;&#x7EBF;&#x7A0B;</span>
+    <span class="hljs-comment">//&#x5F02;&#x6B65;&#x7ED8;&#x5236;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x5728;&#x4F7F;&#x7528;&#x4E86;&#x5168;&#x5C40;&#x5B50;&#x961F;&#x5217;&#xFF0C;&#x5B9E;&#x9645;&#x4F7F;&#x7528;&#x4E2D;&#xFF0C;&#x6700;&#x597D;&#x81EA;&#x521B;&#x961F;&#x5217;</span>
+    <span class="hljs-built_in">dispatch_async</span>(dispatch_get_global_queue(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), ^{
+        __block <span class="hljs-built_in">CGSize</span> size = <span class="hljs-built_in">CGSizeZero</span>;
+        __block <span class="hljs-built_in">CGFloat</span> scale = <span class="hljs-number">1.0</span>;
+        <span class="hljs-built_in">dispatch_sync</span>(dispatch_get_main_queue(), ^{
+            size = <span class="hljs-keyword">self</span>.bounds.size;
+            scale = [<span class="hljs-built_in">UIScreen</span> mainScreen].scale;
+        });
+    <span class="hljs-built_in">UIGraphicsBeginImageContextWithOptions</span>(size, <span class="hljs-literal">NO</span>, scale);
+    <span class="hljs-built_in">CGContextRef</span> context = <span class="hljs-built_in">UIGraphicsGetCurrentContext</span>();
+
+    [<span class="hljs-keyword">self</span> draw:context size:size];
+
+    <span class="hljs-built_in">UIImage</span> *image = <span class="hljs-built_in">UIGraphicsGetImageFromCurrentImageContext</span>();
+    <span class="hljs-built_in">UIGraphicsEndImageContext</span>();
+    <span class="hljs-built_in">dispatch_async</span>(dispatch_get_main_queue(), ^{
+        <span class="hljs-keyword">self</span>.layer.contents = (__bridge <span class="hljs-keyword">id</span>)(image.CGImage);
+       });
+    });
+}
+</code></pre>
+<p>&#x6211;&#x8FD8;&#x8BD5;&#x8FC7;&#xFF0C;&#x5176;&#x5B9E;&#x4E0D;&#x7528;&#x5728;&#x8FD9;&#x4E9B;&#x56DE;&#x8C03;&#x91CC;&#x9762;&#x505A;&#x4E5F;&#x80FD;&#x5B9E;&#x73B0;&#xFF1A;</p>
+<pre><code class="lang-objc">- (<span class="hljs-keyword">void</span>)touchesBegan:(<span class="hljs-built_in">NSSet</span>&lt;<span class="hljs-built_in">UITouch</span> *&gt; *)touches withEvent:(<span class="hljs-built_in">UIEvent</span> *)event
+{
+    _imageView.center = <span class="hljs-built_in">CGPointMake</span>(<span class="hljs-number">150</span>, <span class="hljs-number">300</span>);
+
+    <span class="hljs-built_in">dispatch_async</span>(dispatch_get_global_queue(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>), ^{
+            __block <span class="hljs-built_in">CGSize</span> size = <span class="hljs-built_in">CGSizeZero</span>;
+            __block <span class="hljs-built_in">CGFloat</span> scale = <span class="hljs-number">1.0</span>;
+            <span class="hljs-built_in">dispatch_sync</span>(dispatch_get_main_queue(), ^{
+                size = _imageView.bounds.size;
+                scale = [<span class="hljs-built_in">UIScreen</span> mainScreen].scale;
+            });
+        <span class="hljs-built_in">UIGraphicsBeginImageContextWithOptions</span>(size, <span class="hljs-literal">NO</span>, scale);
+        <span class="hljs-built_in">CGContextRef</span> context = <span class="hljs-built_in">UIGraphicsGetCurrentContext</span>();
+
+        [_imageView draw:context size:size];
+
+        <span class="hljs-built_in">UIImage</span> *image = <span class="hljs-built_in">UIGraphicsGetImageFromCurrentImageContext</span>();
+        <span class="hljs-built_in">UIGraphicsEndImageContext</span>();
+        <span class="hljs-built_in">dispatch_async</span>(dispatch_get_main_queue(), ^{
+            _imageView.layer.contents = (__bridge <span class="hljs-keyword">id</span>)(image.CGImage);
+        });
+    });
+
+    [_imageView.layer setNeedsDisplay];
+}
+</code></pre>
+<p>&#x6240;&#x4EE5;&#xFF0C;&#x5F02;&#x6B65;&#x7ED8;&#x5236;&#x4E0D;&#x662F;&#x7EA0;&#x7ED3;&#x4E8E;&#x5728;&#x54EA;&#x4E2A;&#x56DE;&#x8C03;&#x5B9E;&#x73B0;&#xFF0C;&#x800C;&#x662F;&#x8BF4;<strong>&#x628A;&#x4F4D;&#x56FE;&#x7684;&#x7ED8;&#x5236;&#x653E;&#x5230;&#x5B50;&#x7EBF;&#x7A0B;&#x53BB;&#x505A;&#xFF0C;&#x7ED8;&#x5236;&#x5B8C;&#x6210;&#x540E;&#x56DE;&#x5230;&#x4E3B;&#x7EBF;&#x7A0B;&#x8BBE;&#x7F6E;&#x7ED9;layer.contents</strong>&#x3002;</p>
+<p>&#x7136;&#x540E;&#x8C03;&#x7528;<code>[layer setNeedsDisplay]</code>&#xFF0C;&#x5728;&#x4E0B;&#x4E00;&#x6B21; UI &#x5237;&#x65B0;&#x65F6;&#xFF0C;GPU&#x53EF;&#x4EE5;&#x62FF;&#x5230;&#x8FD9;&#x4E2A;contents&#x3002;</p>
+<h4 id="&#x6CE8;&#x610F;&#x7684;&#x95EE;&#x9898;">&#x6CE8;&#x610F;&#x7684;&#x95EE;&#x9898;</h4>
+<p>&#x6211;&#x81EA;&#x5DF1;&#x5728;&#x5199;&#x7684;&#x65F6;&#x5019;&#x9047;&#x5230;&#x4E86;&#x4E00;&#x4E9B;bug&#x3002;</p>
+<ol>
+<li><p>&#x5982;&#x679C;&#x8981;&#x4F7F;&#x7528;&#x4EE3;&#x7406;&#x7684; <code>displayLayer:</code>&#x5B9E;&#x73B0;&#x5F02;&#x6B65;&#x7ED8;&#x5236;&#xFF0C;&#x5728;&#x60F3;&#x8981;&#x5237;&#x65B0;layer&#x65F6;&#x4E0D;&#x80FD;&#x4F7F;&#x7528; <code>[view setNeedsDisplay]</code>&#x800C;&#x8981;&#x4F7F;&#x7528;<code>[layer setNeedsDisplay]</code>&#x3002;</p>
+<p>&#x56E0;&#x4E3A;&#x5728;view&#x8C03;&#x7528;<code>displayLayer:</code>&#x4E4B;&#x524D;&#xFF0C;layer.contents&#x5C5E;&#x6027;&#x8FD8;&#x4E3A;nil&#xFF0C;&#x6211;&#x5728;&#x6D4B;&#x8BD5;&#x7684;&#x65F6;&#x5019;&#x53D1;&#x73B0;&#xFF0C;&#x5982;&#x679C;layer.contents&#x4E3A;nil&#xFF0C;&#x90A3;&#x4E48;&#x8C03;&#x7528;<code>[view setNeedsDisplay]</code>&#x65F6;&#x4E0D;&#x4F1A;&#x89E6;&#x53D1;<code>layer</code>&#x7684;<code>setNeedsDisplay</code>&#x65B9;&#x6CD5;&#x3002;</p>
+</li>
+<li><p><code>displayLayer:</code>&#x4E0E;<code>drawRect:</code>&#x4E0D;&#x8981;&#x540C;&#x65F6;&#x5B9E;&#x73B0;&#xFF0C;&#x5426;&#x5219;&#x4F1A;&#x6709;bug&#xFF0C;&#x6211;&#x4E5F;&#x4E0D;&#x77E5;&#x9053;&#x4E3A;&#x4EC0;&#x4E48;</p>
+</li>
+<li><p>layer&#x5728;&#x6267;&#x884C;<code>[self.delegate displayLayer:self]</code>&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EA;&#x662F;&#x60F3;&#x5411;&#x4EE3;&#x7406;&#x8981;&#x4E00;&#x4E2A;&#x5BC4;&#x5BBF;&#x56FE;</p>
+</li>
+</ol>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="9.4 理解drawRect 2.html" class="navigation navigation-prev " aria-label="Previous page: 9.4 理解drawRect 2">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="10.提升页面的流畅度.html" class="navigation navigation-next " aria-label="Next page: 10.提升页面的流畅度">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"9.5实现异步绘制","level":"1.2.14","depth":2,"next":{"title":"10.提升页面的流畅度","level":"1.2.15","depth":2,"path":"1.不得不知的UI知识/10.提升页面的流畅度.md","ref":"1.不得不知的UI知识/10.提升页面的流畅度.md","articles":[]},"previous":{"title":"9.4 理解drawRect 2","level":"1.2.13","depth":2,"path":"1.不得不知的UI知识/9.4 理解drawRect 2.md","ref":"1.不得不知的UI知识/9.4 理解drawRect 2.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"1.不得不知的UI知识/9.5实现异步绘制.md","mtime":"2020-03-23T16:35:47.339Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-23T16:37:41.394Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
