@@ -1167,64 +1167,60 @@
 <li>&#x5C06; alloc &#x51FA;&#x6765;&#x7684; cell &#x653E;&#x5230;&#x91CD;&#x7528;&#x6C60;&#x4E2D;&#x3002;<br>&#x9700;&#x8981;&#x4F7F;&#x7528; cell &#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4ECE;&#x91CD;&#x7528;&#x6C60;&#x4E2D;&#x53D6;&#xFF0C;&#x53D6;&#x4E0D;&#x5230;&#x7684;&#x8BDD;&#x518D;&#x53BB; alloc &#x65B0;&#x7684; cell&#x3002;<br>&#x5F53; cell &#x6ED1;&#x51FA;&#x5C4F;&#x5E55;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53C8;&#x5C06; cell &#x653E;&#x56DE;&#x5230;&#x91CD;&#x7528;&#x6C60;&#x4E2D;&#x3002;</li>
 <li>&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684; ViewReusePool</li>
 </ul>
-<pre><code>@interface ViewReusePool : NSObject
+<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">ViewReusePool</span> : <span class="hljs-title">NSObject</span></span>
+<span class="hljs-comment">//&#x4ECE;&#x91CD;&#x7528;&#x6C60;&#x4E2D;&#x53D6;&#x51FA;&#x4E00;&#x4E2A;&#x53EF;&#x91CD;&#x7528;&#x7684;view</span>
+- (<span class="hljs-built_in">UIView</span> *)dequeueReseableView;
+<span class="hljs-comment">//&#x5411;&#x91CD;&#x7528;&#x6C60;&#x355C;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x89C6;&#x56FE;</span>
+- (<span class="hljs-keyword">void</span>)addUsingView:(<span class="hljs-built_in">UIView</span> *)view;
+<span class="hljs-comment">//&#x91CD;&#x7F6E; &#x5C06;&#x6240;&#x6709;&#x5F53;&#x524D;&#x4F7F;&#x7528;&#x4E2D;&#x7684;&#x89C6;&#x56FE;&#x79FB;&#x52A8;&#x5230;&#x53EF;&#x91CD;&#x7528;&#x961F;&#x5217;&#x4E2D;</span>
+- (<span class="hljs-keyword">void</span>)reset;
+<span class="hljs-keyword">@end</span>
 
-//&#x4ECE;&#x91CD;&#x7528;&#x6C60;&#x4E2D;&#x53D6;&#x51FA;&#x4E00;&#x4E2A;&#x53EF;&#x91CD;&#x7528;&#x7684;view
-- (UIView *)dequeueReseableView;
-//&#x5411;&#x91CD;&#x7528;&#x6C60;&#x355C;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x89C6;&#x56FE;
-- (void)addUsingView:(UIView *)view;
-//&#x91CD;&#x7F6E; &#x5C06;&#x6240;&#x6709;&#x5F53;&#x524D;&#x4F7F;&#x7528;&#x4E2D;&#x7684;&#x89C6;&#x56FE;&#x79FB;&#x52A8;&#x5230;&#x53EF;&#x91CD;&#x7528;&#x961F;&#x5217;&#x4E2D;
-- (void)reset;
+<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">ViewReusePool</span>()</span>
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSMutableSet</span> *waitUsedQueue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSMutableSet</span> *usingQueue;
+<span class="hljs-keyword">@end</span>
 
-@end
-
-
-@interface ViewReusePool()
-
-@property (nonatomic, strong) NSMutableSet *waitUsedQueue;
-@property (nonatomic, strong) NSMutableSet *usingQueue;
-
-@end
-
-@implementation ViewReusePool
+<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">ViewReusePool</span></span>
 
 - (instancetype)init
 {
-    self = [super init];
-    if (self) {
-        _waitUsedQueue = [NSMutableSet set];
-        _usingQueue = [NSMutableSet set];
+    <span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> init];
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>) {
+        _waitUsedQueue = [<span class="hljs-built_in">NSMutableSet</span> set];
+        _usingQueue = [<span class="hljs-built_in">NSMutableSet</span> set];
     }
-    return self;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;
 }
 
-- (UIView *)dequeueReseableView
+- (<span class="hljs-built_in">UIView</span> *)dequeueReseableView
 {
-    UIView *viewInPool = [_waitUsedQueue anyObject];
-    if (viewInPool == nil) {
-        return nil;
+    <span class="hljs-built_in">UIView</span> *viewInPool = [_waitUsedQueue anyObject];
+    <span class="hljs-keyword">if</span> (viewInPool == <span class="hljs-literal">nil</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>;
     }
-    else {
+    <span class="hljs-keyword">else</span> {
         [_waitUsedQueue removeObject:viewInPool];
         [_usingQueue addObject:viewInPool];
-        return viewInPool;
+        <span class="hljs-keyword">return</span> viewInPool;
     }
 }
 
-- (void)addUsingView:(UIView *)view
+- (<span class="hljs-keyword">void</span>)addUsingView:(<span class="hljs-built_in">UIView</span> *)view
 {
-    if (view == nil) return;
+    <span class="hljs-keyword">if</span> (view == <span class="hljs-literal">nil</span>) <span class="hljs-keyword">return</span>;
     [_usingQueue addObject:view];
 }
 
-- (void)reset{
-    UIView *viewNotInPool = nil;
-    while ((viewNotInPool = [_usingQueue anyObject])) {
+- (<span class="hljs-keyword">void</span>)reset{
+    <span class="hljs-built_in">UIView</span> *viewNotInPool = <span class="hljs-literal">nil</span>;
+    <span class="hljs-keyword">while</span> ((viewNotInPool = [_usingQueue anyObject])) {
         [_usingQueue removeObject:viewNotInPool];
         [_waitUsedQueue addObject:viewNotInPool];
     }
 }
 </code></pre>
+
                                 
                                 </section>
                             
@@ -1267,7 +1263,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"11.UITableView 的重用机制","level":"1.2.16","depth":2,"next":{"title":"12.UIView与CALayer的区别","level":"1.2.17","depth":2,"path":"1.不得不知的UI知识/12.UIView与CALayer的区别.md","ref":"1.不得不知的UI知识/12.UIView与CALayer的区别.md","articles":[]},"previous":{"title":"10.提升页面的流畅度","level":"1.2.15","depth":2,"path":"1.不得不知的UI知识/10.提升页面的流畅度.md","ref":"1.不得不知的UI知识/10.提升页面的流畅度.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"1.不得不知的UI知识/11.UITableView 的重用机制.md","mtime":"2020-03-23T09:53:21.703Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-23T16:37:41.394Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"11.UITableView 的重用机制","level":"1.2.16","depth":2,"next":{"title":"12.UIView与CALayer的区别","level":"1.2.17","depth":2,"path":"1.不得不知的UI知识/12.UIView与CALayer的区别.md","ref":"1.不得不知的UI知识/12.UIView与CALayer的区别.md","articles":[]},"previous":{"title":"10.提升页面的流畅度","level":"1.2.15","depth":2,"path":"1.不得不知的UI知识/10.提升页面的流畅度.md","ref":"1.不得不知的UI知识/10.提升页面的流畅度.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"1.不得不知的UI知识/11.UITableView 的重用机制.md","mtime":"2020-03-24T05:08:35.765Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-24T14:03:44.157Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
