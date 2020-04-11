@@ -58,6 +58,8 @@
 
     
     
+    <link rel="prev" href="2.GCD的基本概念.html" />
+    
 
     </head>
     <body>
@@ -216,7 +218,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.9" data-path="../1.不得不知的UI知识/9.1UI绘制的流程.html">
+        <li class="chapter " data-level="1.2.9" data-path="../1.不得不知的UI知识/9.卡顿的原因.html">
+            
+                <a href="../1.不得不知的UI知识/9.卡顿的原因.html">
+            
+                    
+                    9.卡顿的原因
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.10" data-path="../1.不得不知的UI知识/9.1UI绘制的流程.html">
             
                 <a href="../1.不得不知的UI知识/9.1UI绘制的流程.html">
             
@@ -229,7 +244,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.10" data-path="../1.不得不知的UI知识/9.2理解contents.html">
+        <li class="chapter " data-level="1.2.11" data-path="../1.不得不知的UI知识/9.2理解contents.html">
             
                 <a href="../1.不得不知的UI知识/9.2理解contents.html">
             
@@ -242,7 +257,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.11" data-path="../1.不得不知的UI知识/9.3理解drawRect 1.html">
+        <li class="chapter " data-level="1.2.12" data-path="../1.不得不知的UI知识/9.3理解drawRect 1.html">
             
                 <a href="../1.不得不知的UI知识/9.3理解drawRect 1.html">
             
@@ -255,7 +270,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.12" data-path="../1.不得不知的UI知识/9.4 理解drawRect 2.html">
+        <li class="chapter " data-level="1.2.13" data-path="../1.不得不知的UI知识/9.4 理解drawRect 2.html">
             
                 <a href="../1.不得不知的UI知识/9.4 理解drawRect 2.html">
             
@@ -268,25 +283,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.13" data-path="../1.不得不知的UI知识/9.5实现异步绘制.html">
+        <li class="chapter " data-level="1.2.14" data-path="../1.不得不知的UI知识/9.5实现异步绘制.html">
             
                 <a href="../1.不得不知的UI知识/9.5实现异步绘制.html">
             
                     
                     9.5实现异步绘制
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.2.14" data-path="../1.不得不知的UI知识/9.卡顿的原因.html">
-            
-                <a href="../1.不得不知的UI知识/9.卡顿的原因.html">
-            
-                    
-                    9.卡顿的原因
             
                 </a>
             
@@ -798,7 +800,33 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.8.1" data-path="99.多线程问题合集.html">
+        <li class="chapter " data-level="1.8.1" data-path="1.基本概念.html">
+            
+                <a href="1.基本概念.html">
+            
+                    
+                    1.基本概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="2.GCD的基本概念.html">
+            
+                <a href="2.GCD的基本概念.html">
+            
+                    
+                    2.GCD的基本概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8.3" data-path="99.多线程问题合集.html">
             
                 <a href="99.多线程问题合集.html">
             
@@ -1197,6 +1225,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.14" data-path="../工作感悟.html">
+            
+                <a href="../工作感悟.html">
+            
+                    
+                    工作感悟
+            
+                </a>
+            
+
+            
+        </li>
+    
 
     
 
@@ -1242,67 +1283,12 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h4 id="1-&#x8FDB;&#x7A0B;&#x4E0E;&#x7EBF;&#x7A0B;">1. &#x8FDB;&#x7A0B;&#x4E0E;&#x7EBF;&#x7A0B;</h4>
-<ul>
-<li>&#x8FDB;&#x7A0B;&#xFF1A;&#x8FDB;&#x7A0B;&#x662F;&#x6307;&#x7CFB;&#x7EDF;&#x4E2D;&#x6B63;&#x5728;&#x8FD0;&#x884C;&#x7684;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x3002;</li>
-<li>&#x7EBF;&#x7A0B;&#xFF1A;&#x6709;&#x4EFB;&#x52A1;&#x90FD;&#x662F;&#x5728;&#x7EBF;&#x7A0B;&#x4E2D;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x8FDB;&#x7A0B;&#x8981;&#x60F3;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#xFF0C;&#x5FC5;&#x987B;&#x5F97;&#x6709;&#x7EBF;&#x7A0B;&#xFF0C;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x81F3;&#x5C11;&#x5F97;&#x6709;&#x4E00;&#x6761;&#x7EBF;&#x7A0B;&#x3002;</li>
-</ul>
-<h4 id="2-&#x7EBF;&#x7A0B;&#x7684;&#x4E32;&#x884C;">2. &#x7EBF;&#x7A0B;&#x7684;&#x4E32;&#x884C;</h4>
-<p>&#x540C;&#x4E00;&#x65F6;&#x95F4;&#x5185;&#xFF0C;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x53EA;&#x80FD;&#x6267;&#x884C;&#x4E00;&#x4E2A;&#x4EFB;&#x52A1;&#x3002;&#x5982;&#x679C;&#x8981;&#x5728;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;&#x5185;&#x6267;&#x884C;&#x591A;&#x4E2A;&#x4EFB;&#x52A1;&#xFF0C;&#x90A3;&#x4E48;&#x53EA;&#x80FD;&#x4E00;&#x4E2A;&#x4E00;&#x4E2A;&#x6309;&#x987A;&#x5E8F;&#x6267;&#x884C;&#x3002;</p>
-<h4 id="3-&#x591A;&#x7EBF;&#x7A0B;">3. &#x591A;&#x7EBF;&#x7A0B;</h4>
-<ul>
-<li>&#x6982;&#x5FF5;&#xFF1A;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x5185;&#x53EF;&#x4EE5;&#x5F00;&#x542F;&#x591A;&#x6761;&#x7EBF;&#x7A0B;&#xFF0C;&#x591A;&#x6761;&#x7EBF;&#x7A0B;&#x53EF;&#x4EE5;&#x5E76;&#x884C;&#x6267;&#x884C;&#x591A;&#x4E2A;&#x4EFB;&#x52A1;&#x3002;</li>
-<li>&#x539F;&#x7406;&#xFF1A;CPU &#x5FEB;&#x901F;&#x5730;&#x5728;&#x5404;&#x7EBF;&#x7A0B;&#x4E4B;&#x95F4;&#x8C03;&#x5EA6;&#xFF0C;&#x5F62;&#x6210;&#x4E86;&#x5E76;&#x53D1;&#x6267;&#x884C;&#x7684;&#x5047;&#x8C61;&#x3002;</li>
-<li>&#x4F18;&#x70B9;&#xFF1A;&#x53EF;&#x4EE5;&#x9002;&#x5F53;&#x63D0;&#x9AD8;&#x7A0B;&#x5E8F;&#x7684;&#x6267;&#x884C;&#x6548;&#x7387;&#xFF0C;&#x63D0;&#x9AD8;CPU&#x3001;&#x5185;&#x5B58;&#x7684;&#x5229;&#x7528;&#x7387;&#x3002;</li>
-<li>&#x7F3A;&#x70B9;&#xFF1A;&#x521B;&#x5EFA;&#x7EBF;&#x7A0B;&#x4F1A;&#x6709;&#x5F00;&#x9500;&#xFF1A;&#x521B;&#x5EFA;&#x9700;&#x8981;&#x65F6;&#x95F4;&#x3001;&#x5360;&#x7528;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#x3001;&#x8FD8;&#x4F1A;&#x52A0;&#x5927;CPU&#x7684;&#x5F00;&#x9500;&#xFF1B;&#x4F1A;&#x4F7F;&#x7A0B;&#x5E8F;&#x7684;&#x8BBE;&#x8BA1;&#x66F4;&#x52A0;&#x590D;&#x6742;&#xFF1A;&#x7EBF;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;&#x3001;&#x7EBF;&#x7A0B;&#x95F4;&#x7684;&#x6570;&#x636E;&#x5171;&#x4EAB;</li>
-</ul>
-<h4 id="4-ios&#x4E2D;&#x5B9E;&#x73B0;&#x591A;&#x7EBF;&#x7A0B;&#x7684;&#x65B9;&#x6848;">4. iOS&#x4E2D;&#x5B9E;&#x73B0;&#x591A;&#x7EBF;&#x7A0B;&#x7684;&#x65B9;&#x6848;</h4>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">&#x591A;&#x7EBF;&#x7A0B;&#x65B9;&#x6848;</th>
-<th style="text-align:left">&#x8BED;&#x8A00;</th>
-<th style="text-align:left">ARC&#x4E0B;&#x7684;&#x5185;&#x5B58;&#x7BA1;&#x7406;</th>
-<th style="text-align:left">&#x4F7F;&#x7528;&#x9891;&#x7387;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">pthread</td>
-<td style="text-align:left">C</td>
-<td style="text-align:left">&#x7A0B;&#x5E8F;&#x5458;&#x624B;&#x52A8;&#x7BA1;&#x7406;</td>
-<td style="text-align:left">&#x2605;&#x2606;&#x2606;&#x2606;&#x2606;</td>
-</tr>
-<tr>
-<td style="text-align:left">NSThread</td>
-<td style="text-align:left">OC/Swift(Thread)</td>
-<td style="text-align:left">&#x7A0B;&#x5E8F;&#x5458;&#x624B;&#x52A8;&#x7BA1;&#x7406;</td>
-<td style="text-align:left">&#x2605;&#x2605;&#x2606;&#x2606;&#x2606;</td>
-</tr>
-<tr>
-<td style="text-align:left">GCD</td>
-<td style="text-align:left">C/OC/Swift</td>
-<td style="text-align:left">ARC&#x81EA;&#x52A8;&#x7BA1;&#x7406;(&#x591A;&#x6570;&#x60C5;&#x51B5;)</td>
-<td style="text-align:left">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</td>
-</tr>
-<tr>
-<td style="text-align:left">NSOperation</td>
-<td style="text-align:left">OC/Swift</td>
-<td style="text-align:left">ARC&#x81EA;&#x52A8;&#x7BA1;&#x7406;</td>
-<td style="text-align:left">&#x2605;&#x2605;&#x2605;&#x2605;&#x2606;</td>
-</tr>
-</tbody>
-</table>
-<h4 id="5-&#x5B89;&#x5168;&#x8BFB;&#x5199;">5. &#x5B89;&#x5168;&#x8BFB;&#x5199;</h4>
-<p>&#x666E;&#x901A;&#x7684;&#x7EBF;&#x7A0B;&#x540C;&#x6B65;&#x65B9;&#x6848;&#x4FDD;&#x8BC1;&#x7684;&#x662F;&#xFF1A;&#x540C;&#x4E00;&#x65F6;&#x523B;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x6761;&#x7EBF;&#x7A0B;&#x8BFB;&#x6216;&#x8005;&#x5199;&#x3002;</p>
-<p>&#x4F46;&#x8FD9;&#x4E0D;&#x662F;&#x6700;&#x7406;&#x60F3;&#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x56E0;&#x4E3A;&#x8BFB;&#x64CD;&#x4F5C;&#x65F6;&#x4E0D;&#x4F1A;&#x5BF9;&#x6211;&#x4EEC;&#x7684;&#x6570;&#x636E;&#x9020;&#x6210;&#x7834;&#x574F;&#x7684;&#x3002;&#x6700;&#x7406;&#x60F3;&#x7684;&#x64CD;&#x4F5C;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;</p>
-<ul>
-<li>&#x540C;&#x4E00;&#x65F6;&#x95F4;&#x53EA;&#x80FD;&#x6709;&#x4E00;&#x6761;&#x7EBF;&#x7A0B;&#x5199;</li>
-<li>&#x540C;&#x4E00;&#x65F6;&#x95F4;&#x53EF;&#x4EE5;&#x6709;&#x591A;&#x6761;&#x7EBF;&#x7A0B;&#x8BFB;</li>
-<li>&#x540C;&#x4E00;&#x65F6;&#x95F4;&#x4E0D;&#x80FD;&#x65E2;&#x6709;&#x5199;&#x3001;&#x53C8;&#x6709;&#x8BFB;</li>
-</ul>
-<p>&#x53EF;&#x4EE5;&#x91C7;&#x7528; <code>dispatch_barrier</code>&#x6765;&#x5B9E;&#x73B0;.</p>
-<h4 id="6">6.</h4>
+                                <ol>
+<li><h4 id="6">6.</h4>
+</li>
+</ol>
+<p>Sync &#x4E0E; async &#x7684;&#x533A;&#x522B;</p>
+<p>&#x591A;&#x7EBF;&#x7A0B;&#x7F16;&#x7A0B;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x95EE;&#x9898;</p>
 
                                 
                                 </section>
@@ -1330,6 +1316,10 @@
 
             
                 
+                <a href="2.GCD的基本概念.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 2.GCD的基本概念">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
                 
             
         
@@ -1338,7 +1328,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"99.多线程问题合集","level":"1.8.1","depth":2,"next":{"title":"8.网络","level":"1.9","depth":1,"ref":"","articles":[{"title":"1.HTTP","level":"1.9.1","depth":2,"path":"8.网络/1.HTTP.md","ref":"8.网络/1.HTTP.md","articles":[]},{"title":"2.中间人攻击","level":"1.9.2","depth":2,"path":"8.网络/2.中间人攻击.md","ref":"8.网络/2.中间人攻击.md","articles":[]},{"title":"3.对称加密与非对称加密","level":"1.9.3","depth":2,"path":"8.网络/3.对称加密与非对称加密.md","ref":"8.网络/3.对称加密与非对称加密.md","articles":[]},{"title":"4.数字证书","level":"1.9.4","depth":2,"path":"8.网络/4.数字证书.md","ref":"8.网络/4.数字证书.md","articles":[]},{"title":"5.HTTPS","level":"1.9.5","depth":2,"path":"8.网络/5.HTTPS.md","ref":"8.网络/5.HTTPS.md","articles":[]},{"title":"6.UDP与TCP的对比","level":"1.9.6","depth":2,"path":"8.网络/6.UDP与TCP的对比.md","ref":"8.网络/6.UDP与TCP的对比.md","articles":[]},{"title":"7.TCP的流量控制","level":"1.9.7","depth":2,"path":"8.网络/7.TCP的流量控制.md","ref":"8.网络/7.TCP的流量控制.md","articles":[]},{"title":"8.TCP的可靠传输","level":"1.9.8","depth":2,"path":"8.网络/8.TCP的可靠传输.md","ref":"8.网络/8.TCP的可靠传输.md","articles":[]},{"title":"9.TCP的拥塞控制","level":"1.9.9","depth":2,"path":"8.网络/9.TCP的拥塞控制.md","ref":"8.网络/9.TCP的拥塞控制.md","articles":[]},{"title":"99.网络问题集合","level":"1.9.10","depth":2,"path":"8.网络/99.网络问题集合.md","ref":"8.网络/99.网络问题集合.md","articles":[]}]},"previous":{"title":"7.多线程","level":"1.8","depth":1,"ref":"","articles":[{"title":"99.多线程问题合集","level":"1.8.1","depth":2,"path":"7.多线程/99.多线程问题合集.md","ref":"7.多线程/99.多线程问题合集.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"7.多线程/99.多线程问题合集.md","mtime":"2020-03-31T10:15:06.010Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-05T12:57:57.368Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"99.多线程问题合集","level":"1.8.3","depth":2,"next":{"title":"8.网络","level":"1.9","depth":1,"ref":"","articles":[{"title":"1.HTTP","level":"1.9.1","depth":2,"path":"8.网络/1.HTTP.md","ref":"8.网络/1.HTTP.md","articles":[]},{"title":"2.中间人攻击","level":"1.9.2","depth":2,"path":"8.网络/2.中间人攻击.md","ref":"8.网络/2.中间人攻击.md","articles":[]},{"title":"3.对称加密与非对称加密","level":"1.9.3","depth":2,"path":"8.网络/3.对称加密与非对称加密.md","ref":"8.网络/3.对称加密与非对称加密.md","articles":[]},{"title":"4.数字证书","level":"1.9.4","depth":2,"path":"8.网络/4.数字证书.md","ref":"8.网络/4.数字证书.md","articles":[]},{"title":"5.HTTPS","level":"1.9.5","depth":2,"path":"8.网络/5.HTTPS.md","ref":"8.网络/5.HTTPS.md","articles":[]},{"title":"6.UDP与TCP的对比","level":"1.9.6","depth":2,"path":"8.网络/6.UDP与TCP的对比.md","ref":"8.网络/6.UDP与TCP的对比.md","articles":[]},{"title":"7.TCP的流量控制","level":"1.9.7","depth":2,"path":"8.网络/7.TCP的流量控制.md","ref":"8.网络/7.TCP的流量控制.md","articles":[]},{"title":"8.TCP的可靠传输","level":"1.9.8","depth":2,"path":"8.网络/8.TCP的可靠传输.md","ref":"8.网络/8.TCP的可靠传输.md","articles":[]},{"title":"9.TCP的拥塞控制","level":"1.9.9","depth":2,"path":"8.网络/9.TCP的拥塞控制.md","ref":"8.网络/9.TCP的拥塞控制.md","articles":[]},{"title":"99.网络问题集合","level":"1.9.10","depth":2,"path":"8.网络/99.网络问题集合.md","ref":"8.网络/99.网络问题集合.md","articles":[]}]},"previous":{"title":"2.GCD的基本概念","level":"1.8.2","depth":2,"path":"7.多线程/2.GCD的基本概念.md","ref":"7.多线程/2.GCD的基本概念.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"7.多线程/99.多线程问题合集.md","mtime":"2020-04-11T07:52:55.536Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-11T11:25:30.238Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
